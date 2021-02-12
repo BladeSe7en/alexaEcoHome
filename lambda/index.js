@@ -1,37 +1,52 @@
 const Alexa = require('ask-sdk-core');
 
 const LaunchRequestHandler = {
-  canHandle(handlerInput) {
-    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
-  },
-  handle(handlerInput) {
-    const { permissions } = handlerInput.requestEnvelope.context.System.user;
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
+    },
+    handle(handlerInput) {
+        const speakOutput = 'Welcome to Eco Home, your personal conservation assistant! You can say help, or set a reminder to get started.';
 
-    if (!permissions) {
-
-      handlerInput.responseBuilder
-        .speak("This skill needs permission to access your reminders.")
-        .addDirective({
-          type: "Connections.SendRequest",
-          name: "AskFor",
-          payload: {
-            "@type": "AskForPermissionsConsentRequest",
-            "@version": "1",
-            "permissionScope": "alexa::alerts:reminders:skill:readwrite"
-          },
-          token: ""
-        });
-
-    } else {
-      handlerInput.responseBuilder
-        .speak("Hello. You can say 'remind me' to set a reminder.")
-        .reprompt("Say: 'remind me' to set a reminder.")
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
+            .getResponse();
     }
-
-    return handlerInput.responseBuilder
-      .getResponse();
-  }
 };
+
+
+// const LaunchRequestHandler = {
+//   canHandle(handlerInput) {
+//     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
+//   },
+//   handle(handlerInput) {
+//     const { permissions } = handlerInput.requestEnvelope.context.System.user;
+
+//     if (!permissions) {
+
+//       handlerInput.responseBuilder
+//         .speak("This skill needs permission to access your reminders.")
+//         .addDirective({
+//           type: "Connections.SendRequest",
+//           name: "AskFor",
+//           payload: {
+//             "@type": "AskForPermissionsConsentRequest",
+//             "@version": "1",
+//             "permissionScope": "alexa::alerts:reminders:skill:readwrite"
+//           },
+//           token: ""
+//         });
+
+//     } else {
+//       handlerInput.responseBuilder
+//         .speak("Hello. You can say 'remind me' to set a reminder.")
+//         .reprompt("Say: 'remind me' to set a reminder.")
+//     }
+
+//     return handlerInput.responseBuilder
+//       .getResponse();
+//   }
+// };
 
 const ConnectionsResponsetHandler = {
   canHandle(handlerInput) {
