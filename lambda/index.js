@@ -1,4 +1,5 @@
 const Alexa = require('ask-sdk-core');
+import { ConnectionsResponsetHandler, CreateReminderIntentHandler } from './intents/reminderIntent';
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -15,145 +16,6 @@ const LaunchRequestHandler = {
 };
 
 
-// const LaunchRequestHandler = {
-//   canHandle(handlerInput) {
-//     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
-//   },
-//   handle(handlerInput) {
-//     const { permissions } = handlerInput.requestEnvelope.context.System.user;
-
-//     if (!permissions) {
-
-//       handlerInput.responseBuilder
-//         .speak("This skill needs permission to access your reminders.")
-//         .addDirective({
-//           type: "Connections.SendRequest",
-//           name: "AskFor",
-//           payload: {
-//             "@type": "AskForPermissionsConsentRequest",
-//             "@version": "1",
-//             "permissionScope": "alexa::alerts:reminders:skill:readwrite"
-//           },
-//           token: ""
-//         });
-
-//     } else {
-//       handlerInput.responseBuilder
-//         .speak("Hello. You can say 'remind me' to set a reminder.")
-//         .reprompt("Say: 'remind me' to set a reminder.")
-//     }
-
-//     return handlerInput.responseBuilder
-//       .getResponse();
-//   }
-// };
-
-const ConnectionsResponsetHandler = {
-  canHandle(handlerInput) {
-    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'Connections.Response';
-  },
-  handle(handlerInput) {
-    const { permissions } = handlerInput.requestEnvelope.context.System.user;
-
-    //console.log(JSON.stringify(handlerInput.requestEnvelope));
-    //console.log(handlerInput.requestEnvelope.request.payload.status);
-
-    const status = handlerInput.requestEnvelope.request.payload.status;
-
-
-    if (!permissions) {
-      return handlerInput.responseBuilder
-        .speak("I didn't hear your answer. This skill requires your permission.")
-        .addDirective({
-          type: "Connections.SendRequest",
-          name: "AskFor",
-          payload: {
-            "@type": "AskForPermissionsConsentRequest",
-            "@version": "1",
-            "permissionScope": "alexa::alerts:reminders:skill:readwrite"
-          },
-          token: "user-id-could-go-here"
-        })
-        .getResponse();
-    }
-
-    switch (status) {
-      case "ACCEPTED":
-        handlerInput.responseBuilder
-          .speak("Now that you've provided permission - you can say: set a reminder.")
-          .reprompt('To set a reminder say: set a reminder.')
-        break;
-      case "DENIED":
-        handlerInput.responseBuilder
-          .speak("Without permissions, I can't set a reminder. So I guess that's goodbye.");
-        break;
-      case "NOT_ANSWERED":
-
-        break;
-      default:
-        handlerInput.responseBuilder
-          .speak("Now that you've provided permission - you can say: set a reminder.")
-          .reprompt('To set a reminder say: set a reminder.')
-    }
-
-    return handlerInput.responseBuilder
-      .getResponse();
-  }
-};
-
-const CreateReminderIntentHandler = {
-  canHandle(handlerInput) {
-    const { request } = handlerInput.requestEnvelope;
-    return request.type === 'IntentRequest' && request.intent.name === 'CreateReminderIntent';
-  },
-  async handle(handlerInput) {
-    const { requestEnvelope, serviceClientFactory, responseBuilder } = handlerInput;
-    const consentToken = requestEnvelope.context.System.user.permissions
-      && requestEnvelope.context.System.user.permissions.consentToken;
-    if (!consentToken) {
-      return responseBuilder
-        .speak('Please enable reminders permission in the Amazon Alexa app.')
-        .withAskForPermissionsConsentCard(['alexa::alerts:reminders:skill:readwrite'])
-        .getResponse();
-    }
-
-    try {
-      const speechText = "Alright! I've scheduled a reminder for you.";
-
-      const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
-      const reminderPayload = {
-        "trigger": {
-          "type": "SCHEDULED_RELATIVE",
-          "offsetInSeconds": "10",
-          "timeZoneId": "America/New_York"
-        },
-        "alertInfo": {
-          "spokenInfo": {
-            "content": [{
-              "locale": "en-US",
-              "text": "learn about reminders"
-            }]
-          }
-        },
-        "pushNotification": {
-          "status": "ENABLED"
-        }
-      };
-
-      await ReminderManagementServiceClient.createReminder(reminderPayload);
-      return responseBuilder
-        .speak(speechText)
-        .getResponse();
-
-    } catch (error) {
-      console.error(error);
-      return responseBuilder
-        .speak('Something went wrong.')
-        .getResponse();
-    }
-  }
-};
-
 const CancelAndStopIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -168,6 +30,7 @@ const CancelAndStopIntentHandler = {
   }
 };
 
+
 const SessionEndedRequestHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionEndedRequest';
@@ -177,6 +40,7 @@ const SessionEndedRequestHandler = {
     return handlerInput.responseBuilder.getResponse();
   }
 };
+
 
 const HelpIntentHandler = {
   canHandle(handlerInput) {
@@ -193,6 +57,7 @@ const HelpIntentHandler = {
   }
 };
 
+
 const IntentReflectorHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
@@ -207,6 +72,7 @@ const IntentReflectorHandler = {
       .getResponse();
   }
 };
+
 
 const ErrorHandler = {
   canHandle() {
