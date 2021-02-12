@@ -28,24 +28,18 @@
             "say hello"
           ]
         },
-        {
-          "name": "ReminderPermissionsIntent",
-          "slots": [],
-          "samples": [
-            "I want to set a reminder",
-            "set a reminder",
-            "reminder",
-            "set reminder",
-            "remind me please",
-            "remind me"
-          ]
-        },
        { 
         "name": "CreateReminderIntent",
         "slots": [],
         "samples": [
           "create a reminder",
-          "make a reminder for me"
+          "make a reminder for me",
+          "I want to set a reminder",
+          "set a reminder",
+          "reminder",
+          "set reminder",
+          "remind me please",
+          "remind me"
         ]
       },
         {
