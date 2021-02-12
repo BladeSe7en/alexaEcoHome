@@ -113,7 +113,17 @@ const CreateReminderIntentHandler = {
       && requestEnvelope.context.System.user.permissions.consentToken;
     if (!consentToken) {
       return responseBuilder
-        .speak('Please enable reminders permission in the Amazon Alexa app.')
+       // .speak('Please enable reminders permission in the Amazon Alexa app.')
+        .addDirective({
+            type: "Connections.SendRequest",
+            name: "AskFor",
+            payload: {
+              "@type": "AskForPermissionsConsentRequest",
+              "@version": "1",
+              "permissionScope": "alexa::alerts:reminders:skill:readwrite"
+            },
+            token: "user-id-could-go-here"
+          })
         .withAskForPermissionsConsentCard(['alexa::alerts:reminders:skill:readwrite'])
         .getResponse();
     }
