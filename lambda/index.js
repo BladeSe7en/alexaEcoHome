@@ -17,7 +17,7 @@ const LaunchRequestHandler = {
 
 const ReminderPermissionsHandler = {
   canHandle(handlerInput) {
-    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'ReminderPermissions';
+    return handlerInput.type === 'IntentRequest' && handlerInput.intent.name === 'ReminderPermissionsIntent';
   },
   handle(handlerInput) {
     const { permissions } = handlerInput.requestEnvelope.context.System.user;
