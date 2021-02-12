@@ -1,53 +1,37 @@
 const Alexa = require('ask-sdk-core');
 
 const LaunchRequestHandler = {
-    canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
-    },
-    handle(handlerInput) {
-        const speakOutput = 'Welcome to Eco Home, your personal conservation assistant! You can say help, or set a reminder to get started.';
+  canHandle(handlerInput) {
+    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
+  },
+  handle(handlerInput) {
+    const { permissions } = handlerInput.requestEnvelope.context.System.user;
 
-        return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .reprompt(speakOutput)
-            .getResponse();
+    if (!permissions) {
+
+      handlerInput.responseBuilder
+        .speak("This skill needs permission to access your reminders.")
+        .addDirective({
+          type: "Connections.SendRequest",
+          name: "AskFor",
+          payload: {
+            "@type": "AskForPermissionsConsentRequest",
+            "@version": "1",
+            "permissionScope": "alexa::alerts:reminders:skill:readwrite"
+          },
+          token: ""
+        });
+
+    } else {
+      handlerInput.responseBuilder
+        .speak("Hello. You can say 'remind me' to set a reminder.")
+        .reprompt("Say: 'remind me' to set a reminder.")
     }
+
+    return handlerInput.responseBuilder
+      .getResponse();
+  }
 };
-
-
-
-// const ReminderPermissionsHandler = {
-//   canHandle(handlerInput) {
-//     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
-//   },
-//   handle(handlerInput) {
-//     const { permissions } = handlerInput.requestEnvelope.context.System.user;
-
-//     if (!permissions) {
-
-//       handlerInput.responseBuilder
-//         .speak("This skill needs permission to access your reminders.")
-//         .addDirective({
-//           type: "Connections.SendRequest",
-//           name: "AskFor",
-//           payload: {
-//             "@type": "AskForPermissionsConsentRequest",
-//             "@version": "1",
-//             "permissionScope": "alexa::alerts:reminders:skill:readwrite"
-//           },
-//           token: ""
-//         });
-
-//     } else {
-//       handlerInput.responseBuilder
-//         .speak("Hello. You can say 'remind me' to set a reminder.")
-//         .reprompt("Say: 'remind me' to set a reminder.")
-//     }
-
-//     return handlerInput.responseBuilder
-//       .getResponse();
-//   }
-// };
 
 const ConnectionsResponsetHandler = {
   canHandle(handlerInput) {
@@ -60,6 +44,7 @@ const ConnectionsResponsetHandler = {
     //console.log(handlerInput.requestEnvelope.request.payload.status);
 
     const status = handlerInput.requestEnvelope.request.payload.status;
+
 
     if (!permissions) {
       return handlerInput.responseBuilder
@@ -112,17 +97,7 @@ const CreateReminderIntentHandler = {
       && requestEnvelope.context.System.user.permissions.consentToken;
     if (!consentToken) {
       return responseBuilder
-       // .speak('Please enable reminders permission in the Amazon Alexa app.')
-        .addDirective({
-            type: "Connections.SendRequest",
-            name: "AskFor",
-            payload: {
-              "@type": "AskForPermissionsConsentRequest",
-              "@version": "1",
-              "permissionScope": "alexa::alerts:reminders:skill:readwrite"
-            },
-            token: "user-id-could-go-here"
-          })
+        .speak('Please enable reminders permission in the Amazon Alexa app.')
         .withAskForPermissionsConsentCard(['alexa::alerts:reminders:skill:readwrite'])
         .getResponse();
     }
@@ -239,7 +214,6 @@ exports.handler = Alexa.SkillBuilders.custom()
     ConnectionsResponsetHandler,
     CreateReminderIntentHandler,
     HelpIntentHandler,
-    ReminderPermissionsHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,
     IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
