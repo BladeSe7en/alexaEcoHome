@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "Eco Home",
+      "invocationName": "eco home",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
