@@ -6,7 +6,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome to Eco Home, your personal conversation assistant! You can say help, or set a reminder to get started.';
+        const speakOutput = 'Welcome to Eco Home, your personal conservation assistant! You can say help, or set a reminder to get started.';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -22,29 +22,30 @@ const ReminderPermissionsHandler = {
   handle(handlerInput) {
     const { permissions } = handlerInput.requestEnvelope.context.System.user;
 
-    if (!permissions) {
+    // if (!permissions) {
 
-      handlerInput.responseBuilder
-        .speak("This skill needs permission to access your reminders.")
-        .addDirective({
-          type: "Connections.SendRequest",
-          name: "AskFor",
-          payload: {
-            "@type": "AskForPermissionsConsentRequest",
-            "@version": "1",
-            "permissionScope": "alexa::alerts:reminders:skill:readwrite"
-          },
-          token: ""
-        });
+    //   handlerInput.responseBuilder
+    //     .speak("This skill needs permission to access your reminders.")
+    //     .addDirective({
+    //       type: "Connections.SendRequest",
+    //       name: "AskFor",
+    //       payload: {
+    //         "@type": "AskForPermissionsConsentRequest",
+    //         "@version": "1",
+    //         "permissionScope": "alexa::alerts:reminders:skill:readwrite"
+    //       },
+    //       token: ""
+    //     });
 
-    } else {
-      handlerInput.responseBuilder
-        .speak("Hello. You can say 'remind me' to set a reminder.")
-        .reprompt("Say: 'remind me' to set a reminder.")
-    }
-
+    // } else {
+    //   handlerInput.responseBuilder
+    //     .speak("Hello. You can say 'remind me' to set a reminder.")
+    //     .reprompt("Say: 'remind me' to set a reminder.")
+    // }
+   handlerInput.responseBuilder
+        .speak("This is a test")
     return handlerInput.responseBuilder
-     .speakOutput(s)
+     .speakOutput('reminder is here.')
       .getResponse();
   }
 };

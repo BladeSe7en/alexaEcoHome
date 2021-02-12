@@ -39,6 +39,14 @@
             "remind me"
           ]
         },
+       { 
+        "name": "CreateReminderIntentHandler",
+        "slots": [],
+        "samples": [
+          "create a reminder",
+          "make a reminder for me"
+        ]
+      },
         {
           "name": "AMAZON.NavigateHomeIntent",
           "samples": []
