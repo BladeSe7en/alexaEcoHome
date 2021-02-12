@@ -29,6 +29,17 @@
           ]
         },
         {
+          "name": "ReminderPermissionsIntent",
+          "slots": [],
+          "samples": [
+            "I want to set a reminder",
+            "set reminder",
+            "reminder",
+            "remind me please",
+            "remind me"
+          ]
+        },
+        {
           "name": "AMAZON.NavigateHomeIntent",
           "samples": []
         }

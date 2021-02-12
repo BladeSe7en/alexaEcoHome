@@ -1,8 +1,23 @@
 const Alexa = require('ask-sdk-core');
 
+
 const LaunchRequestHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
+    },
+    handle(handlerInput) {
+        const speakOutput = 'Welcome to Eco Home, your personal conversation assistant! You can say help, or set a reminder to get started.';
+
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
+            .getResponse();
+    }
+};
+
+const ReminderPermissionsHandler = {
   canHandle(handlerInput) {
-    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
+    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'ReminderPermissions';
   },
   handle(handlerInput) {
     const { permissions } = handlerInput.requestEnvelope.context.System.user;
@@ -29,7 +44,7 @@ const LaunchRequestHandler = {
     }
 
     return handlerInput.responseBuilder
-      .speakOutput(speakOutput)
+     .speakOutput(s)
       .getResponse();
   }
 };
@@ -212,6 +227,7 @@ const ErrorHandler = {
 exports.handler = Alexa.SkillBuilders.custom()
   .addRequestHandlers(
     LaunchRequestHandler,
+    ReminderPermissionsHandler,
     ConnectionsResponsetHandler,
     CreateReminderIntentHandler,
     HelpIntentHandler,
