@@ -40,7 +40,7 @@
           ]
         },
        { 
-        "name": "CreateReminderIntentHandler",
+        "name": "CreateReminderIntent",
         "slots": [],
         "samples": [
           "create a reminder",
