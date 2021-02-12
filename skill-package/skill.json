@@ -30,6 +30,17 @@
           "name": "ecoHome"
         }
       }
-    }
+    },
+    "permissions": [
+      {
+        "name": "alexa::profile:given_name:read"
+      },
+      {
+        "name": "alexa::alerts:reminders:skill:readwrite"
+      },
+      {
+        "name": "alexa::alerts:reminders:skill:readwrite"
+      }
+    ]
   }
 }
