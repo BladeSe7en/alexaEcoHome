@@ -48,13 +48,6 @@
           "make a reminder for me"
         ]
       },
-      { 
-        "name": "RemindBirthdayIntent",
-        "slots": [],
-        "samples": [
-          "create a birthday reminder"
-        ]
-      },
         {
           "name": "AMAZON.NavigateHomeIntent",
           "samples": []
