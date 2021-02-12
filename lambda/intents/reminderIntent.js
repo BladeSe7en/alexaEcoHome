@@ -1,6 +1,6 @@
 const Alexa = require('ask-sdk-core');
 
-export const ConnectionsResponsetHandler = {
+ export const ConnectionsResponsetHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'Connections.Response';
   },
@@ -51,7 +51,7 @@ export const ConnectionsResponsetHandler = {
 };
 
 
-export const CreateReminderIntentHandler = {
+ export const CreateReminderIntentHandler = {
   canHandle(handlerInput) {
     const { request } = handlerInput.requestEnvelope;
     return request.type === 'IntentRequest' && request.intent.name === 'CreateReminderIntent';
