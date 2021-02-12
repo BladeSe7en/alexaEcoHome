@@ -17,7 +17,8 @@ const LaunchRequestHandler = {
 
 const ReminderPermissionsHandler = {
   canHandle(handlerInput) {
-    return handlerInput.type === 'IntentRequest' && handlerInput.intent.name === 'ReminderPermissionsIntent';
+    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+    && handlerInput.type === 'IntentRequest' && handlerInput.intent.name === 'ReminderPermissionsIntent';
   },
   handle(handlerInput) {
     const { permissions } = handlerInput.requestEnvelope.context.System.user;
@@ -102,6 +103,21 @@ const ConnectionsResponsetHandler = {
       .getResponse();
   }
 };
+
+// const HelpIntentHandler = {
+//     canHandle(handlerInput) {
+//       return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+//         && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
+//     },
+//     handle(handlerInput) {
+//       const speakOutput = 'You can say hello to me! How can I help?';
+  
+//       return handlerInput.responseBuilder
+//         .speak(speakOutput)
+//         .reprompt(speakOutput)
+//         .getResponse();
+//     }
+//   };
 
 const CreateReminderIntentHandler = {
   canHandle(handlerInput) {
