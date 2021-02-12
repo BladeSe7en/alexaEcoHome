@@ -16,38 +16,38 @@ const LaunchRequestHandler = {
 
 
 
-const ReminderPermissionsHandler = {
-  canHandle(handlerInput) {
-    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
-  },
-  handle(handlerInput) {
-    const { permissions } = handlerInput.requestEnvelope.context.System.user;
+// const ReminderPermissionsHandler = {
+//   canHandle(handlerInput) {
+//     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
+//   },
+//   handle(handlerInput) {
+//     const { permissions } = handlerInput.requestEnvelope.context.System.user;
 
-    if (!permissions) {
+//     if (!permissions) {
 
-      handlerInput.responseBuilder
-        .speak("This skill needs permission to access your reminders.")
-        .addDirective({
-          type: "Connections.SendRequest",
-          name: "AskFor",
-          payload: {
-            "@type": "AskForPermissionsConsentRequest",
-            "@version": "1",
-            "permissionScope": "alexa::alerts:reminders:skill:readwrite"
-          },
-          token: ""
-        });
+//       handlerInput.responseBuilder
+//         .speak("This skill needs permission to access your reminders.")
+//         .addDirective({
+//           type: "Connections.SendRequest",
+//           name: "AskFor",
+//           payload: {
+//             "@type": "AskForPermissionsConsentRequest",
+//             "@version": "1",
+//             "permissionScope": "alexa::alerts:reminders:skill:readwrite"
+//           },
+//           token: ""
+//         });
 
-    } else {
-      handlerInput.responseBuilder
-        .speak("Hello. You can say 'remind me' to set a reminder.")
-        .reprompt("Say: 'remind me' to set a reminder.")
-    }
+//     } else {
+//       handlerInput.responseBuilder
+//         .speak("Hello. You can say 'remind me' to set a reminder.")
+//         .reprompt("Say: 'remind me' to set a reminder.")
+//     }
 
-    return handlerInput.responseBuilder
-      .getResponse();
-  }
-};
+//     return handlerInput.responseBuilder
+//       .getResponse();
+//   }
+// };
 
 const ConnectionsResponsetHandler = {
   canHandle(handlerInput) {
@@ -60,7 +60,6 @@ const ConnectionsResponsetHandler = {
     //console.log(handlerInput.requestEnvelope.request.payload.status);
 
     const status = handlerInput.requestEnvelope.request.payload.status;
-
 
     if (!permissions) {
       return handlerInput.responseBuilder
