@@ -43,9 +43,9 @@ const ReminderPermissionsHandler = {
     //     .reprompt("Say: 'remind me' to set a reminder.")
     // }
    handlerInput.responseBuilder
-        .speak("This is a test")
+       const speakOutput = "This is a test"
     return handlerInput.responseBuilder
-     .speakOutput('reminder is here.')
+     .speak(speakOutput)
       .getResponse();
   }
 };
