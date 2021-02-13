@@ -1,74 +1,135 @@
 {
   "interactionModel": {
-    "languageModel": {
-      "invocationName": "eco home",
-      "intents": [
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": []
-        },
-        {
-          "name": "HelloWorldIntent",
-          "slots": [],
-          "samples": [
-            "hello",
-            "how are you",
-            "say hi world",
-            "say hi",
-            "hi",
-            "say hello world",
-            "say hello"
-          ]
-        },
-        {
-          "name": "GetNewFactIntent",
-          "samples": [
-            "give me a fact",
-            "tell me a fact",
-            "tell me something cool",
-            "fact me",
-            "tell me a new fact"
+      "languageModel": {
+          "invocationName": "eco home",
+          "intents": [
+              {
+                  "name": "AMAZON.CancelIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.HelpIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.StopIntent",
+                  "samples": []
+              },
+              {
+                  "name": "HelloWorldIntent",
+                  "slots": [],
+                  "samples": [
+                      "hello",
+                      "how are you",
+                      "say hi world",
+                      "say hi",
+                      "hi",
+                      "say hello world",
+                      "say hello"
+                  ]
+              },
+              {
+                  "name": "GetNewFactIntent",
+                  "slots": [],
+                  "samples": [
+                      "give me a fact",
+                      "tell me a fact",
+                      "tell me something cool",
+                      "fact me",
+                      "tell me a new fact"
+                  ]
+              },
+              {
+                  "name": "GetJokeIntent",
+                  "slots": [],
+                  "samples": [
+                      "joke me",
+                      "give me a joke"
+                  ]
+              },
+              {
+                  "name": "CreateReminderIntent",
+                  "slots": [
+                      {
+                          "name": "date",
+                          "type": "AMAZON.DATE"
+                      },
+                      {
+                          "name": "time",
+                          "type": "AMAZON.TIME"
+                      },
+                      {
+                          "name": "listItem",
+                          "type": "AMAZON.FirstName"
+                      }
+                  ],
+                  "samples": [
+                      "create a reminder",
+                      "make a reminder for me",
+                      "I want to set a reminder",
+                      "set a reminder",
+                      "reminder",
+                      "set reminder",
+                      "remind me please",
+                      "remind me"
+                  ]
+              },
+              {
+                  "name": "AMAZON.NavigateHomeIntent",
+                  "samples": []
+              }
           ],
-          "slots": []
-        },
-        {
-          "name": "GetJokeIntent",
-          "samples": [
-            "joke me",
-            "give me a joke"
-          ]
-        },
-       { 
-        "name": "CreateReminderIntent",
-        "slots": [
-          
-        ],
-        "samples": [
-          "create a reminder",
-          "make a reminder for me",
-          "I want to set a reminder",
-          "set a reminder",
-          "reminder",
-          "set reminder",
-          "remind me please",
-          "remind me"
-        ]
+          "types": []
       },
-        {
-          "name": "AMAZON.NavigateHomeIntent",
-          "samples": []
-        }
-      ],
-      "types": []
-    }
-  },
-  "version": "1"
+      "dialog": {
+          "intents": [
+              {
+                  "name": "CreateReminderIntent",
+                  "confirmationRequired": false,
+                  "prompts": {},
+                  "slots": [
+                      {
+                          "name": "date",
+                          "type": "AMAZON.DATE",
+                          "confirmationRequired": false,
+                          "elicitationRequired": true,
+                          "prompts": {
+                              "elicitation": "Elicit.Slot.1432597137890.450255396731"
+                          }
+                      },
+                      {
+                          "name": "time",
+                          "type": "AMAZON.TIME",
+                          "confirmationRequired": false,
+                          "elicitationRequired": true,
+                          "prompts": {
+                              "elicitation": "Elicit.Slot.1432597137890.667155095243"
+                          }
+                      }
+                  ]
+              }
+          ],
+          "delegationStrategy": "ALWAYS"
+      },
+      "prompts": [
+          {
+              "id": "Elicit.Slot.1432597137890.450255396731",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "What date do you want me to set a reminder for?"
+                  }
+              ]
+          },
+          {
+              "id": "Elicit.Slot.1432597137890.667155095243",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "What time would you like to set the reminder for?"
+                  }
+              ]
+          }
+      ]
+  }
 }
