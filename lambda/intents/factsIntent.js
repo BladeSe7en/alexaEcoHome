@@ -26,7 +26,7 @@ module.exports = {
                             'Only 1% of the earths water is available for drinking water. Two percent is frozen.',
                             'The human body is about 75% water.',
                             'A person can survive about a month without food, but only 5 to 7 days without water.',
-                            'According to the EPA, the average household leak wastes 10,000 gallons on water each year. However, 1 in 10 homes waste at least 90 gallons of water each day in leaks. A leaky faucet dripping one drop per second can waste more than 3,000 gallons a year, and a leaky shower with 10 drips per minute can waste over 500 gallons of water per year. If you find and fix these leaks, you can save 10% on your water bill.',
+                            //'According to the EPA, the average household leak wastes 10,000 gallons on water each year. However, 1 in 10 homes waste at least 90 gallons of water each day in leaks. A leaky faucet dripping one drop per second can waste more than 3,000 gallons a year, and a leaky shower with 10 drips per minute can waste over 500 gallons of water per year. If you find and fix these leaks, you can save 10% on your water bill.',
                             // 'Every day in the United States, we drink about 110 million gallons of water.',
                             // 'Showering and bathing are the largest indoor uses (27%) of water domestically.',
                             // 'The average American uses 140-170 gallons of water per day.',
