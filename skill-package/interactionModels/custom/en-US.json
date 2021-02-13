@@ -48,6 +48,13 @@
           ],
           "slots": []
         },
+        {
+          "name": "GetJokeIntent",
+          "samples": [
+            "joke me",
+            "give me a joke"
+          ]
+        },
        { 
         "name": "CreateReminderIntent",
         "slots": [],
