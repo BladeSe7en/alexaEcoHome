@@ -17,7 +17,7 @@ module.exports = {
             // the i18next library is set up in the Request Interceptor
             const randomFact = enData.FACTS[0];
             // concatenates a standard message with the random fact
-            const speakOutput = requestAttributes.t('GET_FACT_MESSAGE') + randomFact;
+            const speakOutput =  randomFact;
 
             return handlerInput.responseBuilder
                 .speak(speakOutput)
