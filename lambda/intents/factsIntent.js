@@ -1,5 +1,4 @@
 const Alexa = require('ask-sdk-core');
-const i18n = require('i18next');
 
 // core functionality for fact skill
 module.exports = {
