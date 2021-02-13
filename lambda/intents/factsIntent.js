@@ -132,11 +132,14 @@ module.exports = {
             console.log('speakOutput: ',speakOutput)
 
             return handlerInput.responseBuilder
-                .speak(speakOutput)
+                //.speak(`${speakOutput} If you would like to hear another fact, ask me again.` )
+                .speak(`${speakOutput}` )
+
                 // Uncomment the next line if you want to keep the session open so you can
                 // ask for another fact without first re-opening the skill
                 .withShouldEndSession(false)
                 .reprompt(data.HELP_REPROMPT)
+                .speak('Would you like another fact? Say give me a fact')
                 .getResponse();
         },
     }
