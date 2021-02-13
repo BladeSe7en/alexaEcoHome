@@ -11,7 +11,7 @@ module.exports = {
                     && request.intent.name === 'GetNewFactIntent');
         },
         handle(handlerInput) {
-            var data = {
+            let data = {
                 translation: {
                     SKILL_NAME: 'Eco Home',
                     GET_FACT_MESSAGE: 'Here\'s your fact: ',
@@ -26,11 +26,11 @@ module.exports = {
                             'Only 1% of the earths water is available for drinking water. Two percent is frozen.',
                             'The human body is about 75% water.',
                             'A person can survive about a month without food, but only 5 to 7 days without water.',
-                            //'According to the EPA, the average household leak wastes 10,000 gallons on water each year. However, 1 in 10 homes waste at least 90 gallons of water each day in leaks. A leaky faucet dripping one drop per second can waste more than 3,000 gallons a year, and a leaky shower with 10 drips per minute can waste over 500 gallons of water per year. If you find and fix these leaks, you can save 10% on your water bill.',
-                            // 'Every day in the United States, we drink about 110 million gallons of water.',
-                            // 'Showering and bathing are the largest indoor uses (27%) of water domestically.',
-                            // 'The average American uses 140-170 gallons of water per day.',
-                            // 'Turning off the water when brushing your teeth saves 80% of the amount of water you would normally use, according to The Water Project. You can turn on the water to wet your toothbrush, but you should make sure you turn it off until you are ready to rinse the toothpaste out of your mouth.  According to Conserveh20, if you do this, you could save 2.5 gallons a minute.',
+                            'According to the EPA, the average household leak wastes 10,000 gallons on water each year. However, 1 in 10 homes waste at least 90 gallons of water each day in leaks. A leaky faucet dripping one drop per second can waste more than 3,000 gallons a year, and a leaky shower with 10 drips per minute can waste over 500 gallons of water per year. If you find and fix these leaks, you can save 10% on your water bill.',
+                             'Every day in the United States, we drink about 110 million gallons of water.',
+                             'Showering and bathing are the largest indoor uses (27%) of water domestically.',
+                             'The average American uses 140-170 gallons of water per day.',
+                             'Turning off the water when brushing your teeth saves 80% of the amount of water you would normally use, according to The Water Project. You can turn on the water to wet your toothbrush, but you should make sure you turn it off until you are ready to rinse the toothpaste out of your mouth.  According to Conserveh20, if you do this, you could save 2.5 gallons a minute.',
                             // 'If every household in America had a faucet that dripped once each second, 928 million gallons of water a day would leak away.',
                             // 'There are 7.48 gallons in a cubic foot of water. Therefore, 2000 cubic feet of water is 14,960 gallons.',
                             // 'Changing how you shave can save about 60% of the water you would normally use, reveals The Water Project. Just like teeth brushing, a lot of the waste from shaving comes as people leave faucets running. Instead of letting the water run continuously, fill the sink partially or less, and use that water for shaving. When you need to clean your razors, cut the water on for a few seconds and then turn it back off.   ',
@@ -137,7 +137,7 @@ module.exports = {
                 .speak(speakOutput)
                 // Uncomment the next line if you want to keep the session open so you can
                 // ask for another fact without first re-opening the skill
-                .reprompt(requestAttributes.t('HELP_REPROMPT'))
+               // .reprompt(requestAttributes.t('HELP_REPROMPT'))
                 .getResponse();
         },
     }
