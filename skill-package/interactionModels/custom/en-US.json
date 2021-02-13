@@ -49,15 +49,10 @@
        { 
         "name": "CreateReminderIntent",
         "slots": [
-          { "name": "date", 
-            "type": "AMAZON.DATE" 
-          },
-          { "name": "time", 
-            "type": "AMAZON.TIME" 
-          }
+          
         ],
         "samples": [
-          "create a reminder for {task}, on {date} at {time}",
+          "create a reminder",
           "make a reminder for me",
           "I want to set a reminder",
           "set a reminder",
