@@ -203,7 +203,7 @@ module.exports = {
                         "spokenInfo": {
                             "content": [{
                                 "locale": "en-US",
-                                "speakOut": speakOutput 
+                                "test": "learn about reminders" 
                             }]
                         }
                     },
