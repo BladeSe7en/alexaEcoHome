@@ -1,6 +1,6 @@
 const Alexa = require('ask-sdk-core');
 const moment = require('moment')
-// const moment = require('moment-timezone');
+constmoment = require('moment-timezone');
 
 module.exports = {
     ConnectionsResponsetHandler: {
@@ -73,52 +73,52 @@ module.exports = {
             try {
 
               const currentTime = moment().tz("America/Los_Angeles"), // Use Moment Timezone to get the current time in Pacific Time
-              const reminderRequest = {
-                requestTime: currentTime.format("YYYY-MM-DDTHH:mm:ss"), // Add requestTime
-                trigger: {
-                  type: "SCHEDULED_ABSOLUTE", // Update from SCHEDULED_RELATIVE
-                  scheduledTime: currentTime.add(20, "seconds").format("YYYY-MM-DDTHH:mm:ss"),
-                  timeZoneId: "America/Los_Angeles", // Set timeZoneId to Pacific Time
-                  recurrence: {                     
-                    freq : "DAILY" // Set recurrence and frequency
-                  }
-                },
-                alertInfo: {
-                  spokenInfo: {
-                    content: [{
-                      locale: "en-US",
-                      text: "",
-                    }]
-                  }
-                },
-                pushNotification: {
-                  status: "ENABLED"
-                }
-              }
+            //   const reminderRequest = {
+            //     requestTime: currentTime.format("YYYY-MM-DDTHH:mm:ss"), // Add requestTime
+            //     trigger: {
+            //       type: "SCHEDULED_ABSOLUTE", // Update from SCHEDULED_RELATIVE
+            //       scheduledTime: currentTime.add(20, "seconds").format("YYYY-MM-DDTHH:mm:ss"),
+            //       timeZoneId: "America/Los_Angeles", // Set timeZoneId to Pacific Time
+            //       recurrence: {                     
+            //         freq : "DAILY" // Set recurrence and frequency
+            //       }
+            //     },
+            //     alertInfo: {
+            //       spokenInfo: {
+            //         content: [{
+            //           locale: "en-US",
+            //           text: "",
+            //         }]
+            //       }
+            //     },
+            //     pushNotification: {
+            //       status: "ENABLED"
+            //     }
+            //   }
                 const speechText = "Alright! I've scheduled a reminder for you.";
 
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
-                // const reminderPayload = {
-                //     "trigger": {
-                //         "type": "SCHEDULED_RELATIVE",
-                //         "offsetInSeconds": "10",
-                //         "timeZoneId": "America/New_York"
-                //     },
-                //     "alertInfo": {
-                //         "spokenInfo": {
-                //             "content": [{
-                //                 "locale": "en-US",
-                //                 "text": "learn about reminders"
-                //             }]
-                //         }
-                //     },
-                //     "pushNotification": {
-                //         "status": "ENABLED"
-                //     }
-                // };
-                //await ReminderManagementServiceClient.createReminder(reminderPayload)
+                const reminderPayload = {
+                    "trigger": {
+                        "type": "SCHEDULED_RELATIVE",
+                        "offsetInSeconds": "10",
+                        "timeZoneId": "America/New_York"
+                    },
+                    "alertInfo": {
+                        "spokenInfo": {
+                            "content": [{
+                                "locale": "en-US",
+                                "text": "learn about reminders"
+                            }]
+                        }
+                    },
+                    "pushNotification": {
+                        "status": "ENABLED"
+                    }
+                };
+                await ReminderManagementServiceClient.createReminder(reminderPayload)
 
-                await ReminderManagementServiceClient.createReminder(reminderRequest);
+               // await ReminderManagementServiceClient.createReminder(reminderRequest);
                 return responseBuilder
                     .speak(speechText)
                     .getResponse();
