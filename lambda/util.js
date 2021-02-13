@@ -231,3 +231,78 @@ module.exports.getS3PreSignedUrl = function getS3PreSignedUrl(s3ObjectKey) {
 //       ]
 //     }
 //   }
+
+// -----------------------------
+
+// {
+//   "interactionModel": {
+//     "languageModel": {
+//       "invocationName": "eco home",
+//       "intents": [
+//         {
+//           "name": "AMAZON.CancelIntent",
+//           "samples": []
+//         },
+//         {
+//           "name": "AMAZON.HelpIntent",
+//           "samples": []
+//         },
+//         {
+//           "name": "AMAZON.StopIntent",
+//           "samples": []
+//         },
+//         {
+//           "name": "HelloWorldIntent",
+//           "slots": [],
+//           "samples": [
+//             "hello",
+//             "how are you",
+//             "say hi world",
+//             "say hi",
+//             "hi",
+//             "say hello world",
+//             "say hello"
+//           ]
+//         },
+//         {
+//           "name": "GetJokeIntent",
+//           "samples": [
+//             "joke me",
+//             "give me a joke"
+//           ]
+//         },
+
+//         {
+//           "name": "GetNewFactIntent",
+//           "samples": [
+//             "give me a fact",
+//             "tell me a fact",
+//             "tell me something cool",
+//             "fact me",
+//             "tell me a new fact"
+//           ]
+//         },
+//        { 
+//         "name": "CreateReminderIntent",
+//         "slots": [],
+//         "samples": [
+//           "create a reminder",
+//           "make a reminder for me",
+//           "I want to set a reminder",
+//           "set a reminder",
+//           "reminder",
+//           "set reminder",
+//           "remind me please",
+//           "remind me"
+//         ]
+//       },
+//         {
+//           "name": "AMAZON.NavigateHomeIntent",
+//           "samples": []
+//         }
+//       ],
+//       "types": []
+//     }
+//   },
+//   "version": "1"
+// }

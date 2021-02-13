@@ -15,7 +15,7 @@ module.exports = {
                     SKILL_NAME: 'Eco Home',
                     GET_FACT_MESSAGE: 'Here\'s your fact: ',
                     HELP_MESSAGE: 'You can say tell me a fact, or, you can say exit... What can I help you with?',
-                    HELP_REPROMPT: 'Would you like to hear another fact? Say tell me a fact',
+                    HELP_REPROMPT: 'Would you like to hear another fact? Say tell me a fact.',
                     FALLBACK_MESSAGE: 'The Conservation Facts skill can\'t help you with that.  It can help you discover facts about conservation if you say tell me a new fact. What can I help you with?',
                     FALLBACK_REPROMPT: 'Would you like to hear another fact?',
                     ERROR_MESSAGE: 'Sorry, an error occurred.',
