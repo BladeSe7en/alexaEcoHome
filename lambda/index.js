@@ -156,5 +156,4 @@ exports.handler = Alexa.SkillBuilders.custom()
   //.addRequestInterceptors(LocalizationInterceptor)
   .addErrorHandlers(ErrorHandler)
   .withApiClient(new Alexa.DefaultApiClient())
-  .withCustomUserAgent('sample/basic-fact/v2')
   .lambda();
