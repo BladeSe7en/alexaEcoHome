@@ -11,12 +11,7 @@ module.exports = {
                     && request.intent.name === 'GetNewFactIntent');
         },
         handle(handlerInput) {
-            const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
-            // gets a random fact by assigning an array to the variable
-            // the random item from the array will be selected by the i18next library
-            // the i18next library is set up in the Request Interceptor
             const randomFact = enData.FACTS[0];
-            // concatenates a standard message with the random fact
             const speakOutput =  randomFact;
 
             return handlerInput.responseBuilder
