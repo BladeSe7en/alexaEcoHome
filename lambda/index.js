@@ -2,7 +2,8 @@ const Alexa = require('ask-sdk-core');
 const i18n = require('i18next');
 
 const { ConnectionsResponsetHandler, CreateReminderIntentHandler } = require('./intents/reminderIntent')
-const { GetNewFactHandler } = require('./intents/factsIntent')
+const { GetNewFactHandler } = require('./intents/factsIntent');
+const { GetJokeHandler } = require('./intents/getJokeIntent');
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -147,6 +148,7 @@ exports.handler = Alexa.SkillBuilders.custom()
     ConnectionsResponsetHandler,
     CreateReminderIntentHandler,
     GetNewFactHandler,
+    GetJokeHandler,
     FallbackHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
