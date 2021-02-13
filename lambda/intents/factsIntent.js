@@ -34,8 +34,8 @@ module.exports = {
             
             var index = Math.floor(Math.random() * data.translation.FACTS.length)
             console.log('index: ',index)
-           // const speakOutput =  data.translation.FACTS[index];
-           const speakOutput = 'this is a test'
+            const speakOutput =  data.translation.FACTS[index];
+          // const speakOutput = 'this is a test'
             console.log('speakOutput: ',speakOutput)
 
             return handlerInput.responseBuilder
