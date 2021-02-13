@@ -11,8 +11,7 @@ module.exports = {
                     && request.intent.name === 'GetNewFactIntent');
         },
         handle(handlerInput) {
-            const randomFact = enData.FACTS[0];
-            const speakOutput =  randomFact;
+            const speakOutput =  'Does this work?';
 
             return handlerInput.responseBuilder
                 .speak(speakOutput)
