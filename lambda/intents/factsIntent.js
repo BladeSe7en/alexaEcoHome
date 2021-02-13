@@ -11,7 +11,9 @@ module.exports = {
                     && request.intent.name === 'GetNewFactIntent');
         },
         handle(handlerInput) {
-            const speakOutput =  'Does this work?';
+           // const speakOutput =  'Does this work?';
+           var index = Math.floor(Math.random() * data.translation.FACTS.length)
+           const speakOutput =  data.translation.FACTS[index];
 
             return handlerInput.responseBuilder
                 .speak(speakOutput)
@@ -24,58 +26,7 @@ module.exports = {
 }
 
 
-// const HelpHandler = {
-//   canHandle(handlerInput) {
-//     const request = handlerInput.requestEnvelope.request;
-//     return request.type === 'IntentRequest'
-//       && request.intent.name === 'AMAZON.HelpIntent';
-//   },
-//   handle(handlerInput) {
-//     const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
-//     return handlerInput.responseBuilder
-//       .speak(requestAttributes.t('HELP_MESSAGE'))
-//       .reprompt(requestAttributes.t('HELP_REPROMPT'))
-//       .getResponse();
-//   },
-// };
-
-
-
-// const ExitHandler = {
-//   canHandle(handlerInput) {
-//     const request = handlerInput.requestEnvelope.request;
-//     return request.type === 'IntentRequest'
-//       && (request.intent.name === 'AMAZON.CancelIntent'
-//         || request.intent.name === 'AMAZON.StopIntent');
-//   },
-//   handle(handlerInput) {
-//     const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
-//     return handlerInput.responseBuilder
-//       .speak(requestAttributes.t('STOP_MESSAGE'))
-//       .getResponse();
-//   },
-// };
-
-
-// const SessionEndedRequestHandler = {
-//   canHandle(handlerInput) {
-//     const request = handlerInput.requestEnvelope.request;
-//     return request.type === 'SessionEndedRequest';
-//   },
-//   handle(handlerInput) {
-//     console.log(`Session ended with reason: ${handlerInput.requestEnvelope.request.reason}`);
-//     return handlerInput.responseBuilder.getResponse();
-//   },
-// };
-
-
-
-// TODO: Replace this data with your own.
-// It is organized by language/locale.  You can safely ignore the locales you aren't using.
-// Update the name and messages to align with the theme of your skill
-
-
-var enData = {
+var data = {
     translation: {
         SKILL_NAME: 'Eco Home',
         GET_FACT_MESSAGE: 'Here\'s your fact: ',

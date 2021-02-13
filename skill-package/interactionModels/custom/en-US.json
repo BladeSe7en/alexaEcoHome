@@ -29,30 +29,20 @@
           ]
         },
         {
-          "name": "GetNewFactIntent",
-          "samples": [
-            "a fact",
-            "a space fact",
-            "tell me a fact",
-            "tell me a space fact",
-            "give me a fact",
-            "give me a space fact",
-            "tell me trivia",
-            "tell me a space trivia",
-            "give me trivia",
-            "give me a space trivia",
-            "give me some information",
-            "give me some space information",
-            "tell me something",
-            "give me something"
-          ],
-          "slots": []
-        },
-        {
           "name": "GetJokeIntent",
           "samples": [
             "joke me",
             "give me a joke"
+          ]
+        },
+
+        {
+          "name": "GetNewFactIntent",
+          "samples": [
+            "Give me a fact",
+            "Tell me a fact",
+            "tell me something cool",
+            "Fact me"
           ]
         },
        { 
