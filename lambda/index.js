@@ -159,3 +159,8 @@ exports.handler = Alexa.SkillBuilders.custom()
   .addErrorHandlers(ErrorHandler)
   .withApiClient(new Alexa.DefaultApiClient())
   .lambda();
+
+  // if (intent.confirmationStatus === 'CONFIRMED') {
+  //   const day = Alexa.getSlotValue(requestEnvelope, 'day');
+  //   const year = Alexa.getSlotValue(requestEnvelope, 'year');
+  //   const month = Alexa.getSlotValue(requestEnvelope, 'month');

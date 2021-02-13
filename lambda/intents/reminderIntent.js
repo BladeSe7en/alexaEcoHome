@@ -1,6 +1,4 @@
 const Alexa = require('ask-sdk-core');
-const moment = require('moment')
-constmoment = require('moment-timezone');
 
 module.exports = {
     ConnectionsResponsetHandler: {
@@ -71,30 +69,6 @@ module.exports = {
             }
 
             try {
-
-              const currentTime = moment().tz("America/Los_Angeles"), // Use Moment Timezone to get the current time in Pacific Time
-            //   const reminderRequest = {
-            //     requestTime: currentTime.format("YYYY-MM-DDTHH:mm:ss"), // Add requestTime
-            //     trigger: {
-            //       type: "SCHEDULED_ABSOLUTE", // Update from SCHEDULED_RELATIVE
-            //       scheduledTime: currentTime.add(20, "seconds").format("YYYY-MM-DDTHH:mm:ss"),
-            //       timeZoneId: "America/Los_Angeles", // Set timeZoneId to Pacific Time
-            //       recurrence: {                     
-            //         freq : "DAILY" // Set recurrence and frequency
-            //       }
-            //     },
-            //     alertInfo: {
-            //       spokenInfo: {
-            //         content: [{
-            //           locale: "en-US",
-            //           text: "",
-            //         }]
-            //       }
-            //     },
-            //     pushNotification: {
-            //       status: "ENABLED"
-            //     }
-            //   }
                 const speechText = "Alright! I've scheduled a reminder for you.";
 
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
@@ -116,9 +90,8 @@ module.exports = {
                         "status": "ENABLED"
                     }
                 };
-                await ReminderManagementServiceClient.createReminder(reminderPayload)
 
-               // await ReminderManagementServiceClient.createReminder(reminderRequest);
+                await ReminderManagementServiceClient.createReminder(reminderPayload);
                 return responseBuilder
                     .speak(speechText)
                     .getResponse();
@@ -134,40 +107,12 @@ module.exports = {
 }
 
 
-// const CreateReminderIntentHandler = {
-//   canHandle(handlerInput) { 
-//   ... // can handle logic 
-//   },
-//   async handle(handlerInput) {
-//     ... // Variable declarations
-//     ... // Code to check for permissions
-//     const currentTime = moment().tz("America/Los_Angeles"), // Use Moment Timezone to get the current time in Pacific Time
-//       reminderRequest = {
-//         requestTime: currentTime.format("YYYY-MM-DDTHH:mm:ss"), // Add requestTime
-//         trigger: {
-//           type: "SCHEDULED_ABSOLUTE", // Update from SCHEDULED_RELATIVE
-//           scheduledTime: currentTime.set({
-//             hour: "13",
-//             minute: "00",
-//             second: "00"
-//           }).format("YYYY-MM-DDTHH:mm:ss"),
-//           timeZoneId: "America/Los_Angeles", // Set timeZoneId to Pacific Time
-//           recurrence: {                     
-//             freq : "DAILY" // Set recurrence and frequency
-//           }
-//         },
-//         alertInfo: {
-//           spokenInfo: {
-//             content: [{
-//               locale: "en-US",
-//               text: "Time to get yo daily banana. You better go before the banistas pack up.",
-//             }]
-//           }
-//         },
-//         pushNotification: {
-//           status: "ENABLED"
-//         }
-//       }
-//   }
-//   ... // Code to create reminders
-// }
+// how to access slots 
+
+// var AmazonDateParser = require('amazon-date-parser');
+// var date = new AmazonDateParser('2017-W48');
+// console.log(date);
+/* returns:
+{ endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
+  startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
+*/
