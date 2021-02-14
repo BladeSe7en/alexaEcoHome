@@ -67,7 +67,7 @@
             }
           ],
           "samples": [
-            "create a reminder",
+            "create a reminder for {fistName} on {date} at {time}",
             "make a reminder for me",
             "set a reminder",
             "reminder",
