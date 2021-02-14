@@ -13,8 +13,8 @@ module.exports = {
             console.log(response);
 
             return handlerInput.responseBuilder
-                .speak("Okay. Here is what I got back from my request. " + response.value.joke)
-                .reprompt("What would you like?")
+                .speak('Okay. Here is what I got back from my request. ' + response.value.joke)
+                .reprompt('What would you like?')
                 .getResponse();
         },
     }

@@ -15,29 +15,29 @@ module.exports = {
                 return handlerInput.responseBuilder
                     .speak("I didn't hear your answer. This skill requires your permission.")
                     .addDirective({
-                        type: "Connections.SendRequest",
-                        name: "AskFor",
+                        type: 'Connections.SendRequest',
+                        name: 'AskFor',
                         payload: {
-                            "@type": "AskForPermissionsConsentRequest",
-                            "@version": "1",
-                            "permissionScope": "alexa::alerts:reminders:skill:readwrite"
+                            '@type': 'AskForPermissionsConsentRequest',
+                            '@version': '1',
+                            'permissionScope': 'alexa::alerts:reminders:skill:readwrite'
                         },
-                        token: "user-id-could-go-here"
+                        token: 'user-id-could-go-here'
                     })
                     .getResponse();
             }
 
             switch (status) {
-                case "ACCEPTED":
+                case 'ACCEPTED':
                     handlerInput.responseBuilder
                         .speak("Now that you've provided permission - you can say: set a reminder.")
                         .reprompt('To set a reminder say: set a reminder.')
                     break;
-                case "DENIED":
+                case 'DENIED':
                     handlerInput.responseBuilder
                         .speak("Without permissions, I can't set a reminder. So I guess that's goodbye.");
                     break;
-                case "NOT_ANSWERED":
+                case 'NOT_ANSWERED':
 
                     break;
                 default:
@@ -74,21 +74,21 @@ module.exports = {
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
                 let test = 'test'
                 const reminderPayload = {
-                    "trigger": {
-                        "type": "SCHEDULED_RELATIVE",
-                        "offsetInSeconds": "10",
-                        "timeZoneId": "America/New_York"
+                    'trigger': {
+                        'type': 'SCHEDULED_RELATIVE',
+                        'offsetInSeconds': '10',
+                        'timeZoneId': 'America/New_York'
                     },
-                    "alertInfo": {
-                        "spokenInfo": {
-                            "content": [{
-                                "locale": "en-US",
-                                "text": test
+                    'alertInfo': {
+                        'spokenInfo': {
+                            'content': [{
+                                'locale': 'en-US',
+                                'text': test
                             }]
                         }
                     },
-                    "pushNotification": {
-                        "status": "ENABLED"
+                    'pushNotification': {
+                        'status': 'ENABLED'
                     }
                 };
 
