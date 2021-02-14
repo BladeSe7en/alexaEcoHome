@@ -72,6 +72,7 @@ module.exports = {
                 const speechText = "Alright! I've scheduled a reminder for you.";
 
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
+                let test = 'test'
                 const reminderPayload = {
                     "trigger": {
                         "type": "SCHEDULED_RELATIVE",
@@ -82,7 +83,7 @@ module.exports = {
                         "spokenInfo": {
                             "content": [{
                                 "locale": "en-US",
-                                "text": "learn about reminders"
+                                "text": test
                             }]
                         }
                     },
