@@ -9,6 +9,7 @@
   "author": "Amazon Alexa",
   "license": "ISC",
   "dependencies": {
+    "amazon-date-parser": "^0.3.0",
     "ask-sdk-controls": "^0.5.1",
     "ask-sdk-core": "^2.6.0",
     "ask-sdk-model": "^1.18.0",

@@ -1,4 +1,5 @@
 const Alexa = require('ask-sdk-core');
+const AmazonDateParser = require('amazon-date-parser');
 
 module.exports = {
     ConnectionsResponsetHandler: {
@@ -10,6 +11,7 @@ module.exports = {
             const status = handlerInput.requestEnvelope.request.payload.status;
             //console.log(JSON.stringify(handlerInput.requestEnvelope));
             //console.log(handlerInput.requestEnvelope.request.payload.status);
+            console.log('this is handlerInput: ',handlerInput)
 
             if (!permissions) {
                 return handlerInput.responseBuilder
@@ -70,6 +72,12 @@ module.exports = {
 
             try {
                 const speechText = "Alright! I've scheduled a reminder for you.";
+                var date = new AmazonDateParser('2017-W48');
+                console.log(date);
+/* returns:
+{ endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
+  startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
+*/
 
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
                 let test = 'test'
