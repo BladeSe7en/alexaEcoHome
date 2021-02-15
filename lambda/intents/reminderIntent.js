@@ -84,7 +84,7 @@ module.exports = {
                             'content': [{
                                 'locale': 'en-US',
                                 'text': test,
-                                'ssml': '<speak>{test}</speak>'
+                                'ssml': `<speak>${test}</speak>`
                             }]
                         }
                     },
