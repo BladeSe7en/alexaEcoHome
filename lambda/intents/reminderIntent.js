@@ -11,7 +11,8 @@ module.exports = {
             const status = handlerInput.requestEnvelope.request.payload.status;
             //console.log(JSON.stringify(handlerInput.requestEnvelope));
             //console.log(handlerInput.requestEnvelope.request.payload.status);
-            console.log('this is handlerInput: ',handlerInput)
+           // console.log('this is handlerInput: ',handlerInput)
+           console.log('------------where is this log------------')
 
             if (!permissions) {
                 return handlerInput.responseBuilder
