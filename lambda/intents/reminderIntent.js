@@ -83,7 +83,8 @@ module.exports = {
                         'spokenInfo': {
                             'content': [{
                                 'locale': 'en-US',
-                                'text': test
+                                'text': test,
+                                'ssml': <speak>{test}</speak>
                             }]
                         }
                     },
