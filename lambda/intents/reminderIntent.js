@@ -12,13 +12,7 @@ module.exports = {
             //console.log(JSON.stringify(handlerInput.requestEnvelope));
             //console.log(handlerInput.requestEnvelope.request.payload.status);
            // console.log('this is handlerInput: ',handlerInput)
-           console.log('------------where is this log------------')
-           const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
-           const date = Alexa.getSlotValue(requestEnvelope, 'date')
-           const time = Alexa.getSlotValue(requestEnvelope, 'firstName')
-           console.log('------------task: ', task)
-           console.log('------------date ', date)
-           console.log('------------time ', time)
+ 
 
 
 
@@ -82,15 +76,22 @@ module.exports = {
 
             try {
                 const speechText = "Alright! I've scheduled a reminder for you.";
-                var date = new AmazonDateParser('2017-W48');
-                console.log(date);
-/* returns:
-{ endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
-  startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
-*/
+                var testDate = new AmazonDateParser('2017-W48');
+                console.log(testDate);
+                /* returns:
+                { endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
+                startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
+                */
+                console.log('------------where is this log------------')
+                const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
+                const date = Alexa.getSlotValue(requestEnvelope, 'date')
+                const time = Alexa.getSlotValue(requestEnvelope, 'firstName')
+                console.log('------------task: ', task)
+                console.log('------------date ', date)
+                console.log('------------time ', time)
 
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
-                let test = 'test'
+                let test = 'testing'
                 const reminderPayload = {
                     'trigger': {
                         'type': 'SCHEDULED_RELATIVE',
@@ -101,8 +102,8 @@ module.exports = {
                         'spokenInfo': {
                             'content': [{
                                 'locale': 'en-US',
-                                'text': test,
-                                'ssml': `<speak>${test}</speak>`
+                                'text': task,
+                                'ssml': `<speak>${task}</speak>`
                             }]
                         }
                     },
