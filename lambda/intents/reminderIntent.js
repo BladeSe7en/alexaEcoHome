@@ -13,6 +13,15 @@ module.exports = {
             //console.log(handlerInput.requestEnvelope.request.payload.status);
            // console.log('this is handlerInput: ',handlerInput)
            console.log('------------where is this log------------')
+           const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
+           const date = Alexa.getSlotValue(requestEnvelope, 'date')
+           const time = Alexa.getSlotValue(requestEnvelope, 'firstName')
+           console.log('------------task: ', task)
+           console.log('------------date ', date)
+           console.log('------------time ', time)
+
+
+
 
             if (!permissions) {
                 return handlerInput.responseBuilder
