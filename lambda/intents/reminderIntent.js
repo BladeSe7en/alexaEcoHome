@@ -82,7 +82,7 @@ module.exports = {
                 console.log('------------where is this log------------')
                 const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
                 const date = Alexa.getSlotValue(requestEnvelope, 'date')
-                const time = Alexa.getSlotValue(requestEnvelope, 'firstName')
+                const time = Alexa.getSlotValue(requestEnvelope, 'time')
                 console.log('------------task: ', task)
                 console.log('------------date ', date)
                 console.log('------------time ', time)
