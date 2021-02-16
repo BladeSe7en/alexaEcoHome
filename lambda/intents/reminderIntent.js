@@ -76,12 +76,7 @@ module.exports = {
 
             try {
                 const speechText = "Alright! I've scheduled a reminder for you.";
-                var testDate = new AmazonDateParser('2017-W48');
-                console.log(testDate);
-                /* returns:
-                { endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
-                startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
-                */
+          
                 console.log('------------where is this log------------')
                 const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
                 const date = Alexa.getSlotValue(requestEnvelope, 'date')
@@ -92,17 +87,45 @@ module.exports = {
 
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
                 let test = 'testing'
+
+            // const reminderPayload = {
+            //     trigger: {
+            //         type: 'SCHEDULED_ABSOLUTE',
+            //         scheduledTime: currentDateTime.set({
+            //             hour: '13',
+            //             minute: '00',
+            //             second: '00'
+            //         }).format('YYYY-MM-DDTHH:mm:ss'),
+            //         timeZoneId: 'America/Los_Angeles',
+            //         recurrence: {
+            //             freq: 'DAILY'
+            //         }
+            //       }
+            // }
+
+            // let currentDate = moment("13.04.2016", "DD.MM.YYYY");
+            // let reminderDate = moment("28.04.2016", "DD.MM.YYYY");
+          
+            // let seconds = reminderDate.diff(currentDate, 'seconds');
+
+            // let testDate = new AmazonDateParser(date);
+            // console.log(testDate);
+            /* returns:
+            { endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
+            startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
+            */
+
                 const reminderPayload = {
                     'trigger': {
                         'type': 'SCHEDULED_RELATIVE',
                         'offsetInSeconds': '10',
-                        'timeZoneId': 'America/New_York'
+                        'timeZoneId': 'America/Los_Angeles'
                     },
                     'alertInfo': {
                         'spokenInfo': {
                             'content': [{
                                 'locale': 'en-US',
-                                'text': task,
+                                'text': time,
                                 'ssml': `<speak>${task}</speak>`
                             }]
                         }
