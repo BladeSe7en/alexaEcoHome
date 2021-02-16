@@ -1,5 +1,7 @@
 const Alexa = require('ask-sdk-core');
 const AmazonDateParser = require('amazon-date-parser');
+const moment = require('moment'); 
+moment().format(); 
 
 module.exports = {
     ConnectionsResponsetHandler: {
@@ -125,8 +127,8 @@ module.exports = {
                         'spokenInfo': {
                             'content': [{
                                 'locale': 'en-US',
-                                'text': time,
-                                'ssml': `<speak>${task}</speak>`
+                                'text': time + ' ' + date + ' ' + time,
+                                'ssml': `<speak>${time + ' ' + date + ' ' + time}</speak>`
                             }]
                         }
                     },
