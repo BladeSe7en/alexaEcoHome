@@ -91,10 +91,50 @@ module.exports = {
                 console.log('this is dateTime: ',DateTime.now());
                 console.log('ts: ', DateTime.now().ts)
                 console.log('c: ', DateTime.now().c)
-                console.log('this should be local time: ',DateTime.now().c.toLocalString())
-                console.log('this is local dateTime: ',DateTime.now().toLocaleString());
+           
           
           
+
+
+                var local = DateTime.local();
+                var rezoned = local.setZone("America/Los_Angeles");
+                
+                // different local times with different offsets
+                local.toString(); //=> '2017-09-13T18:30:51.141-04:00'
+                rezoned.toString(); //=> '2017-09-13T15:30:51.141-07:00'
+
+                console.log('local.toString(): ',local.toString())
+                console.log('rezoned.toString(): ',rezoned.toString())
+                
+                // but actually the same time
+                local.valueOf() === rezoned.valueOf(); //=> true
+               // keepLocalTime
+                //Generally, it's best to think of the zone as a sort of metadata that you slide around independent of the underlying count of milliseconds. However, sometimes that's not what you want. Sometimes you want to change zones while keeping the local time fixed and instead altering the timestamp. Luxon supports this:
+                
+                var localA = DateTime.A();
+                var rezonedA = localA.setZone("America/Los_Angeles", { keepLocalTime: true });
+                console.log('localA: ',localA)
+                console.log('resonzedA: ',rezonedA)
+
+
+                
+                localA.toString(); //=> '2017-09-13T18:36:23.187-04:00'
+                rezonedA.toString(); //=> '2017-09-13T18:36:23.187-07:00'
+
+                console.log('localA.toString(): ',localA.toString())
+                console.log('rezonedA.toString(): ',rezonedA.toString())
+                
+                localA.valueOf() === rezoned.valueOf(); //=> false
+
+
+
+
+
+
+
+
+
+
           
           
           
