@@ -89,14 +89,8 @@ module.exports = {
                 console.log('------------time ', time)
           
                 console.log('this is dateTime: ',DateTime.now());
-                console.log('datetimefull: ', DateTime.now().DATETIME_FULL)
-                console.log('datetimeshort: ', DateTime.now().DATETIME_SHORT)
-                console.log('tojsdate: ', DateTime.now().toJSDate)
-                console.log('local: ', DateTime.now().locale)
                 console.log('ts: ', DateTime.now().ts)
-                console.log('ts: ', DateTime.now().ts)
-                console.log('loc: ', DateTime.now().loc)
-                console.log('c: ', DateTime.now().loc.c)
+                console.log('c: ', DateTime.now().c)
 
           
           
