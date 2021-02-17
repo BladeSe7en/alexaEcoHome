@@ -77,7 +77,9 @@ module.exports = {
 
             try {
                 const speechText = "Alright! I've scheduled a reminder for you.";
-
+                const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
+                let date = Alexa.getSlotValue(requestEnvelope, 'date')
+                const time = Alexa.getSlotValue(requestEnvelope, 'time')
                 console.log('------------where is this log------------')
                    console.log('------------task: ', task)
                 console.log('------------date ', date)
