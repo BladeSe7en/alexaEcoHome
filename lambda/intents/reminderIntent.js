@@ -85,7 +85,7 @@ module.exports = {
                 console.log('------------date ', date)
                 console.log('------------time ', time)
           
-                let timeRightNow = moment().format()
+                let timeRightNow = moment().format('L')
                 let secondsFromStartDay = moment(timeRightNow).startOf('day').fromNow();
                 console.log('this is time right now: ',timeRightNow)
                 console.log('this is seconds from start of day: ', secondsFromStartDay)
