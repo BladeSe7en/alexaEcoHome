@@ -91,7 +91,7 @@ module.exports = {
                 let timezone = moment.tz.setDefault('America/Los_Angeles');
                 let whatIsThis = moment().tz(timezone).format("YYYY-MM-DD")
                 console.log('whatIsThis: ',whatIsThis)
-                console.log('this is timezone: ',timezone
+                console.log('this is timezone: ',timezone)
           
           
           
