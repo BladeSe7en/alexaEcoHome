@@ -2,6 +2,9 @@ const Alexa = require('ask-sdk-core');
 const AmazonDateParser = require('amazon-date-parser');
 const moment = require('moment-timezone');
 
+var { DateTime } = require('luxon');
+
+
 module.exports = {
     ConnectionsResponsetHandler: {
         canHandle(handlerInput) {
@@ -85,22 +88,7 @@ module.exports = {
                 console.log('------------date ', date)
                 console.log('------------time ', time)
           
-                let timeRightNow = moment().format('L')
-                let secondsFromStartDay = moment(timeRightNow).startOf('day').fromNow();
-                console.log('this is time right now: ',timeRightNow)
-                console.log('this is seconds from start of day: ', secondsFromStartDay)
-                //let timezone = moment.tz.guess(); //"Europe/Vienna" //America/New_York
-                let timezone = 'America/Los_Angeles'
-                moment.tz.setDefault(timezone);
-                let whatIsThis = moment().tz(timezone).format("YYYY-MM-DD")
-                console.log('whatIsThis: ',whatIsThis)
-                console.log('this is timezone: ',timezone)
-          
-          
-          
-          
-          
-          
+                console.log('this is dateTime: ',DateTime.now());
           
           
           
