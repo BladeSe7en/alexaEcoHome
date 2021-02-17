@@ -1,7 +1,7 @@
 const Alexa = require('ask-sdk-core');
 const AmazonDateParser = require('amazon-date-parser');
-const moment = require('moment'); 
-moment().format(); 
+const moment = require('moment');
+moment().format();
 
 module.exports = {
     ConnectionsResponsetHandler: {
@@ -13,8 +13,8 @@ module.exports = {
             const status = handlerInput.requestEnvelope.request.payload.status;
             //console.log(JSON.stringify(handlerInput.requestEnvelope));
             //console.log(handlerInput.requestEnvelope.request.payload.status);
-           // console.log('this is handlerInput: ',handlerInput)
- 
+            // console.log('this is handlerInput: ',handlerInput)
+
 
 
 
@@ -78,57 +78,70 @@ module.exports = {
 
             try {
                 const speechText = "Alright! I've scheduled a reminder for you.";
-          
+
                 console.log('------------where is this log------------')
+                let startDate = moment().format()
                 const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
                 const date = Alexa.getSlotValue(requestEnvelope, 'date')
                 const time = Alexa.getSlotValue(requestEnvelope, 'time')
                 console.log('------------task: ', task)
                 console.log('------------date ', date)
                 console.log('------------time ', time)
+                console.log('------------startDate ', startDate)
+                console.log('------------calculateSeconds(startDate, date): ', calculateSeconds(startDate, date))
+                 let secondsToReminder = calculateSeconds(startDate, date)
+
+                const calculateSeconds = (startDate, endDate) => {
+                    let startTime = moment(startDate, 'YYYY-MM-DD HH:mm:ss');
+                    let endTime = moment(endDate, 'YYYY-MM-DD HH:mm:ss');
+                    let duration = moment.duration(endTime.diff(startTime));
+                    let seconds = duration.asSeconds();
+                    return seconds;
+                }
+
 
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
                 let test = 'testing'
 
-            // const reminderPayload = {
-            //     trigger: {
-            //         type: 'SCHEDULED_ABSOLUTE',
-            //         scheduledTime: currentDateTime.set({
-            //             hour: '13',
-            //             minute: '00',
-            //             second: '00'
-            //         }).format('YYYY-MM-DDTHH:mm:ss'),
-            //         timeZoneId: 'America/Los_Angeles',
-            //         recurrence: {
-            //             freq: 'DAILY'
-            //         }
-            //       }
-            // }
+                // const reminderPayload = {
+                //     trigger: {
+                //         type: 'SCHEDULED_ABSOLUTE',
+                //         scheduledTime: currentDateTime.set({
+                //             hour: '13',
+                //             minute: '00',
+                //             second: '00'
+                //         }).format('YYYY-MM-DDTHH:mm:ss'),
+                //         timeZoneId: 'America/Los_Angeles',
+                //         recurrence: {
+                //             freq: 'DAILY'
+                //         }
+                //       }
+                // }
 
-            // let currentDate = moment("13.04.2016", "DD.MM.YYYY");
-            // let reminderDate = moment("28.04.2016", "DD.MM.YYYY");
-          
-            // let seconds = reminderDate.diff(currentDate, 'seconds');
+                // let currentDate = moment("13.04.2016", "DD.MM.YYYY");
+                // let reminderDate = moment("28.04.2016", "DD.MM.YYYY");
 
-            // let testDate = new AmazonDateParser(date);
-            // console.log(testDate);
-            /* returns:
-            { endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
-            startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
-            */
+                // let seconds = reminderDate.diff(currentDate, 'seconds');
+
+                // let testDate = new AmazonDateParser(date);
+                // console.log(testDate);
+                /* returns:
+                { endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
+                startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
+                */
 
                 const reminderPayload = {
                     'trigger': {
                         'type': 'SCHEDULED_RELATIVE',
-                        'offsetInSeconds': '10',
+                        'offsetInSeconds': secondsToReminder,
                         'timeZoneId': 'America/Los_Angeles'
                     },
                     'alertInfo': {
                         'spokenInfo': {
                             'content': [{
                                 'locale': 'en-US',
-                                'text': time + ' ' + date + ' ' + time,
-                                'ssml': `<speak>${time + ' ' + date + ' ' + time}</speak>`
+                                'text': 'time: ' + time +  ' date: ' + date + ' task: ' + task + ' startDate: ' + startDate + ' secondsToReminder: ' + secondsToReminder,
+                                'ssml': `<speak>${time + ' ' + date + ' ' + task}</speak>`
                             }]
                         }
                     },
