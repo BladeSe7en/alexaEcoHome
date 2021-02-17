@@ -91,7 +91,8 @@ module.exports = {
                 console.log('this is dateTime: ',DateTime.now());
                 console.log('ts: ', DateTime.now().ts)
                 console.log('c: ', DateTime.now().c)
-
+                console.log('this should be local time: ',DateTime.now().c.toLocalString())
+                console.log('this is local dateTime: ',DateTime.now().toLocaleString());
           
           
           
