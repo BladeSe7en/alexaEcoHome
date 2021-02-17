@@ -79,16 +79,19 @@ module.exports = {
                 const speechText = "Alright! I've scheduled a reminder for you.";
 
                 console.log('------------where is this log------------')
+                   console.log('------------task: ', task)
+                console.log('------------date ', date)
+                console.log('------------time ', time)
           
                 let timeRightNow = moment().format()
                 let secondsFromStartDay = moment(timeRightNow).startOf('day').fromNow();
                 console.log('this is time right now: ',timeRightNow)
                 console.log('this is seconds from start of day: ', secondsFromStartDay)
-                let timezone = moment.tz.guess(); //"Europe/Vienna" //America/New_York
-                moment.tz.setDefault(timezone);
-                console.log('this is timezone: ',timezone)
+                //let timezone = moment.tz.guess(); //"Europe/Vienna" //America/New_York
+                let timezone = moment.tz.setDefault('America/Los_Angeles');
                 let whatIsThis = moment().tz(timezone).format("YYYY-MM-DD")
                 console.log('whatIsThis: ',whatIsThis)
+                console.log('this is timezone: ',timezone
           
           
           
