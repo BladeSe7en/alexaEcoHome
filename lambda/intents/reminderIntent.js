@@ -80,7 +80,7 @@ module.exports = {
                 const speechText = "Alright! I've scheduled a reminder for you.";
 
                 console.log('------------where is this log------------')
-                let startDate = moment().format('')
+                let startDate = moment().format()
                 
                 const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
                 let date = Alexa.getSlotValue(requestEnvelope, 'date')
