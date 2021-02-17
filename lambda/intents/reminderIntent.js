@@ -94,6 +94,8 @@ module.exports = {
                 const calculateSeconds = (startDate, endDate) => {
                     let startTime = moment(startDate, 'YYYY-MM-DD HH:mm:ss');
                     let endTime = moment(endDate, 'YYYY-MM-DD HH:mm:ss');
+                    console.log('------------startTime ', startTime)
+                    console.log('------------endTime ', endTime)
                     let duration = moment.duration(endTime.diff(startTime));
                     let seconds = duration.asSeconds();
                     return seconds;
