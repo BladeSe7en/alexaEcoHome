@@ -1,7 +1,6 @@
 const Alexa = require('ask-sdk-core');
 const AmazonDateParser = require('amazon-date-parser');
-const moment = require('moment');
-moment().format();
+const moment = require('moment-timezone');
 
 module.exports = {
     ConnectionsResponsetHandler: {
