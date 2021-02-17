@@ -133,7 +133,7 @@ module.exports = {
                 const reminderPayload = {
                     'trigger': {
                         'type': 'SCHEDULED_RELATIVE',
-                        'offsetInSeconds': secondsToReminder,
+                        'offsetInSeconds': '10',
                         'timeZoneId': 'America/Los_Angeles'
                     },
                     'alertInfo': {
