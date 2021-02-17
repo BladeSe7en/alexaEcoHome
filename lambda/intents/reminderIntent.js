@@ -90,7 +90,8 @@ module.exports = {
                 console.log('this is time right now: ',timeRightNow)
                 console.log('this is seconds from start of day: ', secondsFromStartDay)
                 //let timezone = moment.tz.guess(); //"Europe/Vienna" //America/New_York
-                let timezone = moment.tz.setDefault('America/Los_Angeles');
+                let timezone = 'America/Los_Angeles'
+                moment.tz.setDefault(timezone);
                 let whatIsThis = moment().tz(timezone).format("YYYY-MM-DD")
                 console.log('whatIsThis: ',whatIsThis)
                 console.log('this is timezone: ',timezone)
