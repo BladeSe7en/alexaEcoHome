@@ -80,41 +80,54 @@ module.exports = {
                 const speechText = "Alright! I've scheduled a reminder for you.";
 
                 console.log('------------where is this log------------')
-                let startDate = moment().format()
+          
+                let timeRightNow = moment().format()
+                let secondsFromStartDay = moment(timeRightNow).startOf('day').fromNow();
+                console.log('this is time right now: ',timeRightNow)
+                console.log('this is seconds from start of day: ', secondsFromStartDay)
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+                // let startDate = moment().format()
                 
-                const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
-                let date = Alexa.getSlotValue(requestEnvelope, 'date')
-                const time = Alexa.getSlotValue(requestEnvelope, 'time')
-                console.log('------------task: ', task)
-                console.log('------------date ', date)
-                console.log('------------time ', time)
-                console.log('------------startDate ', startDate)
+                // const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
+                // let date = Alexa.getSlotValue(requestEnvelope, 'date')
+                // const time = Alexa.getSlotValue(requestEnvelope, 'time')
+                // console.log('------------task: ', task)
+                // console.log('------------date ', date)
+                // console.log('------------time ', time)
+                // console.log('------------startDate ', startDate)
                 
-                if (date == startDate) {
-                    date = moment().format()
-                }
-                console.log('------------newDate ', date)
 
-                const calculateSeconds = (startDate, endDate) => {
-                    //let startTime = moment(startDate, 'YYYY-MM-DD HH:mm:ss');
-                    let startTime = moment(startDate, 'YYYY-MM-DD');
+                // const calculateSeconds = (startDate, endDate) => {
+                //     //let startTime = moment(startDate, 'YYYY-MM-DD HH:mm:ss');
+                //     let startTime = moment(startDate, 'YYYY-MM-DD');
 
-                    //var theFutureTime = moment().hour('12').minute('44').add(4,'hours').format("HH:mm");
-                    //moment.duration("02:45").asMinutes() + moment.duration("02:15").asMinutes()
-                    
+                //    // let endTime = moment(endDate, 'YYYY-MM-DD HH:mm:ss');
+                //     let endTime = moment(endDate, 'YYYY-MM-DD');
 
-
-                   // let endTime = moment(endDate, 'YYYY-MM-DD HH:mm:ss');
-                    let endTime = moment(endDate, 'YYYY-MM-DD');
-
-                    console.log('------------startTime ', startTime)
-                    console.log('------------endTime ', endTime)
-                    let duration = moment.duration(endTime.diff(startTime));
-                    let seconds = duration.asSeconds();
-                    return seconds;
-                }
-                let secondsToReminder = calculateSeconds(startDate, date)
-                console.log('------------calculateSeconds(startDate, date): ', calculateSeconds(startDate, date))
+                //     console.log('------------startTime ', startTime)
+                //     console.log('------------endTime ', endTime)
+                //     let duration = moment.duration(endTime.diff(startTime));
+                //     let seconds = duration.asSeconds();
+                //     return seconds;
+                // }
+                // let secondsToReminder = calculateSeconds(startDate, date)
+                // console.log('------------calculateSeconds(startDate, date): ', calculateSeconds(startDate, date))
 
 
 
