@@ -81,10 +81,15 @@ module.exports = {
 
                 console.log('------------where is this log------------')
           
-                let timeRightNow = moment().local().format()
+                let timeRightNow = moment().format()
                 let secondsFromStartDay = moment(timeRightNow).startOf('day').fromNow();
                 console.log('this is time right now: ',timeRightNow)
                 console.log('this is seconds from start of day: ', secondsFromStartDay)
+                let timezone = moment.tz.guess(); //"Europe/Vienna" //America/New_York
+                moment.tz.setDefault(timezone);
+                console.log('this is timezone: ',timezone)
+                let whatIsThis = moment().tz(timezone).format("YYYY-MM-DD")
+                console.log('whatIsThis: ',whatIsThis)
           
           
           
