@@ -89,8 +89,7 @@ module.exports = {
                 console.log('------------time ', time)
                 console.log('------------startDate ', startDate)
                 console.log('------------calculateSeconds(startDate, date): ', calculateSeconds(startDate, date))
-                 let secondsToReminder = calculateSeconds(startDate, date)
-
+            
                 const calculateSeconds = (startDate, endDate) => {
                     let startTime = moment(startDate, 'YYYY-MM-DD HH:mm:ss');
                     let endTime = moment(endDate, 'YYYY-MM-DD HH:mm:ss');
@@ -100,6 +99,8 @@ module.exports = {
                     let seconds = duration.asSeconds();
                     return seconds;
                 }
+                 let secondsToReminder = calculateSeconds(startDate, date)
+
 
 
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
