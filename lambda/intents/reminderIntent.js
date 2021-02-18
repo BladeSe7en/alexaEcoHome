@@ -95,36 +95,47 @@ module.exports = {
           
           
 
-
                 var local = DateTime.local();
-                var rezoned = local.setZone("America/Los_Angeles");
+                //var rezoned = local.setZone("America/Los_Angeles", { keepLocalTime: true });
+                var rezoned = local.setZone(local, { keepLocalTime: true });
+
+                console.log('local: ',local)
+                console.log('rezoned: ',rezoned)
+
+
                 
-                // different local times with different offsets
-                local.toString(); //=> '2017-09-13T18:30:51.141-04:00'
-                rezoned.toString(); //=> '2017-09-13T15:30:51.141-07:00'
+                local.toString(); //=> '2017-09-13T18:36:23.187-04:00'
+                rezoned.toString(); //=> '2017-09-13T18:36:23.187-07:00'
 
                 console.log('local.toString(): ',local.toString())
                 console.log('rezoned.toString(): ',rezoned.toString())
-                
-                // but actually the same time
-                local.valueOf() === rezoned.valueOf(); //=> true
-               // keepLocalTime
-                //Generally, it's best to think of the zone as a sort of metadata that you slide around independent of the underlying count of milliseconds. However, sometimes that's not what you want. Sometimes you want to change zones while keeping the local time fixed and instead altering the timestamp. Luxon supports this:
-                
-                var localA = DateTime.A();
-                var rezonedA = localA.setZone("America/Los_Angeles", { keepLocalTime: true });
-                console.log('localA: ',localA)
-                console.log('resonzedA: ',rezonedA)
+
+                var spokenDate = new Date(date);
+                console.log('spokenDate: ',spokenDate)
+
+                var todayDate = new Date();
+                console.log('todayDate: ',todayDate)
 
 
-                
-                localA.toString(); //=> '2017-09-13T18:36:23.187-04:00'
-                rezonedA.toString(); //=> '2017-09-13T18:36:23.187-07:00'
+                var spokenDateInMillis = spokenDate.getTime();
+                console.log('spokenDateInMillis: ',spokenDateInMillis)
 
-                console.log('localA.toString(): ',localA.toString())
-                console.log('rezonedA.toString(): ',rezonedA.toString())
+
+                var todayDateInMillis = todayDate.getTime();
+                console.log('todayDateInMillis: ',todayDateInMillis)
+
+                let milInDay = (24 * 60 * 60 * 1000)
+                if (spokenDateInMillis < todayDateInMillis && todayDateInMillis - milInDay < spokenDateInMillis) {
+
+                console.log('spoken day is todays date')
+
+                } else if (spokenDateInMillis < todayDateInMillis && todayDateInMillis - milInDay > spokenDateInMillis) {
+                    console.log('spoken day is in the passed')
+                } else {
+                    console.log('spoken date should be one or more days in the future')
+                }
+
                 
-                localA.valueOf() === rezoned.valueOf(); //=> false
 
 
 
