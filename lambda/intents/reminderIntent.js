@@ -1,6 +1,7 @@
 const Alexa = require('ask-sdk-core');
 const AmazonDateParser = require('amazon-date-parser');
 const moment = require('moment-timezone');
+moment().tz("America/Los_Angeles").format();
 
 var { DateTime } = require('luxon');
 
@@ -88,8 +89,7 @@ module.exports = {
                 console.log('------------date ', date)
                 console.log('------------time ', time)
 
-                let today = moment().format(); 
-          
+                let today = moment().tz("America/Los_Angeles").format();
                 console.log('this is today: ',today)
 
 
