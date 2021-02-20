@@ -95,11 +95,11 @@ module.exports = {
 
                 let scheduledDate = moment(reminderDate)
                 console.log('scheduledDate: ', scheduledDate)
-                let yesterdayUTC = moment(today).subtract(1, 'days').format()
-                console.log('yesterdayUTC: ', yesterdayUTC)
-                let yesterday = moment(yesterdayUTC).tz("America/Los_Angeles").format();
+                //let yesterdayUTC = moment(today).subtract(1, 'days').format()
+               // console.log('yesterdayUTC: ', yesterdayUTC)
+               // let yesterday = moment(yesterdayUTC).tz("America/Los_Angeles").format();
                 console.log('this is today: ', today)
-                console.log('yesterday: ', yesterday)
+               // console.log('yesterday: ', yesterday)
 
                 // let scheduledDateTime = moment(scheduledDate).add()
 
@@ -110,7 +110,9 @@ module.exports = {
                     return b[0] * 60 + +b[1];
                 }
 
-                let scheduledDateTime = moment(scheduledDate).add(timeToMins('minutes', time))
+                //let addedTime = timeToMins(time)
+
+                let scheduledDateTime = moment(scheduledDate).add( timeToMins(time), 'minutes')
                 console.log('this is scheduledDateTime: ', scheduledDateTime.format('YYYY-MM-DDThh:mm:ss'))
 
                 console.log('this is time to minutes', timeToMins(time))
