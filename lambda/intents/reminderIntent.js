@@ -103,12 +103,12 @@ module.exports = {
 
                 let days
 
-                const calculateSeconds = (today, scheduledDate) => {
+                const calculateSeconds = (yesterday, scheduledDate) => {
 
                     //let startTime = moment(today, 'YYYY-MM-DD HH:mm:ss');
 
                     // let endTime = moment(reminderDate, 'YYYY-MM-DD HH:mm:ss');
-                    let duration = moment.duration(scheduledDate.diff(today));
+                    let duration = moment.duration(scheduledDate.diff(yesterday));
                     days = duration.asDays();
                     if (days < 0) {
                         console.error('this is in the past. alexa should error here')
@@ -120,8 +120,8 @@ module.exports = {
                     }
                     return days;
                 }
-                let secondsToReminder = calculateSeconds(today, scheduledDate)
-                console.log('------------calculateSeconds(today, date): ', calculateSeconds(today, scheduledDate))
+                let secondsToReminder = calculateSeconds(yesterday, scheduledDate)
+                console.log('------------calculateSeconds(today, date): ', calculateSeconds(yesterday, scheduledDate))
 
 
 
