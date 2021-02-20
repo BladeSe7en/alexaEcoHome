@@ -110,9 +110,9 @@ module.exports = {
                     // let endTime = moment(reminderDate, 'YYYY-MM-DD HH:mm:ss');
                     let duration = moment.duration(scheduledDate.diff(today));
                     days = duration.asDays();
-                    if (days < -1) {
+                    if (days < 0) {
                         console.error('this is in the past. alexa should error here')
-                    } else if (days > -1 && days < 1) {
+                    } else if (days > 0 && days < 1) {
                         console.log('scheduled date is today')
                     }
                     else {
@@ -203,8 +203,8 @@ module.exports = {
                         'spokenInfo': {
                             'content': [{
                                 'locale': 'en-US',
-                                'text': 'time: ' + time + ' date: ' + date + ' task: ' + task + ' startDate: ' + startDate + ' secondsToReminder: ' + secondsToReminder,
-                                'ssml': `<speak>${time + ' ' + date + ' ' + task}</speak>`
+                                'text': 'time: ' + time + ' date: ' + scheduledDate + ' task: ' + task + ' startDate: ' + startDate + ' secondsToReminder: ' + secondsToReminder,
+                                'ssml': `<speak>${time + ' ' + scheduledDate + ' ' + task}</speak>`
                             }]
                         }
                     },
