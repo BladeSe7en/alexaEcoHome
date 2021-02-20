@@ -103,7 +103,7 @@ module.exports = {
 
 
                 let scheduledDateTime = moment(scheduledDate).add( timeToMins(time), 'minutes')
-                console.log('this is scheduledDateTime: ', scheduledDateTime.format('YYYY-MM-DDThh:mm:ss'))
+                console.log('this is scheduledDateTime: ', scheduledDateTime.format())
                 console.log('this is time to minutes', timeToMins(time))
 
 
@@ -130,7 +130,7 @@ module.exports = {
                                 'locale': 'en-US',
                                 'text': 'scheduledDateTime: ' + scheduledDateTime.format('YYYY-MM-DDThh:mm:ss') + ' task: ' + task + ' startDate: ',
                                 //'ssml': `<speak>${scheduledDate.format('YYYY-MM-DDThh:mm:ss') + ' ' + task}</speak>`
-                                                                'ssml': `<speak>Hey look, I am speaking to you</speak>`
+                                 'ssml': `<speak>Hey look, I am speaking to you</speak>`
                             }]
                         }
                     },
