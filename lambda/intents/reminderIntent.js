@@ -88,9 +88,9 @@ module.exports = {
                 console.log('------------date ', date)
                 console.log('------------time ', time)
           
-                console.log('this is dateTime: ',DateTime());
-                console.log('ts: ', DateTime().ts)
-                console.log('c: ', DateTime().c)
+                console.log('this is dateTime: ',DateTime.now());
+                console.log('ts: ', DateTime.now().ts)
+                console.log('c: ', DateTime.now().c)
            
           
           
@@ -170,12 +170,6 @@ module.exports = {
 
 
 
-
-          
-          
-          
-          
-          
                 // let startDate = moment().format()
                 
                 // const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
