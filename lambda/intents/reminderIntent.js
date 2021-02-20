@@ -111,29 +111,12 @@ module.exports = {
                 }
 
                 let scheduledDateTime = moment(scheduledDate).add(timeToMins(time), 'minutes')
-                console.log('this is scheduledDateTime: ',scheduledDateTime)
+                console.log('this is scheduledDateTime: ', scheduledDateTime)
 
                 console.log('this is time to minutes', timeToMins(time))
 
-                       let days
 
-                const calculateSeconds = (today, scheduledDateTime) => {
 
-                    //let startTime = moment(today, 'YYYY-MM-DD HH:mm:ss');
-
-                    // let endTime = moment(reminderDate, 'YYYY-MM-DD HH:mm:ss');
-                    let duration = moment.duration(scheduledDateTime.diff(moment(today)));
-                    days = duration.asMinutes();
-                    if (days < 0) {
-                        console.error('this is in the past. alexa should error here')
-                    }
-                    else {
-                        console.log('scheduled date is a valid date')
-                    }
-                    return days;
-                }
-                let secondsToReminder = calculateSeconds(today, scheduledDateTime)
-                console.log('------------calculateSeconds(today, date): ', calculateSeconds(today, scheduledDateTime))
 
 
 
@@ -254,10 +237,19 @@ module.exports = {
                 */
 
                 const reminderPayload = {
-                    'trigger': {
-                        'type': 'SCHEDULED_RELATIVE',
-                        'offsetInSeconds': '10',
-                        'timeZoneId': 'America/Los_Angeles'
+                    "trigger": {
+                        "type": "SCHEDULED_ABSOLUTE",
+                        "scheduledTime": scheduledDateTime,
+                        "timeZoneId": "America/Los_Angeles",
+                        // "recurrence": {
+                        //     "startDateTime": "2019-05-10T6:00:00.000",
+                        //     "endDateTime": "2019-08-10T10:00:00.000",
+                        //     "recurrenceRules": [
+                        //         "FREQ=DAILY;BYHOUR=6;BYMINUTE=10;BYSECOND=0;INTERVAL=1;",
+                        //         "FREQ=DAILY;BYHOUR=17;BYMINUTE=15;BYSECOND=0;INTERVAL=1;",
+                        //         "FREQ=DAILY;BYHOUR=22;BYMINUTE=45;BYSECOND=0;INTERVAL=1;"
+                        //     ]
+                        // }
                     },
                     'alertInfo': {
                         'spokenInfo': {
