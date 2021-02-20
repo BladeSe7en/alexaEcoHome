@@ -110,14 +110,18 @@ module.exports = {
                     // let endTime = moment(reminderDate, 'YYYY-MM-DD HH:mm:ss');
                     let duration = moment.duration(scheduledDate.diff(today));
                     days = duration.asDays();
+                    if (days < -1) {
+                        console.error('this is in the past. alexa should error here')
+                    } else if (days > -1 && days < 1) {
+                        console.log('scheduled date is today')
+                    }
+                    else {
+                        console.log('scheduled date is a valid date')
+                    }
                     return days;
                 }
                 let secondsToReminder = calculateSeconds(today, scheduledDate)
                 console.log('------------calculateSeconds(today, date): ', calculateSeconds(today, scheduledDate))
-
-                if (days < -1) {
-                    console.log('this is in the past')
-                }
 
 
 
