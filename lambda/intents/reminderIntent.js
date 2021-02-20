@@ -2,7 +2,6 @@ const Alexa = require('ask-sdk-core');
 const AmazonDateParser = require('amazon-date-parser');
 const moment = require('moment-timezone');
 moment().tz("America/Los_Angeles").format();
-
 var { DateTime } = require('luxon');
 
 
@@ -17,9 +16,6 @@ module.exports = {
             //console.log(JSON.stringify(handlerInput.requestEnvelope));
             //console.log(handlerInput.requestEnvelope.request.payload.status);
             // console.log('this is handlerInput: ',handlerInput)
-
-
-
 
 
             if (!permissions) {
@@ -96,13 +92,8 @@ module.exports = {
                 let scheduledDate = moment(reminderDate)
                 console.log('scheduledDate: ', scheduledDate)
                 //let yesterdayUTC = moment(today).subtract(1, 'days').format()
-               // console.log('yesterdayUTC: ', yesterdayUTC)
                // let yesterday = moment(yesterdayUTC).tz("America/Los_Angeles").format();
                 console.log('this is today: ', today)
-               // console.log('yesterday: ', yesterday)
-
-                // let scheduledDateTime = moment(scheduledDate).add()
-
 
                 // Convert a time in hh:mm format to minutes
                 function timeToMins(time) {
@@ -110,108 +101,73 @@ module.exports = {
                     return b[0] * 60 + +b[1];
                 }
 
-                //let addedTime = timeToMins(time)
 
                 let scheduledDateTime = moment(scheduledDate).add( timeToMins(time), 'minutes')
                 console.log('this is scheduledDateTime: ', scheduledDateTime.format('YYYY-MM-DDThh:mm:ss'))
-
                 console.log('this is time to minutes', timeToMins(time))
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                // let days
-
-                // const calculateSeconds = (yesterday, scheduledDate) => {
-
-                //     //let startTime = moment(today, 'YYYY-MM-DD HH:mm:ss');
-
-                //     // let endTime = moment(reminderDate, 'YYYY-MM-DD HH:mm:ss');
-                //     let duration = moment.duration(scheduledDate.diff(yesterday));
-                //     days = duration.asDays();
-                //     if (days < 0) {
-                //         console.error('this is in the past. alexa should error here')
-                //     } else if (days > 0 && days < 1) {
-                //         console.log('scheduled date is today')
-                //     }
-                //     else {
-                //         console.log('scheduled date is a valid date')
-                //     }
-                //     return days;
-                // }
-                // let secondsToReminder = calculateSeconds(yesterday, scheduledDate)
-                // console.log('------------calculateSeconds(today, date): ', calculateSeconds(yesterday, scheduledDate))
-
-
-
-
-
-
-
-
-
-
-
-
-                // let startDate = moment().format()
-
-                // const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
-                // let date = Alexa.getSlotValue(requestEnvelope, 'date')
-                // const time = Alexa.getSlotValue(requestEnvelope, 'time')
-                // console.log('------------task: ', task)
-                // console.log('------------date ', date)
-                // console.log('------------time ', time)
-                // console.log('------------startDate ', startDate)
-
-
-                // const calculateSeconds = (startDate, endDate) => {
-                //     //let startTime = moment(startDate, 'YYYY-MM-DD HH:mm:ss');
-                //     let startTime = moment(startDate, 'YYYY-MM-DD');
-
-                //    // let endTime = moment(endDate, 'YYYY-MM-DD HH:mm:ss');
-                //     let endTime = moment(endDate, 'YYYY-MM-DD');
-
-                //     console.log('------------startTime ', startTime)
-                //     console.log('------------endTime ', endTime)
-                //     let duration = moment.duration(endTime.diff(startTime));
-                //     let seconds = duration.asSeconds();
-                //     return seconds;
-                // }
-                // let secondsToReminder = calculateSeconds(startDate, date)
-                // console.log('------------calculateSeconds(startDate, date): ', calculateSeconds(startDate, date))
-
-
-
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
-                let test = 'testing'
 
-                // const reminderPayload = {
+                const reminderPayload = {
+                    "trigger": {
+                        "type": "SCHEDULED_ABSOLUTE",
+                        "scheduledTime": scheduledDateTime.format('YYYY-MM-DDThh:mm:ss'),
+                        "timeZoneId": "America/Los_Angeles",
+                        // "recurrence": {
+                        //     "startDateTime": "2019-05-10T6:00:00.000",
+                        //     "endDateTime": "2019-08-10T10:00:00.000",
+                        //     "recurrenceRules": [
+                        //         "FREQ=DAILY;BYHOUR=6;BYMINUTE=10;BYSECOND=0;INTERVAL=1;",
+                        //         "FREQ=DAILY;BYHOUR=17;BYMINUTE=15;BYSECOND=0;INTERVAL=1;",
+                        //         "FREQ=DAILY;BYHOUR=22;BYMINUTE=45;BYSECOND=0;INTERVAL=1;"
+                        //     ]
+                        // }
+                    },
+                    'alertInfo': {
+                        'spokenInfo': {
+                            'content': [{
+                                'locale': 'en-US',
+                                'text': 'scheduledDateTime: ' + scheduledDateTime.format('YYYY-MM-DDThh:mm:ss') + ' task: ' + task + ' startDate: ',
+                                //'ssml': `<speak>${scheduledDate.format('YYYY-MM-DDThh:mm:ss') + ' ' + task}</speak>`
+                                                                'ssml': `<speak>hey loook, i am speaking to you</speak>`
+
+                            }]
+                        }
+                    },
+                    'pushNotification': {
+                        'status': 'ENABLED'
+                    }
+                };
+
+
+                await ReminderManagementServiceClient.createReminder(reminderPayload);
+                return responseBuilder
+                    .speak(speechText)
+                    .getResponse();
+
+            } catch (error) {
+                console.error(error);
+                return responseBuilder
+                    .speak('Something went wrong.')
+                    .getResponse();
+            }
+        }
+    }
+}
+
+
+// how to access slots 
+// var AmazonDateParser = require('amazon-date-parser');
+// var date = new AmazonDateParser('2017-W48');
+// console.log(date);
+/* returns:
+{ endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
+startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
+*/
+
+
+      // const reminderPayload = {
                 //     trigger: {
                 //         type: 'SCHEDULED_ABSOLUTE',
                 //         scheduledTime: currentDateTime.set({
@@ -237,111 +193,3 @@ module.exports = {
                 { endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
                 startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
                 */
-
-                const reminderPayload = {
-                    "trigger": {
-                        "type": "SCHEDULED_ABSOLUTE",
-                        "scheduledTime": scheduledDateTime.format('YYYY-MM-DDThh:mm:ss'),
-                        "timeZoneId": "America/Los_Angeles",
-                        // "recurrence": {
-                        //     "startDateTime": "2019-05-10T6:00:00.000",
-                        //     "endDateTime": "2019-08-10T10:00:00.000",
-                        //     "recurrenceRules": [
-                        //         "FREQ=DAILY;BYHOUR=6;BYMINUTE=10;BYSECOND=0;INTERVAL=1;",
-                        //         "FREQ=DAILY;BYHOUR=17;BYMINUTE=15;BYSECOND=0;INTERVAL=1;",
-                        //         "FREQ=DAILY;BYHOUR=22;BYMINUTE=45;BYSECOND=0;INTERVAL=1;"
-                        //     ]
-                        // }
-                    },
-                    'alertInfo': {
-                        'spokenInfo': {
-                            'content': [{
-                                'locale': 'en-US',
-                                'text': 'scheduledDateTime: ' + scheduledDateTime.format('YYYY-MM-DDThh:mm:ss') + ' task: ' + task + ' startDate: ',
-                                'ssml': `<speak>${scheduledDate.format('YYYY-MM-DDThh:mm:ss') + ' ' + task}</speak>`
-                            }]
-                        }
-                    },
-                    'pushNotification': {
-                        'status': 'ENABLED'
-                    }
-                };
-
-                // {
-                //     "requestTime" : "2019-09-22T19:04:00.672",
-                //     "trigger": {
-                //          "type" : "SCHEDULED_RELATIVE",
-                //          "offsetInSeconds" : "7200"
-                //     },
-                //     "alertInfo": {
-                //          "spokenInfo": {
-                //              "content": [{
-                //                  "locale": "en-US", 
-                //                  "text": "walk the dog",
-                //                  "ssml": "<speak> walk the dog</speak>"
-                //              }]
-                //          }
-                //      },
-                //      "pushNotification" : {                            
-                //           "status" : "ENABLED"         
-                //      }
-                //  }
-
-                /////////////////////////////////
-                // {
-                //     "requestTime" : "2019-09-22T19:04:00.672",
-                //     "trigger": {
-                //          "type" : "SCHEDULED_ABSOLUTE",
-                //          "scheduledTime" : "2019-09-22T19:00:00.000",
-                //          "timeZoneId" : "America/Los_Angeles",
-                //          "recurrence" : {                     
-                //            "startDateTime": "2019-05-10T6:00:00.000",                       
-                //            "endDateTime" : "2019-08-10T10:00:00.000",  
-                //            "recurrenceRules" : [                                          
-                //               "FREQ=DAILY;BYHOUR=6;BYMINUTE=10;BYSECOND=0;INTERVAL=1;",
-                //               "FREQ=DAILY;BYHOUR=17;BYMINUTE=15;BYSECOND=0;INTERVAL=1;",
-                //               "FREQ=DAILY;BYHOUR=22;BYMINUTE=45;BYSECOND=0;INTERVAL=1;"
-                //            ]               
-                //          }
-                //     },
-                //     "alertInfo": {
-                //          "spokenInfo": {
-                //              "content": [{
-                //                  "locale": "en-US", 
-                //                  "text": "walk the dog",
-                //                  "ssml": "<speak> walk the dog</speak>"  
-                //              }]
-                //          }
-                //      },
-                //      "pushNotification" : {                            
-                //           "status" : "ENABLED"
-                //      }
-                //  }
-
-
-
-
-                await ReminderManagementServiceClient.createReminder(reminderPayload);
-                return responseBuilder
-                    .speak(speechText)
-                    .getResponse();
-
-            } catch (error) {
-                console.error(error);
-                return responseBuilder
-                    .speak('Something went wrong.')
-                    .getResponse();
-            }
-        }
-    }
-}
-
-
-// how to access slots 
-// var AmazonDateParser = require('amazon-date-parser');
-// var date = new AmazonDateParser('2017-W48');
-// console.log(date);
-/* returns:
-{ endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
-  startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
-*/
