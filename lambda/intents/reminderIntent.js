@@ -131,7 +131,6 @@ module.exports = {
                                 'text': 'scheduledDateTime: ' + scheduledDateTime.format('YYYY-MM-DDThh:mm:ss') + ' task: ' + task + ' startDate: ',
                                 //'ssml': `<speak>${scheduledDate.format('YYYY-MM-DDThh:mm:ss') + ' ' + task}</speak>`
                                                                 'ssml': `<speak>Hey look, I am speaking to you</speak>`
-
                             }]
                         }
                     },
