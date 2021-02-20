@@ -129,7 +129,7 @@ module.exports = {
                                 'locale': 'en-US',
                                 //'text': 'scheduledDateTime: ' + scheduledDateTime.format('YYYY-MM-DDThh:mm:ss') + ' task: ' + task + ' startDate: ',
                                 'text': task,
-                                'ssml': `<speak>${task}</speak>`
+                                //'ssml': `<speak>${task}</speak>`
                                 //'ssml': '<speak> Hey look, I am speaking to you </speak>'
                             }]
                         }
