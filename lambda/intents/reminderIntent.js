@@ -92,7 +92,7 @@ module.exports = {
                 let scheduledDate = moment(reminderDate)
                 console.log('scheduledDate: ', scheduledDate)
                 //let yesterdayUTC = moment(today).subtract(1, 'days').format()
-               // let = = moment(yesterdayUTC).tz("America/Los_Angeles").format();
+                // let = = moment(yesterdayUTC).tz("America/Los_Angeles").format();
                 console.log('this is today: ', today)
 
                 // Convert a time in hh:mm format to minutes
@@ -102,40 +102,59 @@ module.exports = {
                 }
 
 
-                let scheduledDateTime = moment(scheduledDate).add( timeToMins(time), 'minutes')
+                let scheduledDateTime = moment(scheduledDate).add(timeToMins(time), 'minutes')
                 console.log('this is scheduledDateTime: ', scheduledDateTime.format())
                 console.log('this is time to minutes', timeToMins(time))
 
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
 
+                // const reminderPayload = {
+                //     "trigger": {
+                //         "type": "SCHEDULED_ABSOLUTE",
+                //         "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
+                //         "timeZoneId": "America/Los_Angeles",
+                //         // "recurrence": {
+                //         //     "startDateTime": "2019-05-10T6:00:00.000",
+                //         //     "endDateTime": "2019-08-10T10:00:00.000",
+                //         //     "recurrenceRules": [
+                //         //         "FREQ=DAILY;BYHOUR=6;BYMINUTE=10;BYSECOND=0;INTERVAL=1;",
+                //         //         "FREQ=DAILY;BYHOUR=17;BYMINUTE=15;BYSECOND=0;INTERVAL=1;",
+                //         //         "FREQ=DAILY;BYHOUR=22;BYMINUTE=45;BYSECOND=0;INTERVAL=1;"
+                //         //     ]
+                //         // }
+                //     },
+                //     'alertInfo': {
+                //         'spokenInfo': {
+                //             'content': [{
+                //                 'locale': 'en-US',
+                //                 //'text': 'scheduledDateTime: ' + scheduledDateTime.format('YYYY-MM-DDThh:mm:ss') + ' task: ' + task + ' startDate: ',
+                //                 'text': task,
+                //                 //'ssml': `<speak>${task}</speak>`
+                //                 //'ssml': '<speak> Hey look, I am speaking to you </speak>'
+                //             }]
+                //         }
+                //     },
+                //     'pushNotification': {
+                //         'status': 'ENABLED'
+                //     }
+                // };
+
                 const reminderPayload = {
                     "trigger": {
-                        "type": "SCHEDULED_ABSOLUTE",
-                        "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
-                        "timeZoneId": "America/Los_Angeles",
-                        // "recurrence": {
-                        //     "startDateTime": "2019-05-10T6:00:00.000",
-                        //     "endDateTime": "2019-08-10T10:00:00.000",
-                        //     "recurrenceRules": [
-                        //         "FREQ=DAILY;BYHOUR=6;BYMINUTE=10;BYSECOND=0;INTERVAL=1;",
-                        //         "FREQ=DAILY;BYHOUR=17;BYMINUTE=15;BYSECOND=0;INTERVAL=1;",
-                        //         "FREQ=DAILY;BYHOUR=22;BYMINUTE=45;BYSECOND=0;INTERVAL=1;"
-                        //     ]
-                        // }
+                        "type": "SCHEDULED_RELATIVE",
+                        "offsetInSeconds": "10",
+                        "timeZoneId": "America/New_York"
                     },
-                    'alertInfo': {
-                        'spokenInfo': {
-                            'content': [{
-                                'locale': 'en-US',
-                                //'text': 'scheduledDateTime: ' + scheduledDateTime.format('YYYY-MM-DDThh:mm:ss') + ' task: ' + task + ' startDate: ',
-                                'text': task,
-                                //'ssml': `<speak>${task}</speak>`
-                                //'ssml': '<speak> Hey look, I am speaking to you </speak>'
+                    "alertInfo": {
+                        "spokenInfo": {
+                            "content": [{
+                                "locale": "en-US",
+                                "text": "learn about reminders"
                             }]
                         }
                     },
-                    'pushNotification': {
-                        'status': 'ENABLED'
+                    "pushNotification": {
+                        "status": "ENABLED"
                     }
                 };
 
@@ -188,7 +207,7 @@ startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
 
                 // let testDate = new AmazonDateParser(date);
                 // console.log(testDate);
-                /* returns:
-                { endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
-                startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
-                */
+/* returns:
+{ endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
+startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
+*/
