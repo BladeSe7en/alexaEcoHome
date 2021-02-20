@@ -88,9 +88,9 @@ module.exports = {
                 console.log('------------date ', date)
                 console.log('------------time ', time)
           
-                console.log('this is dateTime: ',DateTime.now());
-                console.log('ts: ', DateTime.now().ts)
-                console.log('c: ', DateTime.now().c)
+                console.log('this is dateTime: ',DateTime());
+                console.log('ts: ', DateTime().ts)
+                console.log('c: ', DateTime().c)
            
           
           
@@ -124,7 +124,7 @@ module.exports = {
                 var todayDateInMillis = todayDate.getTime();
                 console.log('todayDateInMillis: ',todayDateInMillis)
 
-                let milInDay = (24 * 60 * 60 * 1000)
+                let milInDay = (86_400_000)
                 if (spokenDateInMillis < todayDateInMillis && todayDateInMillis - milInDay < spokenDateInMillis) {
 
                 console.log('spoken day is todays date')
@@ -142,7 +142,7 @@ module.exports = {
                 localTime.zoneName; //=> 'America/New_York'
                 localTime.toString(); //=> '2017-05-15T09:10:23.000-04:00'
                 
-                var iso = DateTime.fromISO("2017-05-15T09:10:23");
+                var iso = DateTime.fromISO(rezoned);
                 
                 iso.zoneName; //=> 'America/New_York'
                 iso.toString(); //=> '2017-05-15T09:10:23.000-04:00'
