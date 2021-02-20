@@ -84,16 +84,13 @@ module.exports = {
                 let date = Alexa.getSlotValue(requestEnvelope, 'date')
                 const time = Alexa.getSlotValue(requestEnvelope, 'time')
                 console.log('------------where is this log------------')
-                   console.log('------------task: ', task)
+                console.log('------------task: ', task)
                 console.log('------------date ', date)
                 console.log('------------time ', time)
-          
+
                 console.log('this is dateTime: ',DateTime.now());
                 console.log('ts: ', DateTime.now().ts)
                 console.log('c: ', DateTime.now().c)
-           
-          
-          
 
                 var local = DateTime.local();
                 var rezoned = local.setZone("America/Los_Angeles", { keepLocalTime: true });
@@ -137,7 +134,7 @@ module.exports = {
 
                 
 
-                var localTime = DateTime.local();
+                var localTime = DateTime.local('017-05-15T09:10:23.000-04:00');
 
                 localTime.zoneName; //=> 'America/New_York'
                 localTime.toString(); //=> '2017-05-15T09:10:23.000-04:00'
@@ -171,11 +168,7 @@ module.exports = {
 
 
 
-          
-          
-          
-          
-          
+
                 // let startDate = moment().format()
                 
                 // const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
@@ -277,5 +270,5 @@ module.exports = {
 // console.log(date);
 /* returns:
 { endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
-  startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
+startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
 */
