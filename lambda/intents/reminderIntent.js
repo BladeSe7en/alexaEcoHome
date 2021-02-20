@@ -124,7 +124,7 @@ module.exports = {
                 var todayDateInMillis = todayDate.getTime();
                 console.log('todayDateInMillis: ',todayDateInMillis)
 
-                let milInDay = (86_400_000)
+                let milInDay = (86400000)
                 if (spokenDateInMillis < todayDateInMillis && todayDateInMillis - milInDay < spokenDateInMillis) {
 
                 console.log('spoken day is todays date')
