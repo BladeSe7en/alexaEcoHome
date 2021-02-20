@@ -102,19 +102,21 @@ module.exports = {
                 console.log('yesterday: ', yesterday)
 
 
-                // the supported frequency patterns
-
-                const calculateSeconds = (today, reminderDate) => {
+                const calculateSeconds = (today, scheduledDate) => {
 
                     //let startTime = moment(today, 'YYYY-MM-DD HH:mm:ss');
 
                     // let endTime = moment(reminderDate, 'YYYY-MM-DD HH:mm:ss');
-                    let duration = moment.duration(reminderDate.diff(today));
+                    let duration = moment.duration(scheduledDate.diff(today));
                     let days = duration.asDays();
                     return days;
                 }
-                let secondsToReminder = calculateSeconds(today, reminderDate)
-                console.log('------------calculateSeconds(today, date): ', calculateSeconds(today, reminderDate))
+                let secondsToReminder = calculateSeconds(today, scheduledDate)
+                console.log('------------calculateSeconds(today, date): ', calculateSeconds(today, scheduledDate))
+
+                if (days < -1) {
+                    console.log('this is in the past')
+                }
 
 
 
