@@ -82,50 +82,49 @@ module.exports = {
             try {
                 const speechText = "Alright! I've scheduled a reminder for you.";
                 const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
-                let date = Alexa.getSlotValue(requestEnvelope, 'date')
+                let reminderDate = Alexa.getSlotValue(requestEnvelope, 'date')
                 const time = Alexa.getSlotValue(requestEnvelope, 'time')
                 console.log('------------where is this log------------')
-                   console.log('------------task: ', task)
+                console.log('------------task: ', task)
                 console.log('------------date ', date)
                 console.log('------------time ', time)
 
                 let today = moment().tz("America/Los_Angeles").format();
-                console.log('this is today: ',today)
+                console.log('this is today: ', today)
 
 
-                let scheduledDate = moment(date)//.tz("America/Los_Angeles").format()
-                console.log('scheduledDate: ',scheduledDate)
+                let scheduledDate = moment(date)
+                console.log('scheduledDate: ', scheduledDate)
+                let yesterday = moment(today).subtract(1, 'days')
+                console.log('yesterday: ', yesterday)
 
+                // the supported frequency patterns
 
-                let milInDay = (86400000)
-                // if (spokenDateInMillis < todayDateInMillis && todayDateInMillis - milInDay < spokenDateInMillis) {
+                const calculateSeconds = (today, reminderDate) => {
 
-                // console.log('spoken day is todays date')
+                    //let startTime = moment(today, 'YYYY-MM-DD HH:mm:ss');
 
-                // } else if (spokenDateInMillis < todayDateInMillis && todayDateInMillis - milInDay > spokenDateInMillis) {
-                //     console.log('spoken day is in the past')
-                // } else {
-                //     console.log('spoken date should be one or more days in the future')
-                // }
-
-                
-
-                
-
-
-
+                    // let endTime = moment(reminderDate, 'YYYY-MM-DD HH:mm:ss');
+                    let duration = moment.duration(reminderDate.diff(today));
+                    let days = duration.asDays();
+                    return days;
+                }
+                let secondsToReminder = calculateSeconds(today, reminderDate)
+                console.log('------------calculateSeconds(today, date): ', calculateSeconds(today, reminderDate))
 
 
 
 
 
-          
-          
-          
-          
-          
+
+
+
+
+
+
+
                 // let startDate = moment().format()
-                
+
                 // const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
                 // let date = Alexa.getSlotValue(requestEnvelope, 'date')
                 // const time = Alexa.getSlotValue(requestEnvelope, 'time')
@@ -133,7 +132,7 @@ module.exports = {
                 // console.log('------------date ', date)
                 // console.log('------------time ', time)
                 // console.log('------------startDate ', startDate)
-                
+
 
                 // const calculateSeconds = (startDate, endDate) => {
                 //     //let startTime = moment(startDate, 'YYYY-MM-DD HH:mm:ss');
@@ -193,7 +192,7 @@ module.exports = {
                         'spokenInfo': {
                             'content': [{
                                 'locale': 'en-US',
-                                'text': 'time: ' + time +  ' date: ' + date + ' task: ' + task + ' startDate: ' + startDate + ' secondsToReminder: ' + secondsToReminder,
+                                'text': 'time: ' + time + ' date: ' + date + ' task: ' + task + ' startDate: ' + startDate + ' secondsToReminder: ' + secondsToReminder,
                                 'ssml': `<speak>${time + ' ' + date + ' ' + task}</speak>`
                             }]
                         }
