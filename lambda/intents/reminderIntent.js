@@ -101,27 +101,82 @@ module.exports = {
                 console.log('this is today: ', today)
                 console.log('yesterday: ', yesterday)
 
-                let days
+                // let scheduledDateTime = moment(scheduledDate).add()
 
-                const calculateSeconds = (yesterday, scheduledDate) => {
 
-                    //let startTime = moment(today, 'YYYY-MM-DD HH:mm:ss');
-
-                    // let endTime = moment(reminderDate, 'YYYY-MM-DD HH:mm:ss');
-                    let duration = moment.duration(scheduledDate.diff(yesterday));
-                    days = duration.asDays();
-                    if (days < 0) {
-                        console.error('this is in the past. alexa should error here')
-                    } else if (days > 0 && days < 1) {
-                        console.log('scheduled date is today')
-                    }
-                    else {
-                        console.log('scheduled date is a valid date')
-                    }
-                    return days;
+                // Convert a time in hh:mm format to minutes
+                function timeToMins(time) {
+                    var b = time.split(':');
+                    return b[0] * 60 + +b[1];
                 }
-                let secondsToReminder = calculateSeconds(yesterday, scheduledDate)
-                console.log('------------calculateSeconds(today, date): ', calculateSeconds(yesterday, scheduledDate))
+
+                // Convert minutes to a time in format hh:mm
+                // Returned value is in range 00  to 24 hrs
+                // function timeFromMins(mins) {
+                //     function z(n) { return (n < 10 ? '0' : '') + n; }
+                //     var h = (mins / 60 | 0) % 24;
+                //     var m = mins % 60;
+                //     return z(h) + ':' + z(m);
+                // }
+
+                // // Add two times in hh:mm format
+                // function addTimes(t0, t1) {
+                //     return timeFromMins(timeToMins(t0) + timeToMins(t1));
+                // }
+
+                // console.log(addTimes('12:13', '01:42')); // 13:55
+                // console.log(addTimes('12:13', '13:42')); // 01:55
+                // console.log(addTimes('02:43', '03:42')); // 06:25
+
+                console.log('this is time to minutes', timeToMins(time))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                // let days
+
+                // const calculateSeconds = (yesterday, scheduledDate) => {
+
+                //     //let startTime = moment(today, 'YYYY-MM-DD HH:mm:ss');
+
+                //     // let endTime = moment(reminderDate, 'YYYY-MM-DD HH:mm:ss');
+                //     let duration = moment.duration(scheduledDate.diff(yesterday));
+                //     days = duration.asDays();
+                //     if (days < 0) {
+                //         console.error('this is in the past. alexa should error here')
+                //     } else if (days > 0 && days < 1) {
+                //         console.log('scheduled date is today')
+                //     }
+                //     else {
+                //         console.log('scheduled date is a valid date')
+                //     }
+                //     return days;
+                // }
+                // let secondsToReminder = calculateSeconds(yesterday, scheduledDate)
+                // console.log('------------calculateSeconds(today, date): ', calculateSeconds(yesterday, scheduledDate))
 
 
 
