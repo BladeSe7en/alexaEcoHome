@@ -111,7 +111,7 @@ module.exports = {
                 }
 
                 let scheduledDateTime = moment(scheduledDate).add(timeToMins(time), 'minutes')
-                console.log('this is scheduledDateTime: ', scheduledDateTime.format())
+                console.log('this is scheduledDateTime: ', scheduledDateTime.format('YYYY-MM-DDThh:mm:ss'))
 
                 console.log('this is time to minutes', timeToMins(time))
 
