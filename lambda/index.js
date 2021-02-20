@@ -22,44 +22,44 @@ const LaunchRequestHandler = {
 
 
 const CancelAndStopIntentHandler = {
-  canHandle(handlerInput) {
-    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-      && (Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.CancelIntent'
-        || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
-  },
-  handle(handlerInput) {
-    const speakOutput = 'Goodbye!';
-    return handlerInput.responseBuilder
-      .speak(speakOutput)
-      .getResponse();
-  }
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && (Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.CancelIntent'
+                || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
+    },
+    handle(handlerInput) {
+        const speakOutput = 'Goodbye!';
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .getResponse();
+    }
 };
 
 
 const SessionEndedRequestHandler = {
-  canHandle(handlerInput) {
-    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionEndedRequest';
-  },
-  handle(handlerInput) {
-    // Any cleanup logic goes here.
-    return handlerInput.responseBuilder.getResponse();
-  }
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionEndedRequest';
+    },
+    handle(handlerInput) {
+        // Any cleanup logic goes here.
+        return handlerInput.responseBuilder.getResponse();
+    }
 };
 
 
 const HelpIntentHandler = {
-  canHandle(handlerInput) {
-    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-      && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
-  },
-  handle(handlerInput) {
-    const speakOutput = 'You can say hello to me! How can I help?';
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
+    },
+    handle(handlerInput) {
+        const speakOutput = 'You can say hello to me! How can I help?';
 
-    return handlerInput.responseBuilder
-      .speak(speakOutput)
-      .reprompt(speakOutput)
-      .getResponse();
-  }
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
+            .getResponse();
+    }
 };
 
 
@@ -95,72 +95,72 @@ const HelpIntentHandler = {
 
 
 const IntentReflectorHandler = {
-  canHandle(handlerInput) {
-    return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
-  },
-  handle(handlerInput) {
-    const intentName = Alexa.getIntentName(handlerInput.requestEnvelope);
-    const speakOutput = `You just triggered ${intentName}`;
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
+    },
+    handle(handlerInput) {
+        const intentName = Alexa.getIntentName(handlerInput.requestEnvelope);
+        const speakOutput = `You just triggered ${intentName}`;
 
-    return handlerInput.responseBuilder
-      .speak(speakOutput)
-      //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
-      .getResponse();
-  }
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .getResponse();
+    }
 };
 
 
 const ErrorHandler = {
-  canHandle() {
-    return true;
-  },
-  handle(handlerInput, error) {
-    console.log(`~~~~ Error handled: ${error.stack}`);
-    const speakOutput = `Sorry, I had trouble doing what you asked. Please try again.`;
+    canHandle() {
+        return true;
+    },
+    handle(handlerInput, error) {
+        console.log(`~~~~ Error handled: ${error.stack}`);
+        const speakOutput = `Sorry, I had trouble doing what you asked. Please try again.`;
 
-    return handlerInput.responseBuilder
-      .speak(speakOutput)
-      .reprompt(speakOutput)
-      .getResponse();
-  }
+        return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt(speakOutput)
+            .getResponse();
+    }
 };
 
 const FallbackHandler = {
     // The FallbackIntent can only be sent in those locales which support it,
     // so this handler will always be skipped in locales where it is not supported.
     canHandle(handlerInput) {
-      const request = handlerInput.requestEnvelope.request;
-      return request.type === 'IntentRequest'
-        && request.intent.name === 'AMAZON.FallbackIntent';
+        const request = handlerInput.requestEnvelope.request;
+        return request.type === 'IntentRequest'
+            && request.intent.name === 'AMAZON.FallbackIntent';
     },
     handle(handlerInput) {
-      const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
-      return handlerInput.responseBuilder
-        .speak(requestAttributes.t('FALLBACK_MESSAGE'))
-        .reprompt(requestAttributes.t('FALLBACK_REPROMPT'))
-        .getResponse();
+        const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
+        return handlerInput.responseBuilder
+            .speak(requestAttributes.t('FALLBACK_MESSAGE'))
+            .reprompt(requestAttributes.t('FALLBACK_REPROMPT'))
+            .getResponse();
     },
-  };
+};
 
 
 exports.handler = Alexa.SkillBuilders.custom()
-  .addRequestHandlers(
-    LaunchRequestHandler,
-    ConnectionsResponsetHandler,
-    CreateReminderIntentHandler,
-    FactReminderHandler,
-    GetJokeHandler,
-    GetNewFactHandler,
-    FallbackHandler,
-    HelpIntentHandler,
-    CancelAndStopIntentHandler,
-    SessionEndedRequestHandler,
-    IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
-  )
-  //.addRequestInterceptors(LocalizationInterceptor)
-  .addErrorHandlers(ErrorHandler)
-  .withApiClient(new Alexa.DefaultApiClient())
-  .lambda();
+    .addRequestHandlers(
+        LaunchRequestHandler,
+        ConnectionsResponsetHandler,
+        CreateReminderIntentHandler,
+        FactReminderHandler,
+        GetJokeHandler,
+        GetNewFactHandler,
+        FallbackHandler,
+        HelpIntentHandler,
+        CancelAndStopIntentHandler,
+        SessionEndedRequestHandler,
+        IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
+    )
+    //.addRequestInterceptors(LocalizationInterceptor)
+    .addErrorHandlers(ErrorHandler)
+    .withApiClient(new Alexa.DefaultApiClient())
+    .lambda();
 
   // if (intent.confirmationStatus === 'CONFIRMED') {
   //   const day = Alexa.getSlotValue(requestEnvelope, 'day');

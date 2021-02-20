@@ -63,7 +63,7 @@
           "name": "FactReminderIntent",
           "slots": [],
           "samples": [
-            "give me a repeating fact",
+            "give me a repeating letter",
             "give me a repeating fact at {time}",
             "give me a repeating fact at {time} {frequency}",
             "tell me a repeating fact at {time}",
