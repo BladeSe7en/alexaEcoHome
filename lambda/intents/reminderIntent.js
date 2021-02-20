@@ -93,7 +93,7 @@ module.exports = {
                 console.log('this is today: ',today)
 
 
-                let scheduledDate = moment(date).tz("America/Los_Angeles").format()
+                let scheduledDate = moment(date)//.tz("America/Los_Angeles").format()
                 console.log('scheduledDate: ',scheduledDate)
 
 
