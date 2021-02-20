@@ -102,7 +102,7 @@ module.exports = {
                 }
 
 
-                let scheduledDateTime = moment(scheduledDate).add( timeToMins(time), 'minutes')
+                let scheduledDateTime = moment(scheduledDate).add( timeToMins(time), 'minutes').format('HH:mm')
                 console.log('this is scheduledDateTime: ', scheduledDateTime.format())
                 console.log('this is time to minutes', timeToMins(time))
 
@@ -112,7 +112,7 @@ module.exports = {
                 const reminderPayload = {
                     "trigger": {
                         "type": "SCHEDULED_ABSOLUTE",
-                        "scheduledTime": scheduledDateTime.format('YYYY-MM-DDThh:mm:ss'),
+                        "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
                         "timeZoneId": "America/Los_Angeles",
                         // "recurrence": {
                         //     "startDateTime": "2019-05-10T6:00:00.000",
@@ -148,7 +148,7 @@ module.exports = {
             } catch (error) {
                 console.error(error);
                 return responseBuilder
-                    .speak('Something went wrong.')
+                    .speak(error.message)
                     .getResponse();
             }
         }
