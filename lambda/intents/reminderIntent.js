@@ -87,82 +87,31 @@ module.exports = {
                    console.log('------------task: ', task)
                 console.log('------------date ', date)
                 console.log('------------time ', time)
+
+                let today = moment().format(); 
           
-                console.log('this is dateTime: ',DateTime.now());
-                console.log('ts: ', DateTime.now().ts)
-                console.log('c: ', DateTime.now().c)
-           
-          
-          
-
-                var local = DateTime.local();
-                var rezoned = local.setZone("America/Los_Angeles", { keepLocalTime: true });
-                //var rezoned = local.setZone(local, { keepLocalTime: true });
-
-                console.log('local: ',local)
-                console.log('rezoned: ',rezoned)
+                console.log('this is today: ',today)
 
 
-                
-                //local.toString(); //=> '2017-09-13T18:36:23.187-04:00'
-                //rezoned.toString(); //=> '2017-09-13T18:36:23.187-07:00'
 
-                console.log('local.toString(): ',local.toString())
-                console.log('rezoned.toString(): ',rezoned.toString())
+                today.tz('America/Los_Angeles').format('ha z');
+                console.log('this is la time: ',today.tz('America/Los_Angeles').format('ha z'))
 
-                var spokenDate = new Date(date);
-                console.log('spokenDate from slot value: ',spokenDate)
-
-                var todayDate = new Date();
-                console.log('todays Date: ',todayDate)
-
-
-                var spokenDateInMillis = spokenDate.getTime();
-                console.log('spokenDateInMillis: ',spokenDateInMillis)
-
-
-                var todayDateInMillis = todayDate.getTime();
-                console.log('todayDateInMillis: ',todayDateInMillis)
 
                 let milInDay = (86400000)
-                if (spokenDateInMillis < todayDateInMillis && todayDateInMillis - milInDay < spokenDateInMillis) {
+                // if (spokenDateInMillis < todayDateInMillis && todayDateInMillis - milInDay < spokenDateInMillis) {
 
-                console.log('spoken day is todays date')
+                // console.log('spoken day is todays date')
 
-                } else if (spokenDateInMillis < todayDateInMillis && todayDateInMillis - milInDay > spokenDateInMillis) {
-                    console.log('spoken day is in the past')
-                } else {
-                    console.log('spoken date should be one or more days in the future')
-                }
+                // } else if (spokenDateInMillis < todayDateInMillis && todayDateInMillis - milInDay > spokenDateInMillis) {
+                //     console.log('spoken day is in the past')
+                // } else {
+                //     console.log('spoken date should be one or more days in the future')
+                // }
 
                 
 
-                var localTime = DateTime.local(date);
-
-                localTime.zoneName; //=> 'America/New_York'
-                localTime.toString(); //=> '2017-05-15T09:10:23.000-04:00'
                 
-                var iso = DateTime.fromISO("2017-05-15T09:10:23");
-                
-                iso.zoneName; //=> 'America/New_York'
-                iso.toString(); //=> '2017-05-15T09:10:23.000-04:00'
-                console.log('localTime: ', localTime)
-                console.log('localTime.zoneName: ', localTime.zoneName)
-                console.log('localTime.toString(): ', localTime.toString())
-                console.log('iso: ', iso)
-                console.log('iso.zoneName: ', iso.zoneName)
-                console.log('iso.toString(): ', iso.toString())
-                
-                //Creating DateTimes in a zone
-                //Many of Luxon's factory methods allow you to tell it specifically what zone to create the DateTime in:
-                
-                var overrideZone = DateTime.fromISO("2017-05-15T09:10:23", { zone: "Europe/Paris" });
-                
-                overrideZone.zoneName; //=> 'Europe/Paris'
-                overrideZone.toString(); //=> '2017-05-15T09:10:23.000+02:00'
-                console.log('overrideZone: ', overrideZone)
-                console.log('overrideZone.zoneName: ', overrideZone.zoneName)
-                console.log('overrideZone.toString(): ', overrideZone.toString())
 
 
 
