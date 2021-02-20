@@ -113,25 +113,27 @@ module.exports = {
                 let scheduledDateTime = moment(scheduledDate).add(timeToMins(time), 'minutes')
                 console.log('this is scheduledDateTime: ',scheduledDateTime)
 
-                // Convert minutes to a time in format hh:mm
-                // Returned value is in range 00  to 24 hrs
-                // function timeFromMins(mins) {
-                //     function z(n) { return (n < 10 ? '0' : '') + n; }
-                //     var h = (mins / 60 | 0) % 24;
-                //     var m = mins % 60;
-                //     return z(h) + ':' + z(m);
-                // }
-
-                // // Add two times in hh:mm format
-                // function addTimes(t0, t1) {
-                //     return timeFromMins(timeToMins(t0) + timeToMins(t1));
-                // }
-
-                // console.log(addTimes('12:13', '01:42')); // 13:55
-                // console.log(addTimes('12:13', '13:42')); // 01:55
-                // console.log(addTimes('02:43', '03:42')); // 06:25
-
                 console.log('this is time to minutes', timeToMins(time))
+
+                       let days
+
+                const calculateSeconds = (today, scheduledDateTime) => {
+
+                    //let startTime = moment(today, 'YYYY-MM-DD HH:mm:ss');
+
+                    // let endTime = moment(reminderDate, 'YYYY-MM-DD HH:mm:ss');
+                    let duration = moment.duration(scheduledDateTime.diff(today));
+                    days = duration.asDays();
+                    if (days < 0) {
+                        console.error('this is in the past. alexa should error here')
+                    }
+                    else {
+                        console.log('scheduled date is a valid date')
+                    }
+                    return days;
+                }
+                let secondsToReminder = calculateSeconds(today, scheduledDateTime)
+                console.log('------------calculateSeconds(today, date): ', calculateSeconds(today, scheduledDateTime))
 
 
 
@@ -261,8 +263,8 @@ module.exports = {
                         'spokenInfo': {
                             'content': [{
                                 'locale': 'en-US',
-                                'text': 'time: ' + time + ' date: ' + scheduledDate + ' task: ' + task + ' startDate: ' + startDate + ' secondsToReminder: ' + secondsToReminder,
-                                'ssml': `<speak>${time + ' ' + scheduledDate + ' ' + task}</speak>`
+                                'text': 'scheduledDateTime: ' + scheduledDateTime + ' task: ' + task + ' startDate: ',
+                                'ssml': `<speak>${scheduledDate + ' ' + task}</speak>`
                             }]
                         }
                     },
@@ -270,6 +272,60 @@ module.exports = {
                         'status': 'ENABLED'
                     }
                 };
+
+                // {
+                //     "requestTime" : "2019-09-22T19:04:00.672",
+                //     "trigger": {
+                //          "type" : "SCHEDULED_RELATIVE",
+                //          "offsetInSeconds" : "7200"
+                //     },
+                //     "alertInfo": {
+                //          "spokenInfo": {
+                //              "content": [{
+                //                  "locale": "en-US", 
+                //                  "text": "walk the dog",
+                //                  "ssml": "<speak> walk the dog</speak>"
+                //              }]
+                //          }
+                //      },
+                //      "pushNotification" : {                            
+                //           "status" : "ENABLED"         
+                //      }
+                //  }
+
+                /////////////////////////////////
+                // {
+                //     "requestTime" : "2019-09-22T19:04:00.672",
+                //     "trigger": {
+                //          "type" : "SCHEDULED_ABSOLUTE",
+                //          "scheduledTime" : "2019-09-22T19:00:00.000",
+                //          "timeZoneId" : "America/Los_Angeles",
+                //          "recurrence" : {                     
+                //            "startDateTime": "2019-05-10T6:00:00.000",                       
+                //            "endDateTime" : "2019-08-10T10:00:00.000",  
+                //            "recurrenceRules" : [                                          
+                //               "FREQ=DAILY;BYHOUR=6;BYMINUTE=10;BYSECOND=0;INTERVAL=1;",
+                //               "FREQ=DAILY;BYHOUR=17;BYMINUTE=15;BYSECOND=0;INTERVAL=1;",
+                //               "FREQ=DAILY;BYHOUR=22;BYMINUTE=45;BYSECOND=0;INTERVAL=1;"
+                //            ]               
+                //          }
+                //     },
+                //     "alertInfo": {
+                //          "spokenInfo": {
+                //              "content": [{
+                //                  "locale": "en-US", 
+                //                  "text": "walk the dog",
+                //                  "ssml": "<speak> walk the dog</speak>"  
+                //              }]
+                //          }
+                //      },
+                //      "pushNotification" : {                            
+                //           "status" : "ENABLED"
+                //      }
+                //  }
+
+
+
 
                 await ReminderManagementServiceClient.createReminder(reminderPayload);
                 return responseBuilder
