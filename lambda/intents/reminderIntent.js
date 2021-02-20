@@ -86,7 +86,7 @@ module.exports = {
                 const time = Alexa.getSlotValue(requestEnvelope, 'time')
                 console.log('------------where is this log------------')
                 console.log('------------task: ', task)
-                console.log('------------date ', date)
+                console.log('------------reminderDate ', reminderDate)
                 console.log('------------time ', time)
 
                 let today = moment().tz("America/Los_Angeles").format();
