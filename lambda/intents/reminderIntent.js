@@ -124,7 +124,7 @@ module.exports = {
                 var todayDateInMillis = todayDate.getTime();
                 console.log('todayDateInMillis: ',todayDateInMillis)
 
-                let milInDay = (86_400_000)
+                let milInDay = (86400_000)
                 if (spokenDateInMillis < todayDateInMillis && todayDateInMillis - milInDay < spokenDateInMillis) {
 
                 console.log('spoken day is todays date')
@@ -142,7 +142,7 @@ module.exports = {
                 localTime.zoneName; //=> 'America/New_York'
                 localTime.toString(); //=> '2017-05-15T09:10:23.000-04:00'
                 
-                var iso = DateTime.fromISO(rezoned);
+                var iso = DateTime.fromISO(localTime);
                 
                 iso.zoneName; //=> 'America/New_York'
                 iso.toString(); //=> '2017-05-15T09:10:23.000-04:00'
@@ -170,6 +170,12 @@ module.exports = {
 
 
 
+
+          
+          
+          
+          
+          
                 // let startDate = moment().format()
                 
                 // const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
