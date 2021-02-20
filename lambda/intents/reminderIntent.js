@@ -239,7 +239,7 @@ module.exports = {
                 const reminderPayload = {
                     "trigger": {
                         "type": "SCHEDULED_ABSOLUTE",
-                        "scheduledTime": scheduledDateTime,
+                        "scheduledTime": scheduledDateTime.format('YYYY-MM-DDThh:mm:ss'),
                         "timeZoneId": "America/Los_Angeles",
                         // "recurrence": {
                         //     "startDateTime": "2019-05-10T6:00:00.000",
@@ -255,8 +255,8 @@ module.exports = {
                         'spokenInfo': {
                             'content': [{
                                 'locale': 'en-US',
-                                'text': 'scheduledDateTime: ' + scheduledDateTime + ' task: ' + task + ' startDate: ',
-                                'ssml': `<speak>${scheduledDate + ' ' + task}</speak>`
+                                'text': 'scheduledDateTime: ' + scheduledDateTime.format('YYYY-MM-DDThh:mm:ss') + ' task: ' + task + ' startDate: ',
+                                'ssml': `<speak>${scheduledDate.format('YYYY-MM-DDThh:mm:ss') + ' ' + task}</speak>`
                             }]
                         }
                     },
