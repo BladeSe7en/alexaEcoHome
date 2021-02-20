@@ -93,7 +93,7 @@ module.exports = {
                 console.log('this is today: ', today)
 
 
-                let scheduledDate = moment(date)
+                let scheduledDate = moment(reminderDate)
                 console.log('scheduledDate: ', scheduledDate)
                 let yesterday = moment(today).subtract(1, 'days')
                 console.log('yesterday: ', yesterday)
