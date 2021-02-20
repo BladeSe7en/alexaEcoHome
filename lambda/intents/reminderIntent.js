@@ -95,7 +95,7 @@ module.exports = {
 
                 let scheduledDate = moment(reminderDate)
                 console.log('scheduledDate: ', scheduledDate)
-                let yesterday = moment(today).subtract(1, 'days').calendar().format()
+                let yesterday = moment(today).subtract(1, 'days').calendar()
                 console.log('yesterday: ', yesterday)
 
                 // the supported frequency patterns
