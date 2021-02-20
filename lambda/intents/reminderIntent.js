@@ -101,6 +101,7 @@ module.exports = {
                 console.log('this is today: ', today)
                 console.log('yesterday: ', yesterday)
 
+                let days
 
                 const calculateSeconds = (today, scheduledDate) => {
 
@@ -108,7 +109,7 @@ module.exports = {
 
                     // let endTime = moment(reminderDate, 'YYYY-MM-DD HH:mm:ss');
                     let duration = moment.duration(scheduledDate.diff(today));
-                    let days = duration.asDays();
+                    days = duration.asDays();
                     return days;
                 }
                 let secondsToReminder = calculateSeconds(today, scheduledDate)
