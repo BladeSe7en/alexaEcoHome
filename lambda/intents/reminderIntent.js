@@ -137,7 +137,7 @@ module.exports = {
 
                 
 
-                var localTime = DateTime.local(date);
+                var localTime = DateTime.local();
 
                 localTime.zoneName; //=> 'America/New_York'
                 localTime.toString(); //=> '2017-05-15T09:10:23.000-04:00'
