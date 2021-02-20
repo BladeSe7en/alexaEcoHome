@@ -123,7 +123,7 @@ module.exports = {
 
                     // let endTime = moment(reminderDate, 'YYYY-MM-DD HH:mm:ss');
                     let duration = moment.duration(scheduledDateTime.diff(moment(today)));
-                    days = duration.asDays();
+                    days = duration.asMinutes();
                     if (days < 0) {
                         console.error('this is in the past. alexa should error here')
                     }
