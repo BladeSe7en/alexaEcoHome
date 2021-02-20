@@ -110,7 +110,7 @@ module.exports = {
                     return b[0] * 60 + +b[1];
                 }
 
-                let scheduledDateTime = moment(scheduledDate).add(timeToMins(time.format()), 'minutes')
+                let scheduledDateTime = moment(scheduledDate).add(timeToMins('minutes', time))
                 console.log('this is scheduledDateTime: ', scheduledDateTime.format('YYYY-MM-DDThh:mm:ss'))
 
                 console.log('this is time to minutes', timeToMins(time))
