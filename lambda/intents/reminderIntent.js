@@ -110,6 +110,9 @@ module.exports = {
                     return b[0] * 60 + +b[1];
                 }
 
+                let scheduledDateTime = moment(scheduledDate).add(timeToMins(time), 'minutes')
+                console.log('this is scheduledDateTime: ',scheduledDateTime)
+
                 // Convert minutes to a time in format hh:mm
                 // Returned value is in range 00  to 24 hrs
                 // function timeFromMins(mins) {
