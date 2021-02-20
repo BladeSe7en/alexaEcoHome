@@ -93,9 +93,8 @@ module.exports = {
                 console.log('this is today: ',today)
 
 
-
-                today.tz('America/Los_Angeles').format('ha z');
-                console.log('this is la time: ',today.tz('America/Los_Angeles').format('ha z'))
+                let scheduledDate = moment(date).tz("America/Los_Angeles").format()
+                console.log('scheduledDate: ',scheduledDate)
 
 
                 let milInDay = (86400000)
