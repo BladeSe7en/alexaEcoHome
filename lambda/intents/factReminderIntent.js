@@ -238,6 +238,7 @@ module.exports = {
 
                 let freq
                 const monthSelector = (frequency) => {
+                    console.log('this is the frequency param: ', frequency)
                     switch (frequency) {
                         case 'daily':
                             console.log('i am here :) ')
