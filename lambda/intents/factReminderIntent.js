@@ -228,17 +228,21 @@ module.exports = {
                 // const speakOutput = 'this is a test'
                 console.log('speakOutput: ', speakOutput)
 
-                let numMonths
+                let dayOfWeek = moment(today).format('dddd')
+                let dayAbv = dayOfWeek.slice(0, 1)
+                console.log('this is dayAbv: ',dayAbv)
+
+                let freq
                 const monthSelector = (frequency) => {
                     switch (frequency) {
                         case 'daily':
-                            return numMonths = 12;
+                            return  frequency.toUpperCase()
                         case 'weekly':
-                            return numMonths = 6;
+                            return freq = `WEEKLY; WKST=${dayAbv}`.toUpperCase()
                         case 'monthly':
-                            return numMonths = 9;
+                            return freq = `MONTHLY; WKST=${dayAbv}`.toUpperCase()
                         case 'yearly':
-                            return  numMonths = 12;
+                            return freq =`YEARLY; WKST=${dayAbv}`.toUpperCase()
 
                         default:
                             return 12;
@@ -256,7 +260,7 @@ module.exports = {
                             "startDateTime": today,
                            // "endDateTime": moment(today).add(numMonths, 'months'),
                             "recurrenceRules": [
-                                `FREQ=WEEKLY;BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
+                                `FREQ=${freq};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
                             ]
                         }
                     },
