@@ -104,6 +104,9 @@ module.exports = {
                 let startOfToday = moment(yesterday).startOf('day')
                 console.log('this is start of today: ', startOfToday)
 
+                let startOfTodayToday = moment(today).startOf('day')
+                console.log('this is start of todayToday: ', startOfTodayToday)
+
                 // Convert a time in hh:mm format to minutes
                 var minutes
                 const timeToMins = (time) => {
