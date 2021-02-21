@@ -232,7 +232,7 @@ module.exports = {
                 const monthSelector = (frequency) => {
                     switch (frequency) {
                         case 'daily':
-                            return numMonths = 3;
+                            return numMonths = 12;
                         case 'weekly':
                             return numMonths = 6;
                         case 'monthly':
@@ -254,7 +254,7 @@ module.exports = {
                         "timeZoneId": "America/Los_Angeles",
                         "recurrence": {
                             "startDateTime": today,
-                            "endDateTime": moment(today).add(numMonths, 'months'),
+                           // "endDateTime": moment(today).add(numMonths, 'months'),
                             "recurrenceRules": [
                                 `FREQ=${frequency.toUpperCase()};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
                             ]
