@@ -232,21 +232,13 @@ module.exports = {
                 const monthSelector = (frequency) => {
                     switch (frequency) {
                         case 'daily':
-                            return {
-                                numMonths = 3
-                            };
+                            return numMonths = 3;
                         case 'weekly':
-                            return {
-                                numMonths = 6
-                            };
+                            return umMonths = 6;
                         case 'monthly':
-                            return {
-                                numMonths = 9
-                            };
+                            return numMonths = 9;
                         case 'yearly':
-                            return {
-                                numMonths = 12
-                            };
+                            return  numMonths = 12;
 
                         default:
                             return 12;
