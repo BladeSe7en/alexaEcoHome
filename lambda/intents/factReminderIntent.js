@@ -267,18 +267,13 @@ module.exports = {
 
                 console.log('this is freq: ', freq)
 
-                if (frequency === 'monthly') {
-                    handle(frequency)
-                }
-                if (frequency === 'monthly') {
-                    handle(frequency)
-                }
-
-
 
 
                 let targetMonthDate = startOfToday.add(1, 'months')
                 let targetYearDate = startOfToday.add(1, 'years')
+                console.log('THIS IS TARGETMONTHDATE: ',targetMonthDate)
+                console.log('THIS IS TARGETYEARDATE: ',targetYearDate)
+
 
 
                 let reminderPayload = null
