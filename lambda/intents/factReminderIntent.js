@@ -168,59 +168,59 @@ module.exports = {
                 
 console.log('This should be true of false:   todayMoment.format(L) === targetMonthDate.format(L): ',todayMoment.format('L') === targetMonthDate.format('L'))
 
-                if (frequency === 'monthly' && todayMoment.format('L') === targetMonthDate.format('L')) {
-                    console.log('this is true: frequency === monthly && today === targetMonthDate')
-                    reminderPayload = {
-                        "trigger": {
-                            "type": "SCHEDULED_ABSOLUTE",
-                            "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
-                            "timeZoneId": "America/Los_Angeles",
-                            "recurrence": {
-                                "startDateTime": today,
-                                "recurrenceRules": [
-                                    `FREQ=MONTHLY;BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
-                                ]
-                            }
-                        },
-                        'alertInfo': {
-                            'spokenInfo': {
-                                'content': [{
-                                    'locale': 'en-US',
-                                    'text': speakOutput,
-                                }]
-                            }
-                        },
-                        'pushNotification': {
-                            'status': 'ENABLED'
-                        }
-                    };
-                } else if (frequency === 'yearly' && today === targetYearDate) {
-                    console.log('frequency === yearly && today === targetYearDate')
-                    reminderPayload = {
-                        "trigger": {
-                            "type": "SCHEDULED_ABSOLUTE",
-                            "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
-                            "timeZoneId": "America/Los_Angeles",
-                            "recurrence": {
-                                "startDateTime": today,
-                                "recurrenceRules": [
-                                    `FREQ=DAILY;BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
-                                ]
-                            }
-                        },
-                        'alertInfo': {
-                            'spokenInfo': {
-                                'content': [{
-                                    'locale': 'en-US',
-                                    'text': speakOutput,
-                                }]
-                            }
-                        },
-                        'pushNotification': {
-                            'status': 'ENABLED'
-                        }
-                    };
-                } else if (frequency === 'daily' || frequency === 'WEEKLY') {
+                // if (frequency === 'monthly' && todayMoment.format('L') === targetMonthDate.format('L')) {
+                //     console.log('this is true: frequency === monthly && today === targetMonthDate')
+                //     reminderPayload = {
+                //         "trigger": {
+                //             "type": "SCHEDULED_ABSOLUTE",
+                //             "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
+                //             "timeZoneId": "America/Los_Angeles",
+                //             "recurrence": {
+                //                 "startDateTime": today,
+                //                 "recurrenceRules": [
+                //                     `FREQ=MONTHLY;BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
+                //                 ]
+                //             }
+                //         },
+                //         'alertInfo': {
+                //             'spokenInfo': {
+                //                 'content': [{
+                //                     'locale': 'en-US',
+                //                     'text': speakOutput,
+                //                 }]
+                //             }
+                //         },
+                //         'pushNotification': {
+                //             'status': 'ENABLED'
+                //         }
+                //     };
+                // } else if (frequency === 'yearly' && today === targetYearDate) {
+                //     console.log('frequency === yearly && today === targetYearDate')
+                //     reminderPayload = {
+                //         "trigger": {
+                //             "type": "SCHEDULED_ABSOLUTE",
+                //             "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
+                //             "timeZoneId": "America/Los_Angeles",
+                //             "recurrence": {
+                //                 "startDateTime": today,
+                //                 "recurrenceRules": [
+                //                     `FREQ=DAILY;BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
+                //                 ]
+                //             }
+                //         },
+                //         'alertInfo': {
+                //             'spokenInfo': {
+                //                 'content': [{
+                //                     'locale': 'en-US',
+                //                     'text': speakOutput,
+                //                 }]
+                //             }
+                //         },
+                //         'pushNotification': {
+                //             'status': 'ENABLED'
+                //         }
+                //     };
+              //  } else if (frequency === 'daily' || frequency === 'WEEKLY') {
                     console.log('this is true: frequency === daily || frequency === WEEKLY)')
                     reminderPayload = {
                         "trigger": {
@@ -247,7 +247,7 @@ console.log('This should be true of false:   todayMoment.format(L) === targetMon
                             'status': 'ENABLED'
                         }
                     };
-                } else return
+              //  } else return
 
                 const targetDate = {
                     "year": year,
