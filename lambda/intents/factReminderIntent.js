@@ -1,4 +1,5 @@
 const Alexa = require('ask-sdk-core');
+const persistenceAdapter = require('ask-sdk-s3-persistence-adapter');
 const moment = require('moment-timezone');
 moment().tz("America/Los_Angeles").format();
 
@@ -70,6 +71,7 @@ module.exports = {
         },
         async handle(handlerInput) {
             const { requestEnvelope, serviceClientFactory, responseBuilder } = handlerInput;
+            const attributesManager = handlerInput.attributesManager;
             const consentToken = requestEnvelope.context.System.user.permissions
                 && requestEnvelope.context.System.user.permissions.consentToken;
             if (!consentToken) {
@@ -448,7 +450,8 @@ module.exports = {
                     };
                 } else return
 
-
+                attributesManager.setPersistentAttributes(birthdayAttributes);
+                await attributesManager.savePersistentAttributes();  
 
 
                 await ReminderManagementServiceClient.createReminder(reminderPayload);
