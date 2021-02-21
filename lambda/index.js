@@ -1,5 +1,6 @@
 const Alexa = require('ask-sdk-core');
 const i18n = require('i18next');
+const persistenceAdapter = require('ask-sdk-s3-persistence-adapter');
 
 const { ConnectionsResponsetHandler, CreateReminderIntentHandler } = require('./intents/reminderIntent')
 const { GetJokeHandler } = require('./intents/getJokeIntent');
