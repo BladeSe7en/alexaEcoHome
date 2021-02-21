@@ -233,22 +233,21 @@ module.exports = {
 
                 console.log('this is dayOfWeek: ',dayOfWeek)
 
-                let dayAbv = dayOfWeek.slice(0, 2)
+                let dayAbv = dayOfWeek.slice(0, 2).toUpperCase()
                 console.log('this is dayAbv: ',dayAbv)
 
-                let freq
+                let freq = frequency.toUpperCase();
                 const monthSelector = (frequency) => {
                     console.log('this is the frequency param: ', frequency)
                     switch (frequency) {
                         case 'daily':
-                            console.log('i am here :) ')
-                            return  frequency.toUpperCase()
+                            return
                         case 'weekly':
-                            return freq = `WEEKLY;WKST=${dayAbv}`.toUpperCase()
+                            return freq = `WEEKLY;BYDAY=${dayAbv}`
                         case 'monthly':
-                            return freq = `MONTHLY;WKST=${dayAbv}`.toUpperCase()
+                            return freq = `MONTHLY;BYDAY=${dayAbv}`
                         case 'yearly':
-                            return freq =`YEARLY;WKST=${dayAbv}`.toUpperCase()
+                            return freq =`YEARLY;BYDAY=${dayAbv}`
 
                         default:
                             return 12;
