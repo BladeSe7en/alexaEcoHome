@@ -75,8 +75,11 @@ module.exports = {
             try {
                 const speechText = "Alright! I've scheduled a reminder for you.";
                 const time = Alexa.getSlotValue(requestEnvelope, 'time')
+                const frequency = Alexa.getSlotValue(requestEnvelope, 'frequency')
                 console.log('========where is this log facts log-===========')
                 console.log('------------time ', time)
+                console.log('------------frequency ', frequency)
+
 
                 let today = moment().tz("America/Los_Angeles").format();
                 console.log('this is today: ', today)
@@ -235,7 +238,7 @@ module.exports = {
                             "startDateTime": today,
                             "endDateTime": moment(today).add(1, 'years'),
                             "recurrenceRules": [
-                                `FREQ=DAILY;BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
+                                `FREQ=${frequency};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
                             ]
                         }
                     },
