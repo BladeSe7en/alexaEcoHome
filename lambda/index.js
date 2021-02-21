@@ -146,6 +146,9 @@ const FallbackHandler = {
 
 
 exports.handler = Alexa.SkillBuilders.custom()
+    .withPersistenceAdapter(
+        new persistenceAdapter.S3PersistenceAdapter({ bucketName: process.env.S3_PERSISTENCE_BUCKET })
+    )
     .addRequestHandlers(
         LaunchRequestHandler,
         ConnectionsResponsetHandler,
@@ -169,4 +172,3 @@ exports.handler = Alexa.SkillBuilders.custom()
   //   const day = Alexa.getSlotValue(requestEnvelope, 'day');
   //   const year = Alexa.getSlotValue(requestEnvelope, 'year');
   //   const month = Alexa.getSlotValue(requestEnvelope, 'month');
-                    

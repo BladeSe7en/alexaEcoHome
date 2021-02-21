@@ -13,6 +13,7 @@
     "ask-sdk-controls": "^0.5.1",
     "ask-sdk-core": "^2.6.0",
     "ask-sdk-model": "^1.18.0",
+    "ask-sdk-s3-persistence-adapter": "^2.10.0",
     "aws-sdk": "^2.326.0",
     "axios": "^0.21.1",
     "https": "^1.0.0",
