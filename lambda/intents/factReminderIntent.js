@@ -1,7 +1,7 @@
 const Alexa = require('ask-sdk-core');
 const persistenceAdapter = require('ask-sdk-s3-persistence-adapter');
 const moment = require('moment-timezone');
-const { ecoFacts } = require('../ecoFacts');
+const ecoFacts = require('../ecoFacts');
 moment().tz("America/Los_Angeles").format();
 
 

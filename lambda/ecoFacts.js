@@ -1,4 +1,4 @@
-export default ecoFacts = () => {
+const ecoFacts = () => {
     let data = {
         SKILL_NAME: 'Eco Home',
         GET_FACT_MESSAGE: 'Here\'s your fact: ',
@@ -119,3 +119,5 @@ export default ecoFacts = () => {
     console.log('speakOutput: ', speakOutput)
     return speakOutput
 }
+
+export default ecoFacts;
