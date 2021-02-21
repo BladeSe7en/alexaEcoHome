@@ -143,6 +143,8 @@ const FallbackHandler = {
 };
 
 
+
+
 exports.handler = Alexa.SkillBuilders.custom()
     .addRequestHandlers(
         LaunchRequestHandler,
@@ -157,6 +159,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         SessionEndedRequestHandler,
         IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
     )
+    .addRequestInterceptors(LoadBirthdayInterceptor)
     //.addRequestInterceptors(LocalizationInterceptor)
     .addErrorHandlers(ErrorHandler)
     .withApiClient(new Alexa.DefaultApiClient())
@@ -166,3 +169,4 @@ exports.handler = Alexa.SkillBuilders.custom()
   //   const day = Alexa.getSlotValue(requestEnvelope, 'day');
   //   const year = Alexa.getSlotValue(requestEnvelope, 'year');
   //   const month = Alexa.getSlotValue(requestEnvelope, 'month');
+                    
