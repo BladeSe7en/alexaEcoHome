@@ -229,7 +229,7 @@ module.exports = {
                 console.log('speakOutput: ', speakOutput)
 
                 let dayOfWeek = moment(today).format('dddd')
-                let dayAbv = dayOfWeek.slice(0, 1)
+                let dayAbv = dayOfWeek.slice(0, 2)
                 console.log('this is dayAbv: ',dayAbv)
 
                 let freq
