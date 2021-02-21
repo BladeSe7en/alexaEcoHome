@@ -108,7 +108,7 @@ module.exports = {
 
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
 
-                
+
                 let data = {
                     SKILL_NAME: 'Eco Home',
                     GET_FACT_MESSAGE: 'Here\'s your fact: ',
@@ -230,6 +230,10 @@ module.exports = {
                 console.log('speakOutput: ', speakOutput)
 
                 let dayOfWeek = moment(today).format('dddd')
+                console.log('this is dayOfWeek1111: ',moment(today))
+
+                console.log('this is dayOfWeek: ',dayOfWeek)
+
                 let dayAbv = dayOfWeek.slice(0, 2)
                 console.log('this is dayAbv: ',dayAbv)
 
