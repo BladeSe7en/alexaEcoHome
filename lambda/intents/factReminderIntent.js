@@ -238,11 +238,11 @@ module.exports = {
                         case 'daily':
                             return  frequency.toUpperCase()
                         case 'weekly':
-                            return freq = `WEEKLY; WKST=${dayAbv}`.toUpperCase()
+                            return freq = `WEEKLY;WKST=${dayAbv}`.toUpperCase()
                         case 'monthly':
-                            return freq = `MONTHLY; WKST=${dayAbv}`.toUpperCase()
+                            return freq = `MONTHLY;WKST=${dayAbv}`.toUpperCase()
                         case 'yearly':
-                            return freq =`YEARLY; WKST=${dayAbv}`.toUpperCase()
+                            return freq =`YEARLY;WKST=${dayAbv}`.toUpperCase()
 
                         default:
                             return 12;
