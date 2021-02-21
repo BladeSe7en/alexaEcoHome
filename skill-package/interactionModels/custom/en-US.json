@@ -1,290 +1,315 @@
 {
   "interactionModel": {
-    "languageModel": {
-      "invocationName": "eco home",
-      "intents": [
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": []
-        },
-        {
-          "name": "HelloWorldIntent",
-          "slots": [],
-          "samples": [
-            "hello",
-            "how are you",
-            "say hi world",
-            "say hi",
-            "hi",
-            "say hello world",
-            "say hello"
-          ]
-        },
-        {
-          "name": "GetNewFactIntent",
-          "slots": [],
-          "samples": [
-            "give me a fact",
-            "tell me a fact",
-            "tell me something cool",
-            "fact me",
-            "tell me a new fact",
-            "Fun fact for conservation.",
-            "Give me a fun fact about conservation",
-            "Could you give me a fun fact about conservation",
-            "Could you tell me a fun fact about conservation",
-            "Can you please give me fun fact about conservation",
-            "Could you tell me a fun fact about conservation",
-            "Please tell me about conservation.",
-            "fun fact about conservation.",
-            "please tell me about conservation.",
-            "tell me about conservation.",
-            "give me a fun fact please.",
-            "Give me a fact.",
-            "could you give me a fact",
-            "Please tell me a fun fact",
-            "Can you give me a fun fact",
-            "Could you give me a fun fact",
-            "Please tell me a fun fact about conservation.",
-            "Give me a fun fact.",
-            "Would it be possible to hear a fun fact",
-            "Can you please give me a fun fact"
-          ]
-        },
-        {
-          "name": "FactReminderIntent",
-          "slots": [
+      "languageModel": {
+          "invocationName": "eco home",
+          "intents": [
               {
-                  "name": "time",
-                  "type": "AMAZON.TIME"
+                  "name": "AMAZON.CancelIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.HelpIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.StopIntent",
+                  "samples": []
+              },
+              {
+                  "name": "HelloWorldIntent",
+                  "slots": [],
+                  "samples": [
+                      "hello",
+                      "how are you",
+                      "say hi world",
+                      "say hi",
+                      "hi",
+                      "say hello world",
+                      "say hello"
+                  ]
+              },
+              {
+                  "name": "GetNewFactIntent",
+                  "slots": [],
+                  "samples": [
+                      "give me a fact",
+                      "tell me a fact",
+                      "tell me something cool",
+                      "fact me",
+                      "tell me a new fact",
+                      "Fun fact for conservation.",
+                      "Give me a fun fact about conservation",
+                      "Could you give me a fun fact about conservation",
+                      "Could you tell me a fun fact about conservation",
+                      "Can you please give me fun fact about conservation",
+                      "Could you tell me a fun fact about conservation",
+                      "Please tell me about conservation.",
+                      "fun fact about conservation.",
+                      "please tell me about conservation.",
+                      "tell me about conservation.",
+                      "give me a fun fact please.",
+                      "Give me a fact.",
+                      "could you give me a fact",
+                      "Please tell me a fun fact",
+                      "Can you give me a fun fact",
+                      "Could you give me a fun fact",
+                      "Please tell me a fun fact about conservation.",
+                      "Give me a fun fact.",
+                      "Would it be possible to hear a fun fact",
+                      "Can you please give me a fun fact"
+                  ]
+              },
+              {
+                  "name": "FactReminderIntent",
+                  "slots": [
+                      {
+                          "name": "time",
+                          "type": "AMAZON.TIME"
+                      }
+                  ],
+                  "samples": [
+                      "create a repeating fact reminder",
+                      "I want to set a repeating fact reminder",
+                      "set a repeating fact reminder",
+                      "repeating fact",
+                      "create a repeating fact reminder at {time}",
+                      "I want to set a repeating fact reminder at {time}",
+                      "set a repeating fact reminder at {time}",
+                      "repeating fact at {time}"
+                  ]
+              },
+              {
+                  "name": "CreateReminderIntent",
+                  "slots": [
+                      {
+                          "name": "date",
+                          "type": "AMAZON.DATE"
+                      },
+                      {
+                          "name": "time",
+                          "type": "AMAZON.TIME"
+                      },
+                      {
+                          "name": "firstName",
+                          "type": "AMAZON.FirstName",
+                          "multipleValues": {
+                              "enabled": true
+                          }
+                      }
+                  ],
+                  "samples": [
+                      "give me a repeating letter",
+                      "give me a repeating fact at {time}",
+                      "tell me a repeating fact at {time}",
+                      "Can you set a reminder",
+                      "Can you set a reminder for {firstName}",
+                      "Can you set a reminder for {date}",
+                      "Can you set a reminder at {time}",
+                      "Can you set a reminder for {firstName} at {time}",
+                      "Can you create a reminder",
+                      "Can you create a reminder for {firstName}",
+                      "Can you create a reminder for {date}",
+                      "Can you create a reminder at {time}",
+                      "Can you create a reminder for {firstName} at {time}",
+                      "Would you help me create a reminder",
+                      "Would you help me create a reminder for {firstName}",
+                      "Would you help me create a reminder for {date}",
+                      "Would you help me create a reminder at {time}",
+                      "Would you help me create a reminder for {firstName} at {time}",
+                      "Could you please schedule a reminder",
+                      "Could you please schedule a reminder for {firstName}",
+                      "Could you please schedule a reminder for {date}",
+                      "Could you please schedule a reminder at {time}",
+                      "Could you please schedule a reminder for {firstName} at {time}",
+                      "Can I have a reminder",
+                      "Can I have a reminder for {firstName}",
+                      "Can I have a reminder for {date}",
+                      "Can I have a reminder at {time}",
+                      "Can I have a reminder for {firstName} at {time}",
+                      "Create reminder",
+                      "Create reminder for {firstName}",
+                      "Create reminder for {date}",
+                      "Create reminder at {time}",
+                      "Create reminder for {firstName} at {time}",
+                      "Can you begin a reminder",
+                      "Can you begin a reminder for {firstName}",
+                      "Can you begin a reminder for {date}",
+                      "Can you begin a reminder at {time}",
+                      "Can you begin a reminder for {firstName} at {time}",
+                      "Set reminder",
+                      "Set reminder for {firstName}",
+                      "Set reminder for {date}",
+                      "Set reminder at {time}",
+                      "Set reminder for {firstName} at {time}",
+                      "Set a new reminder",
+                      "Set a new reminder for {firstName}",
+                      "Set a new reminder for {date}",
+                      "Set a new reminder at {time}",
+                      "Set a new reminder for {firstName} at {time}",
+                      "Begin new reminder",
+                      "Begin new reminder for {firstName}",
+                      "Begin new reminder for {date}",
+                      "Begin new reminder at {time}",
+                      "Begin new reminder for {firstName} at {time}",
+                      "Start reminder",
+                      "Start reminder for {firstName}",
+                      "Start reminder for {date}",
+                      "Start reminder at {time}",
+                      "Start reminder for {firstName} at {time}",
+                      "Open reminder",
+                      "Open reminder for {firstName}",
+                      "Open reminder for {date}",
+                      "Open reminder at {time}",
+                      "Open reminder for {firstName} at {time}",
+                      "Begin reminder",
+                      "Begin reminder for {firstName}",
+                      "Begin reminder for {date}",
+                      "Begin reminder at {time}",
+                      "Begin reminder for {firstName} at {time}",
+                      "Start a reminder",
+                      "Start a reminder for {firstName}",
+                      "Start a reminder for {date}",
+                      "Start a reminder at {time}",
+                      "Start a reminder for {firstName} at {time}",
+                      "Remind me please",
+                      "Remind me please for {firstName}",
+                      "Remind me please on {date}",
+                      "Remind me please at {time}",
+                      "Remind me please for {firstName} at {time}",
+                      "I want to set a reminder",
+                      "I want to set a reminder for {firstName}",
+                      "I want to set a reminder on {date}",
+                      "I want to set a reminder at {time}",
+                      "I want to set a reminder for {firstName} at {time}",
+                      "start a reminder",
+                      "start a reminder for {firstName}",
+                      "start a reminder on {date}",
+                      "start a reminder at {time}",
+                      "start a reminder for {firstName} at {time}",
+                      "please remind me of {firstName}",
+                      "please remind me of the {date} of {firstName}",
+                      "please remind me of {firstName} at {time}",
+                      "please remind me of  {firstName} on {date}",
+                      "please remind me of {date}",
+                      "open a reminder of {firstName}",
+                      "open a reminder about {firstName} at {time}",
+                      "open a reminder of {date}",
+                      "open a reminder for {date}",
+                      "open a reminder of {firstName}",
+                      "set a reminder for me",
+                      "set a reminder for me of {date}",
+                      "set a reminder for me for {date}",
+                      "set a reminder for me for {date} about {firstName}",
+                      "set a reminder for me of {firstName}"
+                  ]
+              },
+              {
+                  "name": "GetJokeIntent",
+                  "slots": [],
+                  "samples": [
+                      "joke me",
+                      "give me a joke"
+                  ]
+              },
+              {
+                  "name": "AMAZON.NavigateHomeIntent",
+                  "samples": []
               }
           ],
-          "samples": [
-              "create a repeating fact reminder",
-              "I want to set a repeating fact reminder",
-              "set a repeating fact reminder",
-              "repeating fact",
-              "create a repeating fact reminder at {time}",
-              "I want to set a repeating fact reminder at {time}",
-              "set a repeating fact reminder at {time}",
-              "repeating fact at {time}"
-          ]
+          "types": []
       },
-        {
-          "name": "CreateReminderIntent",
-          "slots": [
-            {
-              "name": "date",
-              "type": "AMAZON.DATE"
-            },
-            {
-              "name": "time",
-              "type": "AMAZON.TIME"
-            },
-            {
-              "name": "firstName",
-              "type": "AMAZON.FirstName",
-              "multipleValues": {
-                "enabled": true
+      "dialog": {
+          "intents": [
+              {
+                  "name": "CreateReminderIntent",
+                  "confirmationRequired": false,
+                  "prompts": {},
+                  "slots": [
+                      {
+                          "name": "date",
+                          "type": "AMAZON.DATE",
+                          "confirmationRequired": false,
+                          "elicitationRequired": true,
+                          "prompts": {
+                              "elicitation": "Elicit.Slot.1432597137890.450255396731"
+                          }
+                      },
+                      {
+                          "name": "time",
+                          "type": "AMAZON.TIME",
+                          "confirmationRequired": false,
+                          "elicitationRequired": true,
+                          "prompts": {
+                              "elicitation": "Elicit.Slot.1432597137890.667155095243"
+                          }
+                      },
+                      {
+                          "name": "firstName",
+                          "type": "AMAZON.FirstName",
+                          "confirmationRequired": false,
+                          "elicitationRequired": true,
+                          "prompts": {
+                              "elicitation": "Elicit.Slot.267159805274.1519185249511"
+                          }
+                      }
+                  ]
+              },
+              {
+                  "name": "FactReminderIntent",
+                  "confirmationRequired": false,
+                  "prompts": {},
+                  "slots": [
+                      {
+                          "name": "time",
+                          "type": "AMAZON.TIME",
+                          "confirmationRequired": false,
+                          "elicitationRequired": true,
+                          "prompts": {
+                              "elicitation": "Elicit.Slot.861255842416.711047349233"
+                          }
+                      }
+                  ]
               }
-            }
           ],
-          "samples": [
-            "give me a repeating letter",
-            "give me a repeating fact at {time}",
-            "tell me a repeating fact at {time}",
-            "Can you set a reminder",
-            "Can you set a reminder for {firstName}",
-            "Can you set a reminder for {date}",
-            "Can you set a reminder at {time}",
-            "Can you set a reminder for {firstName} at {time}",
-            "Can you create a reminder",
-            "Can you create a reminder for {firstName}",
-            "Can you create a reminder for {date}",
-            "Can you create a reminder at {time}",
-            "Can you create a reminder for {firstName} at {time}",
-            "Would you help me create a reminder",
-            "Would you help me create a reminder for {firstName}",
-            "Would you help me create a reminder for {date}",
-            "Would you help me create a reminder at {time}",
-            "Would you help me create a reminder for {firstName} at {time}",
-            "Could you please schedule a reminder",
-            "Could you please schedule a reminder for {firstName}",
-            "Could you please schedule a reminder for {date}",
-            "Could you please schedule a reminder at {time}",
-            "Could you please schedule a reminder for {firstName} at {time}",
-            "Can I have a reminder",
-            "Can I have a reminder for {firstName}",
-            "Can I have a reminder for {date}",
-            "Can I have a reminder at {time}",
-            "Can I have a reminder for {firstName} at {time}",
-            "Create reminder",
-            "Create reminder for {firstName}",
-            "Create reminder for {date}",
-            "Create reminder at {time}",
-            "Create reminder for {firstName} at {time}",
-            "Can you begin a reminder",
-            "Can you begin a reminder for {firstName}",
-            "Can you begin a reminder for {date}",
-            "Can you begin a reminder at {time}",
-            "Can you begin a reminder for {firstName} at {time}",
-            "Set reminder",
-            "Set reminder for {firstName}",
-            "Set reminder for {date}",
-            "Set reminder at {time}",
-            "Set reminder for {firstName} at {time}",
-            "Set a new reminder",
-            "Set a new reminder for {firstName}",
-            "Set a new reminder for {date}",
-            "Set a new reminder at {time}",
-            "Set a new reminder for {firstName} at {time}",
-            "Begin new reminder",
-            "Begin new reminder for {firstName}",
-            "Begin new reminder for {date}",
-            "Begin new reminder at {time}",
-            "Begin new reminder for {firstName} at {time}",
-            "Start reminder",
-            "Start reminder for {firstName}",
-            "Start reminder for {date}",
-            "Start reminder at {time}",
-            "Start reminder for {firstName} at {time}",
-            "Open reminder",
-            "Open reminder for {firstName}",
-            "Open reminder for {date}",
-            "Open reminder at {time}",
-            "Open reminder for {firstName} at {time}",
-            "Begin reminder",
-            "Begin reminder for {firstName}",
-            "Begin reminder for {date}",
-            "Begin reminder at {time}",
-            "Begin reminder for {firstName} at {time}",
-            "Start a reminder",
-            "Start a reminder for {firstName}",
-            "Start a reminder for {date}",
-            "Start a reminder at {time}",
-            "Start a reminder for {firstName} at {time}",
-            "Remind me please",
-            "Remind me please for {firstName}",
-            "Remind me please on {date}",
-            "Remind me please at {time}",
-            "Remind me please for {firstName} at {time}",
-            "I want to set a reminder",
-            "I want to set a reminder for {firstName}",
-            "I want to set a reminder on {date}",
-            "I want to set a reminder at {time}",
-            "I want to set a reminder for {firstName} at {time}",
-            "start a reminder",
-            "start a reminder for {firstName}",
-            "start a reminder on {date}",
-            "start a reminder at {time}",
-            "start a reminder for {firstName} at {time}",
-            "please remind me of {firstName}",
-            "please remind me of the {date} of {firstName}",
-            "please remind me of {firstName} at {time}",
-            "please remind me of  {firstName} on {date}",
-            "please remind me of {date}",
-            "open a reminder of {firstName}",
-            "open a reminder about {firstName} at {time}",
-            "open a reminder of {date}",
-            "open a reminder for {date}",
-            "open a reminder of {firstName}",
-            "set a reminder for me",
-            "set a reminder for me of {date}",
-            "set a reminder for me for {date}",
-            "set a reminder for me for {date} about {firstName}",
-            "set a reminder for me of {firstName}"
-          ]
-        },
-        {
-          "name": "GetJokeIntent",
-          "slots": [],
-          "samples": [
-            "joke me",
-            "give me a joke"
-          ]
-        },
-        {
-          "name": "AMAZON.NavigateHomeIntent",
-          "samples": []
-        }
-      ],
-      "types": []
-    },
-    "dialog": {
-      "intents": [
-        {
-          "name": "CreateReminderIntent",
-          "confirmationRequired": false,
-          "prompts": {},
-          "slots": [
-            {
-              "name": "date",
-              "type": "AMAZON.DATE",
-              "confirmationRequired": false,
-              "elicitationRequired": true,
-              "prompts": {
-                "elicitation": "Elicit.Slot.1432597137890.450255396731"
-              }
-            },
-            {
-              "name": "time",
-              "type": "AMAZON.TIME",
-              "confirmationRequired": false,
-              "elicitationRequired": true,
-              "prompts": {
-                "elicitation": "Elicit.Slot.1432597137890.667155095243"
-              }
-            },
-            {
-              "name": "firstName",
-              "type": "AMAZON.FirstName",
-              "confirmationRequired": false,
-              "elicitationRequired": true,
-              "prompts": {
-                "elicitation": "Elicit.Slot.267159805274.1519185249511"
-              }
-            }
-          ]
-        }
-      ],
-      "delegationStrategy": "ALWAYS"
-    },
-    "prompts": [
-      {
-        "id": "Elicit.Slot.1432597137890.450255396731",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "What date do you want me to set a reminder for?"
-          }
-        ]
+          "delegationStrategy": "ALWAYS"
       },
-      {
-        "id": "Elicit.Slot.1432597137890.667155095243",
-        "variations": [
+      "prompts": [
           {
-            "type": "PlainText",
-            "value": "What time would you like to set the reminder for?"
-          }
-        ]
-      },
-      {
-        "id": "Elicit.Slot.267159805274.1519185249511",
-        "variations": [
+              "id": "Elicit.Slot.1432597137890.450255396731",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "What date do you want me to set a reminder for?"
+                  }
+              ]
+          },
           {
-            "type": "PlainText",
-            "value": "What would you like me to remind you about?"
+              "id": "Elicit.Slot.1432597137890.667155095243",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "What time would you like to set the reminder for?"
+                  }
+              ]
+          },
+          {
+              "id": "Elicit.Slot.267159805274.1519185249511",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "What would you like me to remind you about?"
+                  }
+              ]
+          },
+          {
+              "id": "Elicit.Slot.861255842416.711047349233",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "What time would you like to hear your reminder?"
+                  }
+              ]
           }
-        ]
-      }
-    ]
+      ]
   }
 }
