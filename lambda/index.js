@@ -4,7 +4,7 @@ const i18n = require('i18next');
 const { ConnectionsResponsetHandler, CreateReminderIntentHandler } = require('./intents/reminderIntent')
 const { GetJokeHandler } = require('./intents/getJokeIntent');
 const { GetNewFactHandler } = require('./intents/factsIntent');
-const { FactReminderHandler } = require('./intents/factReminderIntent');
+const { FactReminderHandler, FactReminderInterceptor } = require('./intents/factReminderIntent');
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -159,7 +159,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         SessionEndedRequestHandler,
         IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
     )
-    .addRequestInterceptors(LoadBirthdayInterceptor)
+    .addRequestInterceptors(FactReminderInterceptor)
     //.addRequestInterceptors(LocalizationInterceptor)
     .addErrorHandlers(ErrorHandler)
     .withApiClient(new Alexa.DefaultApiClient())
