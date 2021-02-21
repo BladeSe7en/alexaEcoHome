@@ -218,7 +218,7 @@ uuj
 
                 };
 
-                console.log('what is the final result of reminderPayload: ',reminderPayload)
+                console.log('what is the final result of reminderPayload: ',reminderPayload.trigger.scheduledTime,' freq: ',reminderPayload.trigger.recurrence.recurrenceRules[0])
 
                 attributesManager.setPersistentAttributes(targetDate);
                 await attributesManager.savePersistentAttributes();
