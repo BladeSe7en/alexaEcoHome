@@ -121,7 +121,8 @@ module.exports = {
             console.log('index: ', index)
             const speakOutput = data.FACTS[index];
             console.log('speakOutput: ', speakOutput)
-            return { speakOutput, HELP_REPROMPT }
+            let help = data.HELP_REPROMPT
+            return { speakOutput, help }
         }
     }
 }

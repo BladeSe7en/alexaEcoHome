@@ -11,14 +11,14 @@ module.exports = {
                     && request.intent.name === 'GetNewFactIntent');
         },
         handle(handlerInput) {
-            const { speakOutput, HELP_REPROMPT } = ecoFacts.getData();
+            const { speakOutput, help } = ecoFacts.getData();
             console.log('speakOutput: ', speakOutput)
             
 
             return handlerInput.responseBuilder
                 .speak(`${speakOutput} If you would like to hear another fact, ask me again.`)
                 .withShouldEndSession(false)
-                .reprompt(HELP_REPROMPT)
+                .reprompt(help)
                 .getResponse();
         },
     }
