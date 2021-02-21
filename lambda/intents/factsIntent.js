@@ -11,7 +11,7 @@ module.exports = {
                     && request.intent.name === 'GetNewFactIntent');
         },
         handle(handlerInput) {
-            const { speakOutput, SKILL_NAME, GET_FACT_MESSAGE, HELP_MESSAGE, HELP_REPROMPT, FALLBACK_MESSAGE, FALLBACK_REPROMPT, ERROR_MESSAGE, STOP_MESSAGE } = ecoFacts.getData();
+            const { speakOutput, HELP_REPROMPT } = ecoFacts.getData();
             console.log('speakOutput: ', speakOutput)
             
 
