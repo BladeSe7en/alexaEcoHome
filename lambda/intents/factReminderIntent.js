@@ -81,20 +81,21 @@ module.exports = {
                 let today = moment().tz("America/Los_Angeles").format();
                 console.log('this is today: ', today)
 
-                  let yesterdayUTC = moment(today).subtract(1, 'days').format()
-               let yesterday = moment(yesterdayUTC).tz("America/Los_Angeles").format();
-               console.log('this is yesterdayUTC: ', yesterdayUTC)
-               console.log('this is yesterday: ', yesterday)
+                let yesterdayUTC = moment(today).subtract(1, 'days').format()
+                let yesterday = moment(yesterdayUTC).tz("America/Los_Angeles").format();
+                console.log('this is yesterdayUTC: ', yesterdayUTC)
+                console.log('this is yesterday: ', yesterday)
 
 
 
                 let startOfToday = moment(yesterday).startOf('day')
-                console.log('this is start of today: ',startOfToday)
+                console.log('this is start of today: ', startOfToday)
 
                 // Convert a time in hh:mm format to minutes
+                var minutes
                 const timeToMins = (time) => {
-                    var b = time.split(':');
-                    return b[0] * 60 + +b[1];
+                     minutes = time.split(':');
+                    return minutes[0] * 60 + +minutes[1];
                 }
 
 
@@ -230,15 +231,13 @@ module.exports = {
                         "type": "SCHEDULED_ABSOLUTE",
                         "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
                         "timeZoneId": "America/Los_Angeles",
-                        // "recurrence": {
-                        //     "startDateTime": "2019-05-10T6:00:00.000",
-                        //     "endDateTime": "2019-08-10T10:00:00.000",
-                        //     "recurrenceRules": [
-                        //         "FREQ=DAILY;BYHOUR=6;BYMINUTE=10;BYSECOND=0;INTERVAL=1;",
-                        //         "FREQ=DAILY;BYHOUR=17;BYMINUTE=15;BYSECOND=0;INTERVAL=1;",
-                        //         "FREQ=DAILY;BYHOUR=22;BYMINUTE=45;BYSECOND=0;INTERVAL=1;"
-                        //     ]
-                        // }
+                        "recurrence": {
+                            "startDateTime": today,
+                            "endDateTime": moment(today).add(1, 'years'),
+                            "recurrenceRules": [
+                                `FREQ=DAILY;BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
+                            ]
+                        }
                     },
                     'alertInfo': {
                         'spokenInfo': {
