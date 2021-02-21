@@ -74,18 +74,11 @@ module.exports = {
 
             try {
                 const speechText = "Alright! I've scheduled a reminder for you.";
-                let reminderDate = Alexa.getSlotValue(requestEnvelope, 'date')
                 const time = Alexa.getSlotValue(requestEnvelope, 'time')
                 console.log('========where is this log facts log-===========')
-                console.log('------------reminderDate ', reminderDate)
                 console.log('------------time ', time)
 
-                let today = moment().tz("America/Los_Angeles").format();
-                console.log('this is today: ', today)
-
-
-                let scheduledDate = moment(reminderDate)
-                console.log('scheduledDate: ', scheduledDate)
+                let today = moment().tz("America/Los_Angeles").format('LLL');
                 console.log('this is today: ', today)
 
                 // Convert a time in hh:mm format to minutes
@@ -95,7 +88,7 @@ module.exports = {
                 }
 
 
-                let scheduledDateTime = moment(scheduledDate).add(timeToMins(time), 'minutes')
+                let scheduledDateTime = moment(today).add(timeToMins(time), 'minutes')
                 console.log('this is scheduledDateTime: ', scheduledDateTime.format())
                 console.log('this is time to minutes', timeToMins(time))
 
