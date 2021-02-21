@@ -240,6 +240,7 @@ module.exports = {
                 const monthSelector = (frequency) => {
                     switch (frequency) {
                         case 'daily':
+                            console.log('i am here :) ')
                             return  frequency.toUpperCase()
                         case 'weekly':
                             return freq = `WEEKLY;WKST=${dayAbv}`.toUpperCase()
