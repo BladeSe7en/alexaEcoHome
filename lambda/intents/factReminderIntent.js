@@ -7,12 +7,7 @@ moment().tz("America/Los_Angeles").format();
 module.exports = {
     ConnectionsResponsetHandler: {
         canHandle(handlerInput) {
-            const attributesManager = handlerInput.attributesManager;
-            const sessionAttributes = attributesManager.getSessionAttributes() || {};
 
-            const year = sessionAttributes.hasOwnProperty('year') ? sessionAttributes.year : 0;
-            const month = sessionAttributes.hasOwnProperty('month') ? sessionAttributes.month : 0;
-            const day = sessionAttributes.hasOwnProperty('day') ? sessionAttributes.day : 0;
 
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'Connections.Response';
         },
@@ -65,12 +60,18 @@ module.exports = {
     FactReminderHandler: {
         canHandle(handlerInput) {
             const { request } = handlerInput.requestEnvelope;
+          
             return request.type === 'IntentRequest' && request.intent.name === 'FactReminderIntent';
 
         },
         async handle(handlerInput) {
             const { requestEnvelope, serviceClientFactory, responseBuilder } = handlerInput;
             const attributesManager = handlerInput.attributesManager;
+            const sessionAttributes = attributesManager.getSessionAttributes() || {};
+
+            const year = sessionAttributes.hasOwnProperty('year') ? sessionAttributes.year : 0;
+            const month = sessionAttributes.hasOwnProperty('month') ? sessionAttributes.month : 0;
+            const day = sessionAttributes.hasOwnProperty('day') ? sessionAttributes.day : 0;
             const consentToken = requestEnvelope.context.System.user.permissions
                 && requestEnvelope.context.System.user.permissions.consentToken;
             if (!consentToken) {
@@ -276,8 +277,8 @@ module.exports = {
 
 
 
-                let targetMonthDate = startOfToday.add(1, 'month')
-                let targetYearDate = startOfToday.add(1, 'year')
+                let targetMonthDate = startOfToday.add(1, 'months')
+                let targetYearDate = startOfToday.add(1, 'years')
 
 
                 let reminderPayload = null
