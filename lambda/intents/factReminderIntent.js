@@ -256,7 +256,7 @@ module.exports = {
                             "startDateTime": today,
                            // "endDateTime": moment(today).add(numMonths, 'months'),
                             "recurrenceRules": [
-                                `FREQ=${frequency.toUpperCase()};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
+                                `FREQ=WEEKLY;BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
                             ]
                         }
                     },
