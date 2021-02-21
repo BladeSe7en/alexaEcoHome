@@ -6,7 +6,6 @@ module.exports = {
         canHandle(handlerInput) {
             const request = handlerInput.requestEnvelope.request;
             // checks request type
-            console.log('this is intent name: ', request.intent.name)
 
             return request.type === 'LaunchRequest'
                 || (request.type === 'IntentRequest'
