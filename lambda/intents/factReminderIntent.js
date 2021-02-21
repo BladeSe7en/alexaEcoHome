@@ -251,6 +251,8 @@ module.exports = {
 
                 monthSelector(frequency)
 
+                console.log('this is freq: ',freq)
+
                 const reminderPayload = {
                     "trigger": {
                         "type": "SCHEDULED_ABSOLUTE",
