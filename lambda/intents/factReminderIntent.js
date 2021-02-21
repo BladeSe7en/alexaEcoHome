@@ -245,9 +245,9 @@ module.exports = {
                         case 'weekly':
                             return freq = `WEEKLY;BYDAY=${dayAbv}`
                         case 'monthly':
-                            return freq = `MONTHLY;BYDAY=${dayAbv}`
+                            return freq = `MONTHLY`
                         case 'yearly':
-                            return freq =`YEARLY;BYDAY=${dayAbv}`
+                            return freq =`YEARLY`
 
                         default:
                             return 12;
