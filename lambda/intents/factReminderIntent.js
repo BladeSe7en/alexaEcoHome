@@ -234,7 +234,7 @@ module.exports = {
                         case 'daily':
                             return numMonths = 3;
                         case 'weekly':
-                            return umMonths = 6;
+                            return numMonths = 6;
                         case 'monthly':
                             return numMonths = 9;
                         case 'yearly':
