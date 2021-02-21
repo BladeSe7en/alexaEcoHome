@@ -452,32 +452,32 @@ module.exports = {
 
 
                 await ReminderManagementServiceClient.createReminder(reminderPayload);
-            return responseBuilder
-                .speak(speechText)
-                .getResponse();
+                return responseBuilder
+                    .speak(speechText)
+                    .getResponse();
 
-        } catch(error) {
-            console.error(error);
-            return responseBuilder
-                .speak(error.message)
-                .getResponse();
+            } catch (error) {
+                console.error(error);
+                return responseBuilder
+                    .speak(error.message)
+                    .getResponse();
+            }
         }
-    }
-},
+    },
 
 
     FactReminderInterceptor: {
-    async process(handlerInput) {
-        const attributesManager = handlerInput.attributesManager;
-        const sessionAttributes = await attributesManager.getPersistentAttributes() || {};
+        async process(handlerInput) {
+            const attributesManager = handlerInput.attributesManager;
+            const sessionAttributes = await attributesManager.getPersistentAttributes() || {};
 
-        const year = sessionAttributes.hasOwnProperty('year') ? sessionAttributes.year : 0;
-        const month = sessionAttributes.hasOwnProperty('month') ? sessionAttributes.month : 0;
-        const day = sessionAttributes.hasOwnProperty('day') ? sessionAttributes.day : 0;
+            const year = sessionAttributes.hasOwnProperty('year') ? sessionAttributes.year : 0;
+            const month = sessionAttributes.hasOwnProperty('month') ? sessionAttributes.month : 0;
+            const day = sessionAttributes.hasOwnProperty('day') ? sessionAttributes.day : 0;
 
-        if (year && month && day) {
-            attributesManager.setSessionAttributes(sessionAttributes);
+            if (year && month && day) {
+                attributesManager.setSessionAttributes(sessionAttributes);
+            }
         }
     }
-}
 }
