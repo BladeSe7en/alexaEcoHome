@@ -1,7 +1,7 @@
 
 module.exports = {
     ecoFacts: {
-        getData = () => {
+        getData() {
 
             let data = {
                 SKILL_NAME: 'Eco Home',
