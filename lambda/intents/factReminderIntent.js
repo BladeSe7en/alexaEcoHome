@@ -101,7 +101,7 @@ module.exports = {
                 console.log('this is yesterday: ', yesterday)
 
 
-                let startOfToday = moment(yesterday).startOf('day')
+                let startOfToday = moment(today).startOf('day')
                 console.log('this is start of today: ', startOfToday)
 
                 let startOfTodayToday = moment(today).startOf('day')
