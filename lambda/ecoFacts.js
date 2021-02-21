@@ -117,7 +117,7 @@ const ecoFacts = () => {
     console.log('index: ', index)
     const speakOutput = data.FACTS[index];
     console.log('speakOutput: ', speakOutput)
-    return speakOutput
+    return { speakOutput, SKILL_NAME, GET_FACT_MESSAGE, HELP_MESSAGE, HELP_REPROMPT, FALLBACK_MESSAGE, FALLBACK_REPROMPT, ERROR_MESSAGE, STOP_MESSAGE }
 }
 
 export default ecoFacts;

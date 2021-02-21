@@ -118,7 +118,7 @@ module.exports = {
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
 
 
-                const speakOutput = ecoFacts();
+                const { speakOutput, SKILL_NAME, GET_FACT_MESSAGE, HELP_MESSAGE, HELP_REPROMPT, FALLBACK_MESSAGE, FALLBACK_REPROMPT, ERROR_MESSAGE, STOP_MESSAGE } = ecoFacts();
 
                 let dayOfWeek = startOfToday.format('dddd')
 
