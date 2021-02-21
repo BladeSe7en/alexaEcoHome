@@ -77,7 +77,6 @@ module.exports = {
                 let reminderDate = Alexa.getSlotValue(requestEnvelope, 'date')
                 const time = Alexa.getSlotValue(requestEnvelope, 'time')
                 console.log('========where is this log facts log-===========')
-                console.log('------------task: ', task)
                 console.log('------------reminderDate ', reminderDate)
                 console.log('------------time ', time)
 
