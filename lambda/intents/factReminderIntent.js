@@ -97,7 +97,7 @@ module.exports = {
                 // Convert a time in hh:mm format to minutes
                 var minutes
                 const timeToMins = (time) => {
-                     minutes = time.split(':');
+                    minutes = time.split(':');
                     return minutes[0] * 60 + +minutes[1];
                 }
 
@@ -228,6 +228,32 @@ module.exports = {
                 // const speakOutput = 'this is a test'
                 console.log('speakOutput: ', speakOutput)
 
+                let numMonths
+                const monthSelector = (frequency) => {
+                    switch (frequency) {
+                        case 'daily':
+                            return {
+                                numMonths = 3
+                            };
+                        case 'weekly':
+                            return {
+                                numMonths = 6
+                            };
+                        case 'monthly':
+                            return {
+                                numMonths = 9
+                            };
+                        case 'yearly':
+                            return {
+                                numMonths = 12
+                            };
+
+                        default:
+                            return 12;
+                    }
+                }
+
+                monthSelector(frequency)
 
                 const reminderPayload = {
                     "trigger": {
@@ -236,7 +262,7 @@ module.exports = {
                         "timeZoneId": "America/Los_Angeles",
                         "recurrence": {
                             "startDateTime": today,
-                            "endDateTime": moment(today).add(1, 'years'),
+                            "endDateTime": moment(today).add(numMonths, 'months'),
                             "recurrenceRules": [
                                 `FREQ=${frequency.toUpperCase()};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
                             ]
