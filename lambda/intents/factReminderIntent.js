@@ -81,7 +81,14 @@ module.exports = {
                 let today = moment().tz("America/Los_Angeles").format();
                 console.log('this is today: ', today)
 
-                let startOfToday = moment(today).startOf('day')
+                  let yesterdayUTC = moment(today).subtract(1, 'days').format()
+               let yesterday = moment(yesterdayUTC).tz("America/Los_Angeles").format();
+               console.log('this is yesterdayUTC: ', yesterdayUTC)
+               console.log('this is yesterday: ', yesterday)
+
+
+
+                let startOfToday = moment(yesterday).startOf('day')
                 console.log('this is start of today: ',startOfToday)
 
                 // Convert a time in hh:mm format to minutes

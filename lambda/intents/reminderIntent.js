@@ -92,7 +92,7 @@ module.exports = {
                 let scheduledDate = moment(reminderDate)
                 console.log('scheduledDate: ', scheduledDate)
                 //let yesterdayUTC = moment(today).subtract(1, 'days').format()
-               // let = = moment(yesterdayUTC).tz("America/Los_Angeles").format();
+               // let yesterday = moment(yesterdayUTC).tz("America/Los_Angeles").format();
                 console.log('this is today: ', today)
 
                 // Convert a time in hh:mm format to minutes
