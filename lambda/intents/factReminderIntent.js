@@ -153,6 +153,8 @@ module.exports = {
 
                 let targetMonthDate = startOfToday.add(1, 'months')
                 let targetYearDate = startOfToday.add(1, 'years')
+                console.log('-=-=-=this is still start of today-=-=-: ', startOfToday)
+
                 console.log('THIS IS TARGETMONTHDATE: ', targetMonthDate)
                 console.log('THIS IS TARGETYEARDATE: ', targetYearDate)
 
@@ -160,6 +162,7 @@ module.exports = {
 
                 let reminderPayload = null
                 if (frequency === 'monthly' && today === targetMonthDate) {
+                    console.log('this is true: frequency === monthly && today === targetMonthDate')
                     reminderPayload = {
                         "trigger": {
                             "type": "SCHEDULED_ABSOLUTE",
@@ -185,6 +188,7 @@ module.exports = {
                         }
                     };
                 } else if (frequency === 'yearly' && today === targetYearDate) {
+                    console.log('frequency === yearly && today === targetYearDate')
                     reminderPayload = {
                         "trigger": {
                             "type": "SCHEDULED_ABSOLUTE",
@@ -210,6 +214,7 @@ module.exports = {
                         }
                     };
                 } else if (frequency === 'daily' || frequency === 'WEEKLY') {
+                    console.log('this is true: frequency === daily || frequency === WEEKLY)')
                     reminderPayload = {
                         "trigger": {
                             "type": "SCHEDULED_ABSOLUTE",
@@ -243,6 +248,8 @@ module.exports = {
                     "day": day
 
                 };
+
+                console.log('what is the final result of reminderPayload: ',reminderPayload)
 
                 attributesManager.setPersistentAttributes(targetDate);
                 await attributesManager.savePersistentAttributes();
