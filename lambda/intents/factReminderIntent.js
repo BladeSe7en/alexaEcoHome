@@ -331,7 +331,7 @@ module.exports = {
                             'status': 'ENABLED'
                         }
                     };
-                } else if (frequency === 'DAILY' || frequency === 'WEEKLY') {
+                } else if (frequency === 'daily' || frequency === 'WEEKLY') {
                     reminderPayload = {
                         "trigger": {
                             "type": "SCHEDULED_ABSOLUTE",
