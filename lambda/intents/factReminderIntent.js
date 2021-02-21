@@ -359,7 +359,14 @@ module.exports = {
                     };
                 } else return
 
-                attributesManager.setPersistentAttributes(birthdayAttributes);
+                const targetDate = {
+                    "year": year,
+                    "month": month,
+                    "day": day
+                    
+                };
+
+                attributesManager.setPersistentAttributes(targetDate);
                 await attributesManager.savePersistentAttributes();  
 
 
