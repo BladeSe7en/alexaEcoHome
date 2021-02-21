@@ -65,7 +65,6 @@ module.exports = {
     FactReminderHandler: {
         canHandle(handlerInput) {
             const { request } = handlerInput.requestEnvelope;
-            console.log('this is intent name: ', request.intent.name)
             return request.type === 'IntentRequest' && request.intent.name === 'FactReminderIntent';
 
         },
