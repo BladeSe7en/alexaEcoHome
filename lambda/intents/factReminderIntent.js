@@ -78,7 +78,7 @@ module.exports = {
                 console.log('========where is this log facts log-===========')
                 console.log('------------time ', time)
 
-                let today = moment().tz("America/Los_Angeles").format('LLL');
+                let today = moment().tz("America/Los_Angeles").format();
                 console.log('this is today: ', today)
 
                 // Convert a time in hh:mm format to minutes
