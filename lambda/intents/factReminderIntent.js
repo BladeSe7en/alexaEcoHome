@@ -108,6 +108,7 @@ module.exports = {
 
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
 
+                
                 let data = {
                     SKILL_NAME: 'Eco Home',
                     GET_FACT_MESSAGE: 'Here\'s your fact: ',
