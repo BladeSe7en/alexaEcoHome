@@ -229,8 +229,7 @@ module.exports = {
                 // const speakOutput = 'this is a test'
                 console.log('speakOutput: ', speakOutput)
 
-                let dayOfWeek = moment(today).format('dddd')
-                console.log('this is dayOfWeek1111: ',moment(today))
+                let dayOfWeek = startOfToday.format('dddd')
 
                 console.log('this is dayOfWeek: ',dayOfWeek)
 
