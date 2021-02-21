@@ -78,7 +78,7 @@ module.exports = {
                 const frequency = Alexa.getSlotValue(requestEnvelope, 'frequency')
                 console.log('========where is this log facts log-===========')
                 console.log('------------time ', time)
-                console.log('------------frequency ', frequency)
+                console.log('------------frequency ', frequency.toUpperCase())
 
 
                 let today = moment().tz("America/Los_Angeles").format();
@@ -238,7 +238,7 @@ module.exports = {
                             "startDateTime": today,
                             "endDateTime": moment(today).add(1, 'years'),
                             "recurrenceRules": [
-                                `FREQ=${frequency};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
+                                `FREQ=${frequency.toUpperCase()};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
                             ]
                         }
                     },
