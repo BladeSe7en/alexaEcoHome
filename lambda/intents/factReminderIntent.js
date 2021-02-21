@@ -367,8 +367,8 @@ module.exports = {
 
 
 
-                let targetMonthDate = startOfToday.add(1, month)
-                let targetYearDate = startOfToday.add(1, year)
+                let targetMonthDate = startOfToday.add(1, 'month')
+                let targetYearDate = startOfToday.add(1, 'year')
 
 
                 let reminderPayload = null
