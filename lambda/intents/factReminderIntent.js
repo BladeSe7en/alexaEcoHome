@@ -127,6 +127,12 @@ module.exports = {
                 let dayOfWeek = startOfToday.format('dddd')
 
                 console.log('this is dayOfWeek: ', dayOfWeek)
+                let targetMonthDate = startOfToday.clone().add(1, 'months').add(timeToMins(time), 'minutes')
+                let targetYearDate = startOfToday.clone().add(1, 'years').add(timeToMins(time), 'minutes')
+                console.log('-=-=-=this is still start of today-=-=-: ', startOfToday)
+
+                console.log('THIS IS TARGETMONTHDATE: ', targetMonthDate)
+                console.log('THIS IS TARGETYEARDATE: ', targetYearDate)
 
                 let dayAbv = dayOfWeek.slice(0, 2).toUpperCase()
                 console.log('this is dayAbv: ', dayAbv)
@@ -144,7 +150,7 @@ module.exports = {
                             return freq, startDate = targetMonthDate.format('YYYY-MM-DDTHH:mm:ss');
                         case 'yearly':
                             return freq, startDate = targetYearDate.format('YYYY-MM-DDTHH:mm:ss');
-
+uuj
                         default:
                             return 12;
                     }
@@ -156,12 +162,7 @@ module.exports = {
 
 
 
-                let targetMonthDate = startOfToday.clone().add(1, 'months').add(timeToMins(time), 'minutes')
-                let targetYearDate = startOfToday.clone().add(1, 'years').add(timeToMins(time), 'minutes')
-                console.log('-=-=-=this is still start of today-=-=-: ', startOfToday)
 
-                console.log('THIS IS TARGETMONTHDATE: ', targetMonthDate)
-                console.log('THIS IS TARGETYEARDATE: ', targetYearDate)
 
 
                 let reminderPayload = null
