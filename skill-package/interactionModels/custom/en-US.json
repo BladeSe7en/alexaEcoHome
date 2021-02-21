@@ -65,9 +65,20 @@
                       {
                           "name": "time",
                           "type": "AMAZON.TIME"
+                      },
+                      {
+                          "name": "frequency",
+                          "type": "frequency"
                       }
                   ],
                   "samples": [
+                      "create a fact reminder that repeats  at {time}",
+                      "create a fact reminder that repeats {frequency} at {time}",
+                      "create a repeating fact reminder {frequency} at {time}",
+                      "set a repeating fact reminder {frequency} at {time}",
+                      "set a repeating fact reminder {frequency}",
+                      "create a repeating fact reminder {frequency}",
+                      "create a fact reminder that repeats {frequency}",
                       "create a repeating fact reminder",
                       "I want to set a repeating fact reminder",
                       "set a repeating fact reminder",
@@ -216,7 +227,33 @@
                   "samples": []
               }
           ],
-          "types": []
+          "types": [
+              {
+                  "name": "frequency",
+                  "values": [
+                      {
+                          "name": {
+                              "value": "YEARLY"
+                          }
+                      },
+                      {
+                          "name": {
+                              "value": "MONTHLY"
+                          }
+                      },
+                      {
+                          "name": {
+                              "value": "WEEKLY"
+                          }
+                      },
+                      {
+                          "name": {
+                              "value": "DAILY"
+                          }
+                      }
+                  ]
+              }
+          ]
       },
       "dialog": {
           "intents": [
@@ -267,6 +304,21 @@
                           "prompts": {
                               "elicitation": "Elicit.Slot.861255842416.711047349233"
                           }
+                      },
+                      {
+                          "name": "frequency",
+                          "type": "frequency",
+                          "confirmationRequired": false,
+                          "elicitationRequired": true,
+                          "prompts": {
+                              "elicitation": "Elicit.Slot.827561870162.1156774009442"
+                          },
+                          "validations": [
+                              {
+                                  "type": "hasEntityResolutionMatch",
+                                  "prompt": "Slot.Validation.827561870162.1156774009442.1218716869978"
+                              }
+                          ]
                       }
                   ]
               }
@@ -307,6 +359,24 @@
                   {
                       "type": "PlainText",
                       "value": "What time would you like to hear your reminder?"
+                  }
+              ]
+          },
+          {
+              "id": "Slot.Validation.827561870162.1156774009442.1218716869978",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "How often would you like this to repeat. You can say daily, weekly, monthly, or yearly"
+                  }
+              ]
+          },
+          {
+              "id": "Elicit.Slot.827561870162.1156774009442",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "How often would you like this to repeat. You can say daily, weekly, monthly, or yearly"
                   }
               ]
           }
