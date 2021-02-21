@@ -92,6 +92,7 @@ module.exports = {
 
 
                 let today = moment().tz("America/Los_Angeles").format();
+                let todayMoment = moment().tz("America/Los_Angeles")
                 console.log('this is today: ', today)
 
                 let yesterdayUTC = moment(today).subtract(1, 'days').format()
@@ -151,8 +152,8 @@ module.exports = {
 
 
 
-                let targetMonthDate = startOfToday.add(1, 'months')
-                let targetYearDate = startOfToday.add(1, 'years')
+                let targetMonthDate = startOfToday.clone().add(1, 'months')
+                let targetYearDate = startOfToday.clone().add(1, 'years')
                 console.log('-=-=-=this is still start of today-=-=-: ', startOfToday)
 
                 console.log('THIS IS TARGETMONTHDATE: ', targetMonthDate)
@@ -161,7 +162,13 @@ module.exports = {
 
 
                 let reminderPayload = null
-                if (frequency === 'monthly' && today === targetMonthDate) {
+                
+
+
+                
+console.log('This should be true of false:   todayMoment.format(L) === targetMonthDate.format(L): ',todayMoment.format('L') === targetMonthDate.format('L'))
+
+                if (frequency === 'monthly' && todayMoment.format('L') === targetMonthDate.format('L')) {
                     console.log('this is true: frequency === monthly && today === targetMonthDate')
                     reminderPayload = {
                         "trigger": {
@@ -171,7 +178,7 @@ module.exports = {
                             "recurrence": {
                                 "startDateTime": today,
                                 "recurrenceRules": [
-                                    `FREQ=DAILY;BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
+                                    `FREQ=MONTHLY;BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
                                 ]
                             }
                         },
