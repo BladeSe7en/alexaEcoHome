@@ -6,63 +6,11 @@ moment().tz("America/Los_Angeles").format();
 
 
 module.exports = {
-    ConnectionsResponsetHandler: {
-        canHandle(handlerInput) {
-
-
-            return Alexa.getRequestType(handlerInput.requestEnvelope) === 'Connections.Response';
-        },
-        handle(handlerInput) {
-            const { permissions } = handlerInput.requestEnvelope.context.System.user;
-            const status = handlerInput.requestEnvelope.request.payload.status;
-
-
-            if (!permissions) {
-                return handlerInput.responseBuilder
-                    .speak("I didn't hear your answer. This skill requires your permission.")
-                    .addDirective({
-                        type: 'Connections.SendRequest',
-                        name: 'AskFor',
-                        payload: {
-                            '@type': 'AskForPermissionsConsentRequest',
-                            '@version': '1',
-                            'permissionScope': 'alexa::alerts:reminders:skill:readwrite'
-                        },
-                        token: 'user-id-could-go-here'
-                    })
-                    .getResponse();
-            }
-
-            switch (status) {
-                case 'ACCEPTED':
-                    handlerInput.responseBuilder
-                        .speak("Now that you've provided permission - you can say: set a reminder.")
-                        .reprompt('To set a reminder say: set a reminder.')
-                    break;
-                case 'DENIED':
-                    handlerInput.responseBuilder
-                        .speak("Without permissions, I can't set a reminder. So I guess that's goodbye.");
-                    break;
-                case 'NOT_ANSWERED':
-
-                    break;
-                default:
-                    handlerInput.responseBuilder
-                        .speak("Now that you've provided permission - you can say: set a reminder.")
-                        .reprompt('To set a reminder say: set a reminder.')
-            }
-
-            return handlerInput.responseBuilder
-                .getResponse();
-        }
-    },
-
-
-    FactReminderHandler: {
+    RepeatingFactsHandler: {
         canHandle(handlerInput) {
             const { request } = handlerInput.requestEnvelope;
 
-            return request.type === 'IntentRequest' && request.intent.name === 'FactReminderIntent';
+            return request.type === 'IntentRequest' && request.intent.name === 'RepeatingFactsIntent';
 
         },
         async handle(handlerInput) {
@@ -95,17 +43,10 @@ module.exports = {
                 let todayMoment = moment().tz("America/Los_Angeles")
                 console.log('this is today: ', today)
 
-                let yesterdayUTC = moment(today).subtract(1, 'days').format()
-                let yesterday = moment(yesterdayUTC).tz("America/Los_Angeles").format();
-                console.log('this is yesterdayUTC: ', yesterdayUTC)
-                console.log('this is yesterday: ', yesterday)
-
 
                 let startOfToday = moment(today).startOf('day')
                 console.log('this is start of today: ', startOfToday)
 
-                let startOfTodayToday = moment(today).startOf('day')
-                console.log('this is start of todayToday: ', startOfTodayToday)
 
                 // Convert a time in hh:mm format to minutes
                 var minutes
@@ -146,6 +87,11 @@ module.exports = {
                             return freq = `${freq};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`, startDate = scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss');
                         case 'weekly':
                             return freq = `${freq};BYDAY=${dayAbv};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`, startDate = scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss');
+                        case 'monthly':
+                            return freq, startDate = targetMonthDate.format('YYYY-MM-DDTHH:mm:ss');
+                        case 'yearly':
+                            return freq, startDate = targetYearDate.format('YYYY-MM-DDTHH:mm:ss');
+                            uuj
                         default:
                             return 12;
                     }
@@ -156,7 +102,11 @@ module.exports = {
                 console.log('this is freq: ', freq)
 
 
+
+
+
                 let reminderPayload = null
+
 
                 reminderPayload = {
                     "trigger": {
@@ -231,3 +181,16 @@ module.exports = {
 
 
 
+
+
+
+
+
+
+ontime({
+    cycle: '8:00:00'
+}, function (ot) {
+
+    ot.done()
+    return
+})

@@ -4,7 +4,7 @@ module.exports = {
         getData() {
 
             let data = {
-                SKILL_NAME: 'Eco Home',
+                SKILL_NAME: 'Eco P A',
                 GET_FACT_MESSAGE: 'Here\'s your fact: ',
                 HELP_MESSAGE: 'You can say tell me a fact, or, you can say exit... What can I help you with?',
                 HELP_REPROMPT: 'Would you like to hear another fact? Say tell me a fact.',
@@ -116,6 +116,7 @@ module.exports = {
                         'The average American uses approximately 313 million Btu of energy, while the worldwide average per person is around 75 million Btu.',
                     ],
             }
+            
 
             var index = Math.floor(Math.random() * data.FACTS.length)
             console.log('index: ', index)

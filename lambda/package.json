@@ -1,7 +1,7 @@
 {
-  "name": "hello-world",
+  "name": "eco-p-a",
   "version": "1.1.0",
-  "description": "alexa utility for quickly building skills",
+  "description": "Eco P A, your personal conservation assistant! You can say help, tell me a new fact, or set a reminder to get started.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

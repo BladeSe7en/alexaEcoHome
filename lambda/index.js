@@ -12,7 +12,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome to Eco Home, your personal conservation assistant! You can say help, or set a reminder to get started.';
+        const speakOutput = 'Welcome to Eco P A, your personal conservation assistant! You can say help, tell me a new fact, or set a reminder to get started.';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -54,11 +54,11 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'You can say hello to me! How can I help?';
-
+        const speakOutput = 'Eco Home can set reminders, give you a fact, or set a repeating fact directly device. What would you like to try?';
+        const repromptOutput = 'You can say set a reminder, give me a fact, or set a repeating fact reminder.'
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            .reprompt(speakOutput)
+            .reprompt(repromptOutput)
             .getResponse();
     }
 };
@@ -126,6 +126,7 @@ const ErrorHandler = {
     }
 };
 
+
 const FallbackHandler = {
     // The FallbackIntent can only be sent in those locales which support it,
     // so this handler will always be skipped in locales where it is not supported.
@@ -142,8 +143,6 @@ const FallbackHandler = {
             .getResponse();
     },
 };
-
-
 
 
 exports.handler = Alexa.SkillBuilders.custom()
@@ -168,8 +167,3 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addErrorHandlers(ErrorHandler)
     .withApiClient(new Alexa.DefaultApiClient())
     .lambda();
-
-  // if (intent.confirmationStatus === 'CONFIRMED') {
-  //   const day = Alexa.getSlotValue(requestEnvelope, 'day');
-  //   const year = Alexa.getSlotValue(requestEnvelope, 'year');
-  //   const month = Alexa.getSlotValue(requestEnvelope, 'month');
