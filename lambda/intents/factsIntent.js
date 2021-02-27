@@ -8,7 +8,10 @@ module.exports = {
 
             return request.type === 'LaunchRequest'
                 || (request.type === 'IntentRequest'
-                    && request.intent.name === 'GetNewFactIntent' || request.intent.name === 'AMAZON.YesIntent');
+                    && request.intent.name === 'GetNewFactIntent') ||
+                    request.type === 'LaunchRequest'
+                || (request.type === 'IntentRequest'
+                    && request.intent.name === 'GetNewFactIntent');
         },
         handle(handlerInput) {
             const { speakOutput, help } = ecoFacts.getData();
