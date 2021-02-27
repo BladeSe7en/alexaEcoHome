@@ -12,7 +12,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome to Eco P , your personal conservation assistant! You can say help, tell me a new fact, or set a reminder to get started.';
+        const speakOutput = 'Welcome to Eco P A, your personal conservation assistant! You can say help, tell me a new fact, or set a reminder to get started.';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)

@@ -170,7 +170,7 @@ module.exports = {
                 //     }
                 // }
 
-                scheduledDateTime(frequency)
+               // scheduledDateTime(frequency)
 
 
                let reminderPayload = {
@@ -206,6 +206,7 @@ module.exports = {
                     "day": day
 
                 };
+                console.log('scheduledDateTime: ', scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'))
                 console.log('this is targetDate: ',targetDate)
                 console.log('what is the final result of reminderPayload: ', reminderPayload.trigger.scheduledTime, ' freq: ', reminderPayload.trigger.recurrence.recurrenceRules[0])
 
