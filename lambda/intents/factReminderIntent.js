@@ -155,25 +155,7 @@ module.exports = {
 
                 console.log('this is freq: ', freq)
 
-                // scheduledDateSelector = (frequency) => {
-                //     console.log('this is the frequency param: ', frequency)
-                //     switch (frequency) {
-                //         case 'daily' || 'weekly':
-                //             return  startDate = scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss');
-                //         case 'monthly':
-                //             return startDate = targetMonthDate.format('YYYY-MM-DDTHH:mm:ss');
-                //         case 'yearly':
-                //             return startDate = targetYearDate.format('YYYY-MM-DDTHH:mm:ss');
-
-                //         default:
-                //             return 12;
-                //     }
-                // }
-
-               // scheduledDateTime(frequency)
-
-
-               let reminderPayload = {
+                let reminderPayload = {
                     "trigger": {
                         "type": "SCHEDULED_ABSOLUTE",
                         "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
