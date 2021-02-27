@@ -189,8 +189,8 @@ module.exports = {
                         'spokenInfo': {
                             'content': [{
                                 'locale': 'en-US',
-                                'text': speakOutput
-                                //'ssml': speakOutput
+                                'text': speakOutput,
+                                'ssml': speakOutput
                             }]
                         }
                     },
