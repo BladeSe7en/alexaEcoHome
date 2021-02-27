@@ -156,9 +156,30 @@ module.exports = {
                 console.log('this is freq: ', freq)
 
 
-                let reminderPayload = null
 
-                reminderPayload = {
+
+
+
+
+                // scheduledDateSelector = (frequency) => {
+                //     console.log('this is the frequency param: ', frequency)
+                //     switch (frequency) {
+                //         case 'daily' || 'weekly':
+                //             return  startDate = scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss');
+                //         case 'monthly':
+                //             return startDate = targetMonthDate.format('YYYY-MM-DDTHH:mm:ss');
+                //         case 'yearly':
+                //             return startDate = targetYearDate.format('YYYY-MM-DDTHH:mm:ss');
+
+                //         default:
+                //             return 12;
+                //     }
+                // }
+
+                // scheduledDateTime(frequency)
+
+
+               let reminderPayload = {
                     "trigger": {
                         "type": "SCHEDULED_ABSOLUTE",
                         "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
@@ -191,7 +212,7 @@ module.exports = {
                     "day": day
 
                 };
-
+                console.log('this is targetDate: ',targetDate)
                 console.log('what is the final result of reminderPayload: ', reminderPayload.trigger.scheduledTime, ' freq: ', reminderPayload.trigger.recurrence.recurrenceRules[0])
 
                 attributesManager.setPersistentAttributes(targetDate);
@@ -228,6 +249,3 @@ module.exports = {
         }
     }
 }
-
-
-

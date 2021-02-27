@@ -12,7 +12,7 @@ const LaunchRequestHandler = {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome to Eco P A, your personal conservation assistant! You can say help, tell me a new fact, or set a reminder to get started.';
+        const speakOutput = 'Welcome to Eco P , your personal conservation assistant! You can say help, tell me a new fact, or set a reminder to get started.';
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -64,35 +64,35 @@ const HelpIntentHandler = {
 };
 
 
-// const LocalizationInterceptor = {
-//     process(handlerInput) {
-//       // Gets the locale from the request and initializes i18next.
-//       const localizationClient = i18n.init({
-//         lng: handlerInput.requestEnvelope.request.locale,
-//         resources: languageStrings,
-//         returnObjects: true
-//       });
-//       // Creates a localize function to support arguments.
-//       localizationClient.localize = function localize() {
-//         // gets arguments through and passes them to
-//         // i18next using sprintf to replace string placeholders
-//         // with arguments.
-//         const args = arguments;
-//         const value = i18n.t(...args);
-//         // If an array is used then a random value is selected
-//         if (Array.isArray(value)) {
-//           return value[Math.floor(Math.random() * value.length)];
-//         }
-//         return value;
-//       };
-//       // this gets the request attributes and save the localize function inside
-//       // it to be used in a handler by calling requestAttributes.t(STRING_ID, [args...])
-//       const attributes = handlerInput.attributesManager.getRequestAttributes();
-//       attributes.t = function translate(...args) {
-//         return localizationClient.localize(...args);
-//       }
-//     }
-//   };
+const LocalizationInterceptor = {
+    process(handlerInput) {
+        // Gets the locale from the request and initializes i18next.
+        const localizationClient = i18n.init({
+            lng: handlerInput.requestEnvelope.request.locale,
+            resources: languageStrings,
+            returnObjects: true
+        });
+        // Creates a localize function to support arguments.
+        localizationClient.localize = function localize() {
+            // gets arguments through and passes them to
+            // i18next using sprintf to replace string placeholders
+            // with arguments.
+            const args = arguments;
+            const value = i18n.t(...args);
+            // If an array is used then a random value is selected
+            if (Array.isArray(value)) {
+                return value[Math.floor(Math.random() * value.length)];
+            }
+            return value;
+        };
+        // this gets the request attributes and save the localize function inside
+        // it to be used in a handler by calling requestAttributes.t(STRING_ID, [args...])
+        const attributes = handlerInput.attributesManager.getRequestAttributes();
+        attributes.t = function translate(...args) {
+            return localizationClient.localize(...args);
+        }
+    }
+};
 
 
 const IntentReflectorHandler = {
@@ -126,7 +126,6 @@ const ErrorHandler = {
     }
 };
 
-
 const FallbackHandler = {
     // The FallbackIntent can only be sent in those locales which support it,
     // so this handler will always be skipped in locales where it is not supported.
@@ -143,6 +142,8 @@ const FallbackHandler = {
             .getResponse();
     },
 };
+
+
 
 
 exports.handler = Alexa.SkillBuilders.custom()
@@ -163,7 +164,12 @@ exports.handler = Alexa.SkillBuilders.custom()
         IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
     )
     .addRequestInterceptors(FactReminderInterceptor)
-    //.addRequestInterceptors(LocalizationInterceptor)
+    .addRequestInterceptors(LocalizationInterceptor)
     .addErrorHandlers(ErrorHandler)
     .withApiClient(new Alexa.DefaultApiClient())
     .lambda();
+
+  // if (intent.confirmationStatus === 'CONFIRMED') {
+  //   const day = Alexa.getSlotValue(requestEnvelope, 'day');
+  //   const year = Alexa.getSlotValue(requestEnvelope, 'year');
+  //   const month = Alexa.getSlotValue(requestEnvelope, 'month');
