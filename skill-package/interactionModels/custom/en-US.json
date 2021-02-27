@@ -7,14 +7,27 @@
                     "name": "AMAZON.CancelIntent",
                     "samples": []
                 },
+
                 {
                     "name": "AMAZON.HelpIntent",
                     "samples": []
                 },
+
                 {
                     "name": "AMAZON.StopIntent",
                     "samples": []
                 },
+
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+
                 {
                     "name": "HelloWorldIntent",
                     "slots": [],
@@ -28,6 +41,7 @@
                         "say hello"
                     ]
                 },
+
                 {
                     "name": "GetNewFactIntent",
                     "slots": [],
@@ -60,6 +74,7 @@
                         "Can you please give me a fun fact"
                     ]
                 },
+
                 {
                     "name": "FactReminderIntent",
                     "slots": [
@@ -90,14 +105,7 @@
                         "repeating fact at {time}"
                     ]
                 },
-                {
-                    "name": "AMAZON.YesIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.NoIntent",
-                    "samples": []
-                },
+
                 {
                     "name": "CreateReminderIntent",
                     "slots": [
@@ -223,6 +231,7 @@
                         "set a reminder for me of {firstName}"
                     ]
                 },
+
                 {
                     "name": "GetJokeIntent",
                     "slots": [],
@@ -231,11 +240,13 @@
                         "give me a joke"
                     ]
                 },
+
                 {
                     "name": "AMAZON.NavigateHomeIntent",
                     "samples": []
                 }
             ],
+
             "types": [
                 {
                     "name": "frequency",
@@ -264,6 +275,7 @@
                 }
             ]
         },
+
         "dialog": {
             "intents": [
                 {
@@ -300,6 +312,7 @@
                         }
                     ]
                 },
+
                 {
                     "name": "FactReminderIntent",
                     "confirmationRequired": false,
@@ -334,6 +347,7 @@
             ],
             "delegationStrategy": "ALWAYS"
         },
+
         "prompts": [
             {
                 "id": "Elicit.Slot.1432597137890.450255396731",

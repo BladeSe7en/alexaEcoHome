@@ -59,10 +59,13 @@ const NoIntentHandler = {
     },
     handle(handlerInput) {
         return handlerInput.responseBuilder
-            .addDelegateDirective({
-                name: 'GetNewFactIntent',
-                confirmationStatus: 'NONE',
-                slots: {}
+            .addDirective({
+                type: 'Dialog.Delegate',
+                updatedIntent: {
+                    name: 'GetNewFactIntent',
+                    confirmationStatus: 'NONE',
+                    slots: {}
+                }
             })
     }
 }
