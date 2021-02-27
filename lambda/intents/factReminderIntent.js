@@ -155,12 +155,6 @@ module.exports = {
 
                 console.log('this is freq: ', freq)
 
-
-
-
-
-
-
                 // scheduledDateSelector = (frequency) => {
                 //     console.log('this is the frequency param: ', frequency)
                 //     switch (frequency) {
@@ -176,7 +170,7 @@ module.exports = {
                 //     }
                 // }
 
-                // scheduledDateTime(frequency)
+                scheduledDateTime(frequency)
 
 
                let reminderPayload = {
