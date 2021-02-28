@@ -8,14 +8,12 @@ moment().tz("America/Los_Angeles").format();
 module.exports = {
     ConnectionsResponsetHandler: {
         canHandle(handlerInput) {
-
-
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'Connections.Response';
         },
+
         handle(handlerInput) {
             const { permissions } = handlerInput.requestEnvelope.context.System.user;
             const status = handlerInput.requestEnvelope.request.payload.status;
-
 
             if (!permissions) {
                 return handlerInput.responseBuilder
@@ -61,10 +59,9 @@ module.exports = {
     FactReminderHandler: {
         canHandle(handlerInput) {
             const { request } = handlerInput.requestEnvelope;
-
             return request.type === 'IntentRequest' && request.intent.name === 'FactReminderIntent';
-
         },
+
         async handle(handlerInput) {
             const { requestEnvelope, serviceClientFactory, responseBuilder } = handlerInput;
             const attributesManager = handlerInput.attributesManager;
@@ -116,25 +113,20 @@ module.exports = {
 
 
                 let scheduledDateTime = moment(startOfToday).add(timeToMins(time), 'minutes')
-                console.log('this is scheduledDateTime: ', scheduledDateTime.format())
-                console.log('this is time to minutes', timeToMins(time))
-
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
-
-
                 const { speakOutput } = ecoFacts.getData();
-
                 let dayOfWeek = startOfToday.format('dddd')
-
-                console.log('this is dayOfWeek: ', dayOfWeek)
+                
                 let targetMonthDate = startOfToday.clone().add(1, 'months').add(timeToMins(time), 'minutes')
                 let targetYearDate = startOfToday.clone().add(1, 'years').add(timeToMins(time), 'minutes')
+                let dayAbv = dayOfWeek.slice(0, 2).toUpperCase()
+                
                 console.log('-=-=-=this is still start of today-=-=-: ', startOfToday)
-
+                console.log('this is dayOfWeek: ', dayOfWeek)
+                console.log('this is scheduledDateTime: ', scheduledDateTime.format())
+                console.log('this is time to minutes', timeToMins(time))
                 console.log('THIS IS TARGETMONTHDATE: ', targetMonthDate)
                 console.log('THIS IS TARGETYEARDATE: ', targetYearDate)
-
-                let dayAbv = dayOfWeek.slice(0, 2).toUpperCase()
                 console.log('this is dayAbv: ', dayAbv)
 
                 let freq = frequency.toUpperCase();
@@ -180,7 +172,6 @@ module.exports = {
                         'status': 'ENABLED'
                     }
                 };
-                //  } else return
 
                 const targetDate = {
                     "year": year,
@@ -192,9 +183,6 @@ module.exports = {
                 console.log('this is targetDate: ',targetDate)
                 console.log('what is the final result of reminderPayload: ', reminderPayload.trigger.scheduledTime, ' freq: ', reminderPayload.trigger.recurrence.recurrenceRules[0])
                 console.log('what is the final result of reminderPayload.trigger: ', reminderPayload.trigger, ' alertInfo: ', reminderPayload.alertInfo)
-
-                // attributesManager.setPersistentAttributes(targetDate);
-                // await attributesManager.savePersistentAttributes();
 
 
                 await ReminderManagementServiceClient.createReminder(reminderPayload);

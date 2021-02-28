@@ -2,10 +2,12 @@ const Alexa = require('ask-sdk-core');
 const i18n = require('i18next');
 const persistenceAdapter = require('ask-sdk-s3-persistence-adapter');
 
-const { ConnectionsResponsetHandler, CreateReminderIntentHandler } = require('./intents/reminderIntent')
+const { ConnectionsResponsetHandler, CreateReminderIntentHandler } = require('./intents/reminderIntent');
 const { GetJokeHandler } = require('./intents/getJokeIntent');
 const { GetNewFactHandler } = require('./intents/factsIntent');
 const { FactReminderHandler, FactReminderInterceptor } = require('./intents/factReminderIntent');
+const { YesIntentHandler, NoIntentHandler } = require('./intents/yesNoIntent');
+
 
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
@@ -37,40 +39,6 @@ const CancelAndStopIntentHandler = {
 };
 
 
-const YesIntentHandler = {
-    canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.NoIntent';
-    },
-    handle(handlerInput) {
-        const speakOutput = 'Ok, you can say tell me a joke, set a reminder or create a repeating fact reminder. What would you like to try?';
-        const repromptOutput = 'You can say set a reminder, give me a fact, or set a repeating fact reminder.'
-        return handlerInput.responseBuilder
-            .speak(speakOutput)
-            .reprompt(repromptOutput)
-            .getResponse();
-    }
-}
-
-const NoIntentHandler = {
-    canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.YesIntent';
-    },
-    handle(handlerInput) {
-        return handlerInput.responseBuilder
-            .addDirective({
-                type: 'Dialog.Delegate',
-                updatedIntent: {
-                    name: 'GetNewFactIntent',
-                    confirmationStatus: 'NONE',
-                    slots: {}
-                }
-            })
-    }
-}
-
-
 const SessionEndedRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionEndedRequest';
@@ -96,37 +64,6 @@ const HelpIntentHandler = {
             .getResponse();
     }
 };
-
-
-// const LocalizationInterceptor = {
-//     process(handlerInput) {
-//         // Gets the locale from the request and initializes i18next.
-//         const localizationClient = i18n.init({
-//             lng: handlerInput.requestEnvelope.request.locale,
-//             resources: languageStrings,
-//             returnObjects: true
-//         });
-//         // Creates a localize function to support arguments.
-//         localizationClient.localize = function localize() {
-//             // gets arguments through and passes them to
-//             // i18next using sprintf to replace string placeholders
-//             // with arguments.
-//             const args = arguments;
-//             const value = i18n.t(...args);
-//             // If an array is used then a random value is selected
-//             if (Array.isArray(value)) {
-//                 return value[Math.floor(Math.random() * value.length)];
-//             }
-//             return value;
-//         };
-//         // this gets the request attributes and save the localize function inside
-//         // it to be used in a handler by calling requestAttributes.t(STRING_ID, [args...])
-//         const attributes = handlerInput.attributesManager.getRequestAttributes();
-//         attributes.t = function translate(...args) {
-//             return localizationClient.localize(...args);
-//         }
-//     }
-// };
 
 
 const IntentReflectorHandler = {
@@ -160,6 +97,7 @@ const ErrorHandler = {
     }
 };
 
+
 const FallbackHandler = {
     // The FallbackIntent can only be sent in those locales which support it,
     // so this handler will always be skipped in locales where it is not supported.
@@ -176,8 +114,6 @@ const FallbackHandler = {
             .getResponse();
     },
 };
-
-
 
 
 exports.handler = Alexa.SkillBuilders.custom()
@@ -200,7 +136,6 @@ exports.handler = Alexa.SkillBuilders.custom()
         IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
     )
     .addRequestInterceptors(FactReminderInterceptor)
-    //.addRequestInterceptors(LocalizationInterceptor)
     .addErrorHandlers(ErrorHandler)
     .withApiClient(new Alexa.DefaultApiClient())
     .lambda();
