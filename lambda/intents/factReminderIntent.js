@@ -269,7 +269,7 @@ module.exports = {
                 let startOfToday = moment(today).tz("America/Los_Angeles").slice(0, 11) + '00:00:00-08:00'
 
 
-                
+
 
                 let todayMoment = moment().tz("America/Los_Angeles")
                 console.log('this is today: ', today)
@@ -283,8 +283,6 @@ module.exports = {
                 //let startOfToday = moment(today).startOf('day')
                 console.log('this is start of today: ', startOfToday)
 
-                let startOfTodayToday = moment(today).startOf('day')
-                console.log('this is start of todayToday: ', startOfTodayToday)
 
                 // Convert a time in hh:mm format to minutes
                 var minutes
@@ -298,18 +296,18 @@ module.exports = {
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
                 const { speakOutput } = ecoFacts.getData();
                 let dayOfWeek = startOfToday.format('dddd')
+                console.log('this is dayOfWeek: ', dayOfWeek)
                 
                 let targetMonthDate = startOfToday.clone().add(1, 'months').add(timeToMins(time), 'minutes')
+                console.log('THIS IS TARGETMONTHDATE: ', targetMonthDate)
                 let targetYearDate = startOfToday.clone().add(1, 'years').add(timeToMins(time), 'minutes')
+                console.log('THIS IS TARGETYEARDATE: ', targetYearDate)
                 let dayAbv = dayOfWeek.slice(0, 2).toUpperCase()
+                console.log('this is dayAbv: ', dayAbv)
                 
                 console.log('-=-=-=this is still start of today-=-=-: ', startOfToday)
-                console.log('this is dayOfWeek: ', dayOfWeek)
                 console.log('this is scheduledDateTime: ', scheduledDateTime.format())
                 console.log('this is time to minutes', timeToMins(time))
-                console.log('THIS IS TARGETMONTHDATE: ', targetMonthDate)
-                console.log('THIS IS TARGETYEARDATE: ', targetYearDate)
-                console.log('this is dayAbv: ', dayAbv)
 
                 let freq = frequency.toUpperCase();
                 let startDate;
