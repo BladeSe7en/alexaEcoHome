@@ -264,6 +264,7 @@ module.exports = {
 
 
                 let today = moment().tz("America/Los_Angeles").format();
+                console.log('this is today: ', today)
 
                //       [^T]*$
                 let startOfToday = moment(today).slice(0, 11) + '00:00:00-08:00'
@@ -272,7 +273,6 @@ module.exports = {
 
 
                 let todayMoment = moment().tz("America/Los_Angeles")
-                console.log('this is today: ', today)
 
                 let yesterdayUTC = moment(today).subtract(1, 'days').format()
                 let yesterday = moment(yesterdayUTC).tz("America/Los_Angeles").format();
