@@ -116,6 +116,39 @@ const FallbackHandler = {
 };
 
 
+const DialogManagementStateInterceptor = {
+    process(handlerInput) {
+    
+        const currentIntent = handlerInput.requestEnvelope.request.intent;
+        
+        if (handlerInput.requestEnvelope.request.type === "IntentRequest"
+            && handlerInput.requestEnvelope.request.dialogState !== "COMPLETED") {
+            
+            const attributesManager = handlerInput.attributesManager;
+            const sessionAttributes = attributesManager.getSessionAttributes();
+            
+            // If there are no session attributes we've never entered dialog management
+            // for this intent before.
+            
+            if (sessionAttributes[currentIntent.name]) {
+                let savedSlots = sessionAttributes[currentIntent.name].slots;
+            
+                for (let key in savedSlots) {
+                    // we let the current intent's values override the session attributes
+                    // that way the user can override previously given values.
+                    // this includes anything we have previously stored in their profile.
+                    if (!currentIntentSlots[key].value && savedSlots[key].value) {
+                        currentIntent.slots[key] = savedSlots[key];
+                    }
+                }    
+            }
+            sessionAttributes[currentIntent.name] = currentIntent;
+            attributesManager.setSessionAttributes(sessionAttributes);
+        }
+    }
+};
+
+
 exports.handler = Alexa.SkillBuilders.custom()
     .withPersistenceAdapter(
         new persistenceAdapter.S3PersistenceAdapter({ bucketName: process.env.S3_PERSISTENCE_BUCKET })
@@ -135,7 +168,7 @@ exports.handler = Alexa.SkillBuilders.custom()
         SessionEndedRequestHandler,
         IntentReflectorHandler, // make sure IntentReflectorHandler is last so it doesn't override your custom intent handlers
     )
-    .addRequestInterceptors(FactReminderInterceptor)
+    .addRequestInterceptors(FactReminderInterceptor, DialogManagementStateInterceptor)
     .addErrorHandlers(ErrorHandler)
     .withApiClient(new Alexa.DefaultApiClient())
     .lambda();
