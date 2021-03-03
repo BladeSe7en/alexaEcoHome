@@ -266,8 +266,10 @@ module.exports = {
                 let today = moment().tz("America/Los_Angeles").format();
 
                //       [^T]*$
-                let testing = today.split().splice(11, 8, '00:00:00').toString()
+                let testing = Array.from(today).splice(11, 8, '00:00:00').toString()
                 console.log('this is testing new date: ',testing)
+
+
                 let todayMoment = moment().tz("America/Los_Angeles")
                 console.log('this is today: ', today)
 
