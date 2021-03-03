@@ -369,6 +369,7 @@ module.exports = {
                 await ReminderManagementServiceClient.createReminder(reminderPayload);
                 return responseBuilder
                     .speak(speechText)
+                    .withShouldEndSession(true)
                     .getResponse();
 
             } catch (error) {
