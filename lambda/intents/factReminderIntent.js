@@ -295,6 +295,7 @@ module.exports = {
                 let scheduledDateTime = moment(startOfToday).add(timeToMins(time), 'minutes')
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
                 const { speakOutput } = ecoFacts.getData();
+                console.log('this is speakOutput: ',speakOutput)
                 let dayOfWeek = startOfToday.format('dddd')
                 console.log('this is dayOfWeek: ', dayOfWeek)
                 
@@ -362,7 +363,7 @@ module.exports = {
                 console.log('scheduledDateTime: ', scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'))
                 console.log('this is targetDate: ',targetDate)
                 console.log('what is the final result of reminderPayload: ', reminderPayload.trigger.scheduledTime, ' freq: ', reminderPayload.trigger.recurrence.recurrenceRules[0])
-                console.log('what is the final result of reminderPayload.trigger: ', reminderPayload.trigger, ' alertInfo: ', reminderPayload.alertInfo)
+                console.log('what is the final result of reminderPayload.trigger: ', reminderPayload.trigger, ' alertInfo: ', reminderPayload.alertInfo.content.text)
 
 
                 await ReminderManagementServiceClient.createReminder(reminderPayload);
