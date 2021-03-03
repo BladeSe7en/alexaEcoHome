@@ -1,5 +1,4 @@
 const Alexa = require('ask-sdk-core');
-const i18n = require('i18next');
 const persistenceAdapter = require('ask-sdk-s3-persistence-adapter');
 
 const { ConnectionsResponsetHandler, CreateReminderIntentHandler } = require('./intents/reminderIntent');
@@ -56,8 +55,8 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Eco Home can set reminders, give you a fact, or set a repeating fact directly device. What would you like to try?';
-        const repromptOutput = 'You can say set a reminder, give me a fact, or set a repeating fact reminder.'
+        const speakOutput = 'Eco P A can set reminders, give you a fact, tell you a joke, or set a repeating fact directly device. What would you like to try?';
+        const repromptOutput = 'You can say set a reminder, give me a fact, tell me a joke, or set a repeating fact reminder.'
         return handlerInput.responseBuilder
             .speak(speakOutput)
             .reprompt(repromptOutput)
@@ -76,7 +75,7 @@ const IntentReflectorHandler = {
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
+            .reprompt("If you're unsure what to ask, say help.")
             .getResponse();
     }
 };
@@ -172,8 +171,3 @@ exports.handler = Alexa.SkillBuilders.custom()
     .addErrorHandlers(ErrorHandler)
     .withApiClient(new Alexa.DefaultApiClient())
     .lambda();
-
-  // if (intent.confirmationStatus === 'CONFIRMED') {
-  //   const day = Alexa.getSlotValue(requestEnvelope, 'day');
-  //   const year = Alexa.getSlotValue(requestEnvelope, 'year');
-  //   const month = Alexa.getSlotValue(requestEnvelope, 'month');

@@ -1,4 +1,3 @@
-
 module.exports = {
     ecoFacts: {
         getData() {
@@ -116,12 +115,9 @@ module.exports = {
                         'The average American uses approximately 313 million Btu of energy, while the worldwide average per person is around 75 million Btu.',
                     ],
             }
-            
 
             var index = Math.floor(Math.random() * data.FACTS.length)
-            console.log('index: ', index)
             const speakOutput = data.FACTS[index];
-            console.log('speakOutput: ', speakOutput)
             let help = data.HELP_REPROMPT
             return { speakOutput, help }
         }

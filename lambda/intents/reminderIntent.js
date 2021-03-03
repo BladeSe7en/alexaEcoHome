@@ -1,8 +1,6 @@
 const Alexa = require('ask-sdk-core');
-const AmazonDateParser = require('amazon-date-parser');
 const moment = require('moment-timezone');
 moment().tz("America/Los_Angeles").format();
-var { DateTime } = require('luxon');
 
 
 module.exports = {
@@ -13,9 +11,6 @@ module.exports = {
         handle(handlerInput) {
             const { permissions } = handlerInput.requestEnvelope.context.System.user;
             const status = handlerInput.requestEnvelope.request.payload.status;
-            //console.log(JSON.stringify(handlerInput.requestEnvelope));
-            //console.log(handlerInput.requestEnvelope.request.payload.status);
-            // console.log('this is handlerInput: ',handlerInput)
 
 
             if (!permissions) {
@@ -80,18 +75,12 @@ module.exports = {
                 const task = Alexa.getSlotValue(requestEnvelope, 'firstName')
                 let reminderDate = Alexa.getSlotValue(requestEnvelope, 'date')
                 const time = Alexa.getSlotValue(requestEnvelope, 'time')
-                console.log('------------where is this log------------')
-                console.log('------------task: ', task)
-                console.log('------------reminderDate ', reminderDate)
-                console.log('------------time ', time)
 
                 let today = moment().tz("America/Los_Angeles").format();
                 console.log('this is today: ', today)
 
 
                 let scheduledDate = moment(reminderDate)
-                console.log('scheduledDate: ', scheduledDate)
-                console.log('this is today: ', today)
 
                 // Convert a time in hh:mm format to minutes
                 const timeToMins = (time) => {
@@ -101,8 +90,6 @@ module.exports = {
 
 
                 let scheduledDateTime = moment(scheduledDate).add(timeToMins(time), 'minutes')
-                console.log('this is scheduledDateTime: ', scheduledDateTime.format())
-                console.log('this is time to minutes', timeToMins(time))
 
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
 
@@ -133,7 +120,6 @@ module.exports = {
                     .getResponse();
 
             } catch (error) {
-                console.error(error);
                 return responseBuilder
                     .speak(error.message)
                     .getResponse();
@@ -141,20 +127,3 @@ module.exports = {
         }
     }
 }
-
-
-// Example of how to access amazon date slots 
-    // var AmazonDateParser = require('amazon-date-parser');
-    // var date = new AmazonDateParser('2017-W48');
-    // console.log(date);
-    /* returns:
-    { endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
-    startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
-    */
-
-                    // let testDate = new AmazonDateParser(date);
-                    // console.log(testDate);
-    /* returns:
-    { endDate: Sun Dec 03 2017 23:59:59 GMT+0000 (GMT),
-    startDate: Mon Nov 27 2017 00:00:00 GMT+0000 (GMT) }
-    */

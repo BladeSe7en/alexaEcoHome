@@ -13,7 +13,6 @@ module.exports = {
 
         handle(handlerInput) {
             const { speakOutput, help } = ecoFacts.getData();
-            console.log('speakOutput: ', speakOutput)
 
             return handlerInput.responseBuilder
                 .speak(`${speakOutput} If you would like to hear another fact, ask me again.`)

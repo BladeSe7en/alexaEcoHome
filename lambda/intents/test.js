@@ -180,13 +180,6 @@ module.exports = {
 }
 
 
-
-
-
-
-
-
-
 ontime({
     cycle: '8:00:00'
 }, function (ot) {

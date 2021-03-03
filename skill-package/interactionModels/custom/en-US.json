@@ -38,7 +38,11 @@
                         "say hi",
                         "hi",
                         "say hello world",
-                        "say hello"
+                        "say hello",
+                        "hello world",
+                        "hey, how you doing",
+                        "hey there",
+                        "hey"
                     ]
                 },
 
@@ -102,7 +106,9 @@
                         "create a repeating fact reminder at {time}",
                         "I want to set a repeating fact reminder at {time}",
                         "set a repeating fact reminder at {time}",
-                        "repeating fact at {time}"
+                        "repeating fact at {time}",
+                        "make me a fact reminder at {time}",
+                        "Begin new reminder at {time}"
                     ]
                 },
 
@@ -237,7 +243,23 @@
                     "slots": [],
                     "samples": [
                         "joke me",
-                        "give me a joke"
+                        "give me a joke",
+                        "tell me a joke",
+                        "I want a joke",
+                        "hey dude tell me a joke",
+                        "I want to laugh, tell me a joke",
+                        "i need something funny right now",
+                        "tell me something funny",
+                        "I want to hear a joke",
+                        "can you make me smile",
+                        "make me laugh",
+                        "tell me chuck a chuck norris joke",
+                        "chuck norris",
+                        "what did chuck norris do",
+                        "what would chuck norris do",
+                        "I am feeling down",
+                        "I feeling oddly chuck norris today",
+                        "I miss chuck norris"
                     ]
                 },
 

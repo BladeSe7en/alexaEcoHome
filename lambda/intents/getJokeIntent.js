@@ -1,4 +1,4 @@
-var https = require('https');
+const https = require('https');
 
 module.exports = {
     GetJokeHandler: {
