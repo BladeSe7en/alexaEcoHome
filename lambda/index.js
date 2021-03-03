@@ -55,7 +55,7 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Eco P A can set reminders, give you a fact, tell you a joke, or set a repeating fact directly device. What would you like to try?';
+        const speakOutput = 'Eco Home can set reminders, give you a fact, ask for a joke, or set a repeating fact directly device. What would you like to try?';
         const repromptOutput = 'You can say set a reminder, give me a fact, tell me a joke, or set a repeating fact reminder.'
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -136,7 +136,7 @@ const DialogManagementStateInterceptor = {
                     // we let the current intent's values override the session attributes
                     // that way the user can override previously given values.
                     // this includes anything we have previously stored in their profile.
-                    if (!currentIntentSlots[key].value && savedSlots[key].value) {
+                    if (!currentIntent.slots[key].value && savedSlots[key].value) {
                         currentIntent.slots[key] = savedSlots[key];
                     }
                 }    

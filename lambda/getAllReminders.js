@@ -1,3 +1,5 @@
+const https = require('https');
+
 function getAllReminders() {
     return new Promise(((resolve, reject) => {
         var options = {
