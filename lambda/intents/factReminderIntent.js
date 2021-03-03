@@ -264,6 +264,10 @@ module.exports = {
 
 
                 let today = moment().tz("America/Los_Angeles").format();
+
+               //       [^T]*$
+                let testing = today.replace(/[^"T"0-9]/g, '0')
+                console.log('this is testing new date: ',testing)
                 let todayMoment = moment().tz("America/Los_Angeles")
                 console.log('this is today: ', today)
 
