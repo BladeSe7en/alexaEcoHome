@@ -269,6 +269,8 @@ module.exports = {
                 let startOfToday = moment(today).tz("America/Los_Angeles").slice(0, 11) + '00:00:00-08:00'
 
 
+                
+
                 let todayMoment = moment().tz("America/Los_Angeles")
                 console.log('this is today: ', today)
 
