@@ -375,6 +375,7 @@ module.exports = {
                 console.error(error);
                 return responseBuilder
                     .speak(error.message)
+                    .withShouldEndSession(true)
                     .getResponse();
             }
         }
