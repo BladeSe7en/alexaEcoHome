@@ -266,7 +266,7 @@ module.exports = {
                 let today = moment().tz("America/Los_Angeles").format();
 
                //       [^T]*$
-                let testing = Array.from(today).splice(11, 8, '00:00:00').toString()
+                let startOfToday = today.slice(0, 11) + '00:00:00-08:00'
                 console.log('this is testing new date: ',testing)
 
 
@@ -279,7 +279,7 @@ module.exports = {
                 console.log('this is yesterday: ', yesterday)
 
 
-                let startOfToday = moment(today).startOf('day')
+                //let startOfToday = moment(today).startOf('day')
                 console.log('this is start of today: ', startOfToday)
 
                 let startOfTodayToday = moment(today).startOf('day')
