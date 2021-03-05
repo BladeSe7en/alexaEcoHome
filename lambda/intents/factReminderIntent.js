@@ -561,8 +561,6 @@ module.exports = {
                 monthSelector(frequency)
 
                 console.log('this is freq: ', freq)
-                let sliced = today.slice(0, 1)
-                console.log('this is sliced: ', sliced)
 
                 let reminderPayload = {
                     "trigger": {
@@ -589,6 +587,11 @@ module.exports = {
                         'status': 'ENABLED'
                     }
                 };
+
+
+                                console.log('scheduledDateTime formatted: ', scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'))
+                console.log('what is the final result of reminderPayload: ', reminderPayload.trigger.scheduledTime, ' freq: ', reminderPayload.trigger.recurrence.recurrenceRules[0])
+                console.log('what is the final result of reminderPayload.trigger: ', reminderPayload.trigger, ' alertInfo: ', reminderPayload.alertInfo.spokenInfo.content)
 
 
                 await ReminderManagementServiceClient.createReminder(reminderPayload);
