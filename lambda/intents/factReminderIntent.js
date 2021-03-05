@@ -545,13 +545,8 @@ module.exports = {
                             return
                         case 'weekly':
                             return freq = `WEEKLY;BYDAY=${dayAbv}`
-                        case 'monthly':
-                            return freq = `MONTHLY`
-                        case 'yearly':
-                            return freq =`YEARLY`
-
                         default:
-                            return 12;
+                            return;
                     }
                 }
 
