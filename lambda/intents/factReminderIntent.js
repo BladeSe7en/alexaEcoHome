@@ -536,8 +536,8 @@ module.exports = {
 
 
 
-                
-                
+
+
                 let freq = frequency.toUpperCase();
                 console.log('this is freq: ', freq)
                 let startDate;
@@ -556,17 +556,43 @@ module.exports = {
 
                 console.log('this is freq: ', freq)
 
-                let reminderPayload = {
+                // let reminderPayload = {
+                //     "trigger": {
+                //         "type": "SCHEDULED_ABSOLUTE",
+                //       //  "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
+                //         "scheduledTime": '2021-03-05T11:55:00',
+                //         "timeZoneId": "America/Los_Angeles",
+                //         "recurrence": {
+                //             "startDateTime": today,
+                //             "recurrenceRules": [
+                //                 `FREQ=${freq}`,
+                //             ]
+                //         }
+                //     },
+                //     'alertInfo': {
+                //         'spokenInfo': {
+                //             'content': [{
+                //                 'locale': 'en-US',
+                //                 'text': speakOutput
+                //             }]
+                //         }
+                //     },
+                //     'pushNotification': {
+                //         'status': 'ENABLED'
+                //     }
+                // };
+
+                const reminderPayload = {
                     "trigger": {
                         "type": "SCHEDULED_ABSOLUTE",
-                      //  "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
-                        "scheduledTime": '2021-03-05T11:55:00',
+                        "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
                         "timeZoneId": "America/Los_Angeles",
                         "recurrence": {
-                            "startDateTime": today,
-                            "recurrenceRules": [
-                                `FREQ=${freq}`,
-                            ]
+                            freq: 'DAILY',
+                            "startDateTime": today
+                            // "recurrenceRules": [
+                            //     `FREQ=${freq}`,
+                            // ]
                         }
                     },
                     'alertInfo': {
@@ -583,7 +609,7 @@ module.exports = {
                 };
 
 
-                                console.log('scheduledDateTime formatted: ', scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'))
+                console.log('scheduledDateTime formatted: ', scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'))
                 console.log('what is the final result of reminderPayload: ', reminderPayload.trigger.scheduledTime, ' freq: ', reminderPayload.trigger.recurrence.recurrenceRules[0])
                 console.log('what is the final result of reminderPayload.trigger: ', reminderPayload.trigger, ' alertInfo: ', reminderPayload.alertInfo.spokenInfo.content)
 
