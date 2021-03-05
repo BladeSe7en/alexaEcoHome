@@ -559,7 +559,8 @@ module.exports = {
                 let reminderPayload = {
                     "trigger": {
                         "type": "SCHEDULED_ABSOLUTE",
-                        "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
+                      //  "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
+                        "scheduledTime": '2021-03-05T11:55:00',
                         "timeZoneId": "America/Los_Angeles",
                         "recurrence": {
                             "startDateTime": today,
