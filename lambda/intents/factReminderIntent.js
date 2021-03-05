@@ -295,8 +295,8 @@
 //                     minutes = time.split(':');
 //                     return minutes[0] * 60 + +minutes[1];
 //                 }
-                
-                
+
+
 //                 let scheduledDateTime = moment(startOfToday).add(timeToMins(time), 'minutes')
 //                 console.log('++++ testing scheduled time ++++')
 //                 console.log('time: ',time)
@@ -310,14 +310,14 @@
 //               //  console.log('this is speakOutput: ',speakOutput)
 //                 let dayOfWeek = startOfToday.format('dddd')
 //               //  console.log('this is dayOfWeek: ', dayOfWeek)
-                
+
 //                 let targetMonthDate = startOfToday.clone().add(1, 'months').add(timeToMins(time), 'minutes')
 //              //   console.log('THIS IS TARGETMONTHDATE: ', targetMonthDate)
 //                 let targetYearDate = startOfToday.clone().add(1, 'years').add(timeToMins(time), 'minutes')
 //             //    console.log('THIS IS TARGETYEARDATE: ', targetYearDate)
 //                 let dayAbv = dayOfWeek.slice(0, 2).toUpperCase()
 //              //   console.log('this is dayAbv: ', dayAbv)
-                
+
 //                 console.log('-=-=-=this is still start of today-=-=-: ', startOfToday)
 //                 console.log('this is scheduledDateTime: ', scheduledDateTime.format())
 
@@ -666,87 +666,51 @@ module.exports = {
                 let targetMonthDate = startOfToday.add(1, month)
                 let targetYearDate = startOfToday.add(1, year)
 
+                let freq = frequency.toUpperCase();
+                let startDate;
+                const monthSelector = (frequency) => {
+                    console.log('this is the frequency param: ', frequency)
+                    switch (frequency) {
+                        case 'daily':
+                            return freq = `${freq};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`, startDate = scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss');
+                        case 'weekly':
+                            return freq = `${freq};BYDAY=${dayAbv};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`, startDate = scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss');
+                        default:
+                            return 12;
+                    }
+                }
 
-                let reminderPayload = null
-                if (frequency === 'monthly' && today === targetMonthDate) {
-                    reminderPayload = {
-                        "trigger": {
-                            "type": "SCHEDULED_ABSOLUTE",
-                            "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
-                            "timeZoneId": "America/Los_Angeles",
-                            "recurrence": {
-                                "startDateTime": today,
-                                "recurrenceRules": [
-                                    `FREQ=DAILY;BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
-                                ]
-                            }
-                        },
-                        'alertInfo': {
-                            'spokenInfo': {
-                                'content': [{
-                                    'locale': 'en-US',
-                                    'text': speakOutput,
-                                }]
-                            }
-                        },
-                        'pushNotification': {
-                            'status': 'ENABLED'
-                        }
-                    };
-                } else if (frequency === 'yearly' && today === targetYearDate) {
-                    reminderPayload = {
-                        "trigger": {
-                            "type": "SCHEDULED_ABSOLUTE",
-                            "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
-                            "timeZoneId": "America/Los_Angeles",
-                            "recurrence": {
-                                "startDateTime": today,
-                                "recurrenceRules": [
-                                    `FREQ=DAILY;BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
-                                ]
-                            }
-                        },
-                        'alertInfo': {
-                            'spokenInfo': {
-                                'content': [{
-                                    'locale': 'en-US',
-                                    'text': speakOutput,
-                                }]
-                            }
-                        },
-                        'pushNotification': {
-                            'status': 'ENABLED'
-                        }
-                    };
-                } else if (frequency === 'DAILY' || frequency === 'WEEKLY') {
-                    reminderPayload = {
-                        "trigger": {
-                            "type": "SCHEDULED_ABSOLUTE",
-                            "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
-                            "timeZoneId": "America/Los_Angeles",
-                            "recurrence": {
-                                "startDateTime": today,
-                                // "endDateTime": moment(today).add(numMonths, 'months'),
-                                "recurrenceRules": [
-                                    `FREQ=${freq};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
-                                ]
-                            }
-                        },
-                        'alertInfo': {
-                            'spokenInfo': {
-                                'content': [{
-                                    'locale': 'en-US',
-                                    'text': speakOutput,
-                                }]
-                            }
-                        },
-                        'pushNotification': {
-                            'status': 'ENABLED'
-                        }
-                    };
-                } else return
+                monthSelector(frequency)
 
+                console.log('this is freq: ', freq)
+                let sliced = today.slice(0, 1)
+                console.log('this is sliced: ', sliced)
 
+                let reminderPayload = {
+                    "trigger": {
+                        "type": "SCHEDULED_ABSOLUTE",
+                        "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
+                        "timeZoneId": "America/Los_Angeles",
+                        "recurrence": {
+                            "startDateTime": today,
+                            "recurrenceRules": [
+                                `FREQ=${freq}`,
+                            ]
+                        }
+                    },
+                    'alertInfo': {
+                        'spokenInfo': {
+                            'content': [{
+                                'locale': 'en-US',
+                                'text': speakOutput,
+                                'ssml': speakOutput
+                            }]
+                        }
+                    },
+                    'pushNotification': {
+                        'status': 'ENABLED'
+                    }
+                };
 
 
                 await ReminderManagementServiceClient.createReminder(reminderPayload);
