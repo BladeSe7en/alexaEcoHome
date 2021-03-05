@@ -500,6 +500,8 @@ module.exports = {
 
                 console.log('THIS IS START OF TODAY AFTER CREATION: ',startOfToday)
 
+                var minutes;
+
                 // Convert a time in hh:mm format to minutes
                 const timeToMins = (time) => {
                     var b = time.split(':');
