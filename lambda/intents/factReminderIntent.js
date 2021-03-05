@@ -259,8 +259,8 @@ module.exports = {
                 const time = Alexa.getSlotValue(requestEnvelope, 'time')
                 const frequency = Alexa.getSlotValue(requestEnvelope, 'frequency')
                 console.log('========where is this log facts log-===========')
-                console.log('------------time ', time)
-                console.log('------------frequency ', frequency.toUpperCase())
+               // console.log('------------time ', time)
+               // console.log('------------frequency ', frequency.toUpperCase())
 
 
                 let today = moment().tz("America/Los_Angeles").format();
@@ -276,12 +276,11 @@ module.exports = {
 
                 let yesterdayUTC = moment(today).subtract(1, 'days').format()
                 let yesterday = moment(yesterdayUTC).tz("America/Los_Angeles").format();
-                console.log('this is yesterdayUTC: ', yesterdayUTC)
-                console.log('this is yesterday: ', yesterday)
+              //  console.log('this is yesterdayUTC: ', yesterdayUTC)
+               // console.log('this is yesterday: ', yesterday)
 
 
                 //let startOfToday = moment(today).startOf('day')
-                console.log('this is start of today: ', startOfToday)
 
 
                 // Convert a time in hh:mm format to minutes
@@ -297,25 +296,24 @@ module.exports = {
                 console.log('time: ',time)
                 console.log('addTimeToMinutes: ',timeToMins(time))
                 console.log('startOfToday: ',startOfToday)
-                console.log('scheduledDateTime: ',startOfToday)
+                console.log('scheduledDateTime: ',scheduledDateTime)
                 console.log('++++ ++++ ++++')
 
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
                 const { speakOutput } = ecoFacts.getData();
-                console.log('this is speakOutput: ',speakOutput)
+              //  console.log('this is speakOutput: ',speakOutput)
                 let dayOfWeek = startOfToday.format('dddd')
-                console.log('this is dayOfWeek: ', dayOfWeek)
+              //  console.log('this is dayOfWeek: ', dayOfWeek)
                 
                 let targetMonthDate = startOfToday.clone().add(1, 'months').add(timeToMins(time), 'minutes')
-                console.log('THIS IS TARGETMONTHDATE: ', targetMonthDate)
+             //   console.log('THIS IS TARGETMONTHDATE: ', targetMonthDate)
                 let targetYearDate = startOfToday.clone().add(1, 'years').add(timeToMins(time), 'minutes')
-                console.log('THIS IS TARGETYEARDATE: ', targetYearDate)
+            //    console.log('THIS IS TARGETYEARDATE: ', targetYearDate)
                 let dayAbv = dayOfWeek.slice(0, 2).toUpperCase()
-                console.log('this is dayAbv: ', dayAbv)
+             //   console.log('this is dayAbv: ', dayAbv)
                 
                 console.log('-=-=-=this is still start of today-=-=-: ', startOfToday)
                 console.log('this is scheduledDateTime: ', scheduledDateTime.format())
-                console.log('this is time to minutes', timeToMins(time))
 
                 let freq = frequency.toUpperCase();
                 let startDate;
@@ -367,8 +365,7 @@ module.exports = {
                     "day": day
 
                 };
-                console.log('scheduledDateTime: ', scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'))
-                console.log('this is targetDate: ',targetDate)
+                console.log('scheduledDateTime formatted: ', scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'))
                 console.log('what is the final result of reminderPayload: ', reminderPayload.trigger.scheduledTime, ' freq: ', reminderPayload.trigger.recurrence.recurrenceRules[0])
                 console.log('what is the final result of reminderPayload.trigger: ', reminderPayload.trigger, ' alertInfo: ', reminderPayload.alertInfo.spokenInfo.content)
 
