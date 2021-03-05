@@ -532,19 +532,24 @@ module.exports = {
 
                 let dayOfWeek = startOfToday.format('dddd')
 
-                console.log('this is dayOfWeek: ', dayOfWeek)
+                console.log('this is dayOfWeek: ',dayOfWeek)
 
                 let dayAbv = dayOfWeek.slice(0, 2).toUpperCase()
-                console.log('this is dayAbv: ', dayAbv)
+                console.log('this is dayAbv: ',dayAbv)
 
                 let freq = frequency.toUpperCase();
-                //Selects the months to include in the reminder
                 const monthSelector = (frequency) => {
+                    console.log('this is the frequency param: ', frequency)
                     switch (frequency) {
                         case 'daily':
-                            return freq = `${freq};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`, startDate = scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss');
+                            return
                         case 'weekly':
-                            return freq = `${freq};BYDAY=${dayAbv};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`, startDate = scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss');
+                            return freq = `WEEKLY;BYDAY=${dayAbv}`
+                        case 'monthly':
+                            return freq = `MONTHLY`
+                        case 'yearly':
+                            return freq =`YEARLY`
+
                         default:
                             return 12;
                     }
@@ -553,7 +558,7 @@ module.exports = {
 
                 monthSelector(frequency)
 
-                console.log('this is freq: ', freq)
+                console.log('this is freq: ',freq)
 
                 const reminderPayload = {
                     "trigger": {
@@ -562,9 +567,9 @@ module.exports = {
                         "timeZoneId": "America/Los_Angeles",
                         "recurrence": {
                             "startDateTime": today,
-                            // "endDateTime": moment(today).add(numMonths, 'months'),
+                           // "endDateTime": moment(today).add(numMonths, 'months'),
                             "recurrenceRules": [
-                                `FREQ=${freq}`,
+                                `FREQ=${freq};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
                             ]
                         }
                     },
