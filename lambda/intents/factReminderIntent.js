@@ -608,18 +608,18 @@ module.exports = {
     },
 
 
-    FactReminderInterceptor: {
-        async process(handlerInput) {
-            const attributesManager = handlerInput.attributesManager;
-            const sessionAttributes = await attributesManager.getPersistentAttributes() || {};
+    // FactReminderInterceptor: {
+    //     async process(handlerInput) {
+    //         const attributesManager = handlerInput.attributesManager;
+    //         const sessionAttributes = await attributesManager.getPersistentAttributes() || {};
 
-            const year = sessionAttributes.hasOwnProperty('year') ? sessionAttributes.year : 0;
-            const month = sessionAttributes.hasOwnProperty('month') ? sessionAttributes.month : 0;
-            const day = sessionAttributes.hasOwnProperty('day') ? sessionAttributes.day : 0;
+    //         const year = sessionAttributes.hasOwnProperty('year') ? sessionAttributes.year : 0;
+    //         const month = sessionAttributes.hasOwnProperty('month') ? sessionAttributes.month : 0;
+    //         const day = sessionAttributes.hasOwnProperty('day') ? sessionAttributes.day : 0;
 
-            if (year && month && day) {
-                attributesManager.setSessionAttributes(sessionAttributes);
-            }
-        }
-    }
+    //         if (year && month && day) {
+    //             attributesManager.setSessionAttributes(sessionAttributes);
+    //         }
+    //     }
+    // }
 }
