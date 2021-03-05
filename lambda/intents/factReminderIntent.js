@@ -613,7 +613,7 @@ module.exports = {
                // console.log('what is the final result of reminderPayload: ', reminderPayload.trigger.scheduledTime, ' freq: ', reminderPayload.trigger.recurrence.recurrenceRules[0])
                // console.log('what is the final result of reminderPayload.trigger: ', reminderPayload.trigger, ' alertInfo: ', reminderPayload.alertInfo.spokenInfo.content)
 
-
+console.log('this is the reminder manager response: ',await ReminderManagementServiceClient.createReminder(reminderPayload))
                 await ReminderManagementServiceClient.createReminder(reminderPayload);
                 return responseBuilder
                     .speak(speechText)
