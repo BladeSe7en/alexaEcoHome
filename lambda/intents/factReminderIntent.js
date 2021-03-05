@@ -541,7 +541,6 @@ module.exports = {
                 console.log('this is dayAbv: ', dayAbv)
 
 
-                monthSelector(frequency)
 
                 console.log('this is freq: ', freq)
 
@@ -559,6 +558,7 @@ module.exports = {
                             return;
                     }
                 }
+                monthSelector(frequency)
 
                 console.log('this is freq: ', freq)
                 let sliced = today.slice(0, 1)
