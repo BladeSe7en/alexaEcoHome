@@ -422,13 +422,6 @@ moment().tz("America/Los_Angeles").format();
 module.exports = {
     ConnectionsResponsetHandler: {
         canHandle(handlerInput) {
-            const attributesManager = handlerInput.attributesManager;
-            const sessionAttributes = attributesManager.getSessionAttributes() || {};
-
-            const year = sessionAttributes.hasOwnProperty('year') ? sessionAttributes.year : 0;
-            const month = sessionAttributes.hasOwnProperty('month') ? sessionAttributes.month : 0;
-            const day = sessionAttributes.hasOwnProperty('day') ? sessionAttributes.day : 0;
-
             return Alexa.getRequestType(handlerInput.requestEnvelope) === 'Connections.Response';
         },
         handle(handlerInput) {
@@ -506,14 +499,15 @@ module.exports = {
                 let today = moment().tz("America/Los_Angeles").format();
                 console.log('this is today: ', today)
 
-                let yesterdayUTC = moment(today).subtract(1, 'days').format()
-                let yesterday = moment(yesterdayUTC).tz("America/Los_Angeles").format();
-                console.log('this is yesterdayUTC: ', yesterdayUTC)
-                console.log('this is yesterday: ', yesterday)
+                // let yesterdayUTC = moment(today).subtract(1, 'days').format()
+                // let yesterday = moment(yesterdayUTC).tz("America/Los_Angeles").format();
+                // console.log('this is yesterdayUTC: ', yesterdayUTC)
+                // console.log('this is yesterday: ', yesterday)
 
 
 
-                let startOfToday = moment(yesterday).startOf('day')
+                let startOfToday = moment(today.slice(0, 11) + '00:00:00')
+
                 console.log('this is start of today: ', startOfToday)
 
                 // Convert a time in hh:mm format to minutes
