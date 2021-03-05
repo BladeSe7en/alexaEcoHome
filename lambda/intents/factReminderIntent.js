@@ -295,8 +295,8 @@
 //                     minutes = time.split(':');
 //                     return minutes[0] * 60 + +minutes[1];
 //                 }
-                
-                
+
+
 //                 let scheduledDateTime = moment(startOfToday).add(timeToMins(time), 'minutes')
 //                 console.log('++++ testing scheduled time ++++')
 //                 console.log('time: ',time)
@@ -310,14 +310,14 @@
 //               //  console.log('this is speakOutput: ',speakOutput)
 //                 let dayOfWeek = startOfToday.format('dddd')
 //               //  console.log('this is dayOfWeek: ', dayOfWeek)
-                
+
 //                 let targetMonthDate = startOfToday.clone().add(1, 'months').add(timeToMins(time), 'minutes')
 //              //   console.log('THIS IS TARGETMONTHDATE: ', targetMonthDate)
 //                 let targetYearDate = startOfToday.clone().add(1, 'years').add(timeToMins(time), 'minutes')
 //             //    console.log('THIS IS TARGETYEARDATE: ', targetYearDate)
 //                 let dayAbv = dayOfWeek.slice(0, 2).toUpperCase()
 //              //   console.log('this is dayAbv: ', dayAbv)
-                
+
 //                 console.log('-=-=-=this is still start of today-=-=-: ', startOfToday)
 //                 console.log('this is scheduledDateTime: ', scheduledDateTime.format())
 
@@ -498,8 +498,11 @@ module.exports = {
 
                 let startOfToday = moment(today.slice(0, 11) + '00:00:00')
 
-                console.log('THIS IS START OF TODAY AFTER CREATION: ',startOfToday)
-
+                console.log('THIS IS START OF TODAY AFTER CREATION: ', startOfToday)
+                const { speakOutput } = ecoFacts.getData();
+                let dayOfWeek = startOfToday.format('dddd')
+                let dayAbv = dayOfWeek.slice(0, 2).toUpperCase()
+                let freq = frequency.toUpperCase();
                 var minutes;
 
                 // Convert a time in hh:mm format to minutes
