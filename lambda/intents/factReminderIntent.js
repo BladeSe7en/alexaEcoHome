@@ -267,7 +267,7 @@ module.exports = {
                 console.log('this is today: ', today)
 
                //       [^T]*$
-                let startOfToday = moment(today.slice(0, 11) + '00:00:00')
+                let startOfToday = moment(today.slice(0, 11) + '00:00:00-08:00')
 
                 console.log('THIS IS START OF TODAY AFTER CREATION: ',startOfToday)
 
@@ -341,7 +341,7 @@ module.exports = {
                         "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
                         "timeZoneId": "America/Los_Angeles",
                         "recurrence": {
-                            "startDateTime": sliced,
+                            "startDateTime": today,
                             "recurrenceRules": [
                                 `FREQ=${freq}`,
                             ]
