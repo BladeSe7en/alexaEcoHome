@@ -577,7 +577,7 @@ module.exports = {
                         'spokenInfo': {
                             'content': [{
                                 'locale': 'en-US',
-                                'ssml': speakOutput,
+                                'text': speakOutput,
                             }]
                         }
                     },
