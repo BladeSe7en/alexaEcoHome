@@ -269,7 +269,7 @@ module.exports = {
                //       [^T]*$
                 let startOfToday = moment(today.slice(0, 11) + '00:00:00').tz("America/Los_Angeles")
 
-
+                console.log('THIS IS START OF TODAY AFTER CREATION: ',startToday)
 
 
                 let todayMoment = moment().tz("America/Los_Angeles")
@@ -290,9 +290,16 @@ module.exports = {
                     minutes = time.split(':');
                     return minutes[0] * 60 + +minutes[1];
                 }
-
-
+                
+                
                 let scheduledDateTime = moment(startOfToday).add(timeToMins(time), 'minutes')
+                console.log('++++ testing scheduled time ++++')
+                console.log('time: ',time)
+                console.log('addTimeToMinutes: ',timeToMins(time))
+                console.log('startOfToday: ',startOfToday)
+                console.log('scheduledDateTime: ',startOfToday)
+                console.log('++++ ++++ ++++')
+
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
                 const { speakOutput } = ecoFacts.getData();
                 console.log('this is speakOutput: ',speakOutput)
