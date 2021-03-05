@@ -542,10 +542,10 @@ module.exports = {
 
 
 
-                console.log('this is freq: ', freq)
-
-
+                
+                
                 let freq = frequency.toUpperCase();
+                console.log('this is freq: ', freq)
                 let startDate;
                 const monthSelector = (frequency) => {
                     console.log('this is the frequency param: ', frequency)
