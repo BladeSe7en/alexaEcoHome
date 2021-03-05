@@ -515,7 +515,6 @@ module.exports = {
 
                 let scheduledDateTime = moment(startOfToday).add(timeToMins(time), 'minutes')
 
-                let freq = frequency.toUpperCase();
                 let startDate;
                 const monthSelector = (frequency) => {
                     console.log('this is the frequency param: ', frequency)
