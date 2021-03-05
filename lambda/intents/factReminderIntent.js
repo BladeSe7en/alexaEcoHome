@@ -531,8 +531,8 @@ module.exports = {
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
 
 
+                const speakOutput = ecoFacts.getData();
                 console.log('speakOutput: ', speakOutput)
-                const { speakOutput } = ecoFacts.getData();
                 let dayOfWeek = startOfToday.format('dddd')
 
                 console.log('this is dayOfWeek: ', dayOfWeek)
@@ -545,8 +545,6 @@ module.exports = {
 
                 console.log('this is freq: ', freq)
 
-                let targetMonthDate = startOfToday.add(1, month)
-                let targetYearDate = startOfToday.add(1, year)
 
                 let freq = frequency.toUpperCase();
                 let startDate;
