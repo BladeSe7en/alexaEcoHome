@@ -506,7 +506,7 @@ module.exports = {
 
 
 
-                let startOfToday = moment(today.slice(0, 11) + '00:00:00')
+                let startOfToday = moment(today.slice(0, 11) + '00:00:00-08:00')
 
                 console.log('this is start of today: ', startOfToday)
 
