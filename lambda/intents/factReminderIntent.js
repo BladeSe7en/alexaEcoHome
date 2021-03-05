@@ -375,14 +375,12 @@ module.exports = {
                 await ReminderManagementServiceClient.createReminder(reminderPayload);
                 return responseBuilder
                     .speak(speechText)
-                    .withShouldEndSession(true)
                     .getResponse();
 
             } catch (error) {
                 console.error(error);
                 return responseBuilder
                     .speak(error.message)
-                    .withShouldEndSession(true)
                     .getResponse();
             }
         }
