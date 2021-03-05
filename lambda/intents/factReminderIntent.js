@@ -332,6 +332,8 @@ module.exports = {
                 monthSelector(frequency)
 
                 console.log('this is freq: ', freq)
+                let sliced = today.slice(0, 10)
+                console.log('this is sliced: ',sliced)
 
                 let reminderPayload = {
                     "trigger": {
