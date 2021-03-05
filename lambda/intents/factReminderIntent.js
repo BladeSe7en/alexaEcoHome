@@ -474,7 +474,7 @@ module.exports = {
     CreateReminderIntentHandler: {
         canHandle(handlerInput) {
             const { request } = handlerInput.requestEnvelope;
-            return request.type === 'IntentRequest' && request.intent.name === 'CreateReminderIntent';
+            return request.type === 'IntentRequest' && request.intent.name === 'FactReminderIntent';
         },
         async handle(handlerInput) {
             const { requestEnvelope, serviceClientFactory, responseBuilder } = handlerInput;
