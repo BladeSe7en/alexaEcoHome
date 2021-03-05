@@ -332,7 +332,7 @@ module.exports = {
                 monthSelector(frequency)
 
                 console.log('this is freq: ', freq)
-                let sliced = today.slice(0, 10)
+                let sliced = today.slice(0, 19)
                 console.log('this is sliced: ',sliced)
 
                 let reminderPayload = {
@@ -341,7 +341,7 @@ module.exports = {
                         "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
                         "timeZoneId": "America/Los_Angeles",
                         "recurrence": {
-                            "startDateTime": today,
+                            "startDateTime": sliced,
                             "recurrenceRules": [
                                 `FREQ=${freq}`,
                             ]
@@ -404,6 +404,5 @@ module.exports = {
         }
     }
 }
-
 
 
