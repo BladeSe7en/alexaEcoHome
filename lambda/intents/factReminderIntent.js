@@ -35,8 +35,8 @@ module.exports = {
                 const frequency = Alexa.getSlotValue(requestEnvelope, 'frequency')
                 const today = moment().tz("America/Los_Angeles").format();
                 const startOfToday = moment(today.slice(0, 11) + '00:00:00')
-                const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
                 const { speakOutput } = ecoFacts.getData();
+                const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
 
                 let scheduledDateTime = moment(startOfToday).add(timeToMins(time), 'minutes')
                 let dayOfWeek = startOfToday.format('dddd')
@@ -74,7 +74,7 @@ module.exports = {
                         'spokenInfo': {
                             'content': [{
                                 'locale': 'en-US',
-                                'ssml': speakOutput,
+                                'text': speakOutput,
                             }]
                         }
                     },
