@@ -1,5 +1,4 @@
 const Alexa = require('ask-sdk-core');
-const persistenceAdapter = require('ask-sdk-s3-persistence-adapter');
 const moment = require('moment-timezone');
 const { ecoFacts } = require('../ecoFacts');
 moment().tz("America/Los_Angeles").format();
@@ -27,20 +26,14 @@ module.exports = {
                 const speechText = "Alright! I've scheduled a reminder for you.";
                 const time = Alexa.getSlotValue(requestEnvelope, 'time')
                 const frequency = Alexa.getSlotValue(requestEnvelope, 'frequency')
-                console.log('========where is this log facts log-===========')
-                console.log('------------time ', time)
-                console.log('------------frequency ', frequency.toUpperCase())
+                const today = moment().tz("America/Los_Angeles").format();
+                const startOfToday = moment(today.slice(0, 11) + '00:00:00')
+                const { speakOutput } = ecoFacts.getData();
 
-                let today = moment().tz("America/Los_Angeles").format();
-                console.log('this is today: ', today)
-
-                let yesterdayUTC = moment(today).subtract(1, 'days').format()
-                let yesterday = moment(yesterdayUTC).tz("America/Los_Angeles").format();
-                console.log('this is yesterdayUTC: ', yesterdayUTC)
-                console.log('this is yesterday: ', yesterday)
-
-                let startOfToday = moment(today.slice(0, 11) + '00:00:00')
-                console.log('this is start of today: ', startOfToday)
+                let scheduledDateTime = moment(startOfToday).add(timeToMins(time), 'minutes')
+                let dayOfWeek = startOfToday.format('dddd')
+                let dayAbv = dayOfWeek.slice(0, 2).toUpperCase()
+                let freq = frequency.toUpperCase();
 
                 // Convert a time in hh:mm format to minutes
                 var minutes
@@ -50,39 +43,20 @@ module.exports = {
                 }
 
 
-                let scheduledDateTime = moment(startOfToday).add(timeToMins(time), 'minutes')
-                console.log('this is scheduledDateTime: ', scheduledDateTime.format())
-                console.log('this is time to minutes', timeToMins(time))
-
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
 
-
-                const { speakOutput } = ecoFacts.getData();
-                console.log('speakOutput: ', speakOutput)
-
-                let dayOfWeek = startOfToday.format('dddd')
-
-                console.log('this is dayOfWeek: ',dayOfWeek)
-
-                let dayAbv = dayOfWeek.slice(0, 2).toUpperCase()
-                console.log('this is dayAbv: ',dayAbv)
-
-                let freq = frequency.toUpperCase();
                 const monthSelector = (frequency) => {
-                    console.log('this is the frequency param: ', frequency)
                     switch (frequency) {
                         case 'daily':
-                            return
+                            return freq = `${freq};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`
                         case 'weekly':
-                            return freq = `WEEKLY;BYDAY=${dayAbv}`
+                            return freq = `${freq};BYDAY=${dayAbv};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`
                         default:
                             return;
                     }
                 }
 
                 monthSelector(frequency)
-
-                console.log('this is freq: ',freq)
 
                 const reminderPayload = {
                     "trigger": {
@@ -92,7 +66,7 @@ module.exports = {
                         "recurrence": {
                             "startDateTime": today,
                             "recurrenceRules": [
-                                `FREQ=${freq};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
+                                `FREQ=${freq}`,
                             ]
                         }
                     },
@@ -108,7 +82,6 @@ module.exports = {
                         'status': 'ENABLED'
                     }
                 };
-
 
 
                 await ReminderManagementServiceClient.createReminder(reminderPayload);
