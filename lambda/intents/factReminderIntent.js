@@ -23,6 +23,13 @@ module.exports = {
             }
 
             try {
+                // Convert a time in hh:mm format to minutes
+                var minutes
+                const timeToMins = (time) => {
+                    minutes = time.split(':');
+                    return minutes[0] * 60 + +minutes[1];
+                }
+                
                 const speechText = "Alright! I've scheduled a reminder for you.";
                 const time = Alexa.getSlotValue(requestEnvelope, 'time')
                 const frequency = Alexa.getSlotValue(requestEnvelope, 'frequency')
@@ -35,12 +42,6 @@ module.exports = {
                 let dayAbv = dayOfWeek.slice(0, 2).toUpperCase()
                 let freq = frequency.toUpperCase();
 
-                // Convert a time in hh:mm format to minutes
-                var minutes
-                const timeToMins = (time) => {
-                    minutes = time.split(':');
-                    return minutes[0] * 60 + +minutes[1];
-                }
 
 
                 const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
