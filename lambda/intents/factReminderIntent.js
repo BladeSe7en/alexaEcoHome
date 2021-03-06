@@ -29,7 +29,7 @@ module.exports = {
                     minutes = time.split(':');
                     return minutes[0] * 60 + +minutes[1];
                 }
-                
+
                 const speechText = "Alright! I've scheduled a reminder for you.";
                 const time = Alexa.getSlotValue(requestEnvelope, 'time')
                 const frequency = Alexa.getSlotValue(requestEnvelope, 'frequency')
@@ -41,6 +41,7 @@ module.exports = {
                 let dayOfWeek = startOfToday.format('dddd')
                 let dayAbv = dayOfWeek.slice(0, 2).toUpperCase()
                 let freq = frequency.toUpperCase();
+                let timeOffset = `;BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`
 
 
 
@@ -49,9 +50,9 @@ module.exports = {
                 const monthSelector = (frequency) => {
                     switch (frequency) {
                         case 'daily':
-                            return freq = `${freq};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`
+                            return freq = `${freq};${timeOffset};`
                         case 'weekly':
-                            return freq = `${freq};BYDAY=${dayAbv};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`
+                            return freq = `${freq};BYDAY=${dayAbv};${timeOffset};`
                         default:
                             return;
                     }
