@@ -377,12 +377,12 @@ module.exports = {
                         "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
                         "timeZoneId": "America/Los_Angeles",
                         freq: 'DAILY',
-                        "recurrence": {
-                            "startDateTime": today,
-                            // "recurrenceRules": [
-                            //     `FREQ=${freq};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
-                            // ]
-                        }
+                        // "recurrence": {
+                        //     "startDateTime": today,
+                        //     // "recurrenceRules": [
+                        //     //     `FREQ=${freq};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
+                        //     // ]
+                        // }
                     },
                     'alertInfo': {
                         'spokenInfo': {
