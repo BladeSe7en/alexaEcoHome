@@ -35,6 +35,7 @@ module.exports = {
                 const frequency = Alexa.getSlotValue(requestEnvelope, 'frequency')
                 const today = moment().tz("America/Los_Angeles").format();
                 const startOfToday = moment(today.slice(0, 11) + '00:00:00')
+                const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
                 const { speakOutput } = ecoFacts.getData();
 
                 let scheduledDateTime = moment(startOfToday).add(timeToMins(time), 'minutes')
@@ -43,9 +44,6 @@ module.exports = {
                 let freq = frequency.toUpperCase();
                 let timeOffset = `;BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`
 
-
-
-                const ReminderManagementServiceClient = serviceClientFactory.getReminderManagementServiceClient();
 
                 const monthSelector = (frequency) => {
                     switch (frequency) {

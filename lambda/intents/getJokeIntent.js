@@ -9,9 +9,6 @@ module.exports = {
         },
         async handle(handlerInput) {
             const response = await httpGet();
-
-            console.log(response);
-
             return handlerInput.responseBuilder
                 .speak('Okay. Here is what I got back from my request. ' + response.value.joke)
                 .reprompt('What would you like?')

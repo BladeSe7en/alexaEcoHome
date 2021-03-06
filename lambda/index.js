@@ -55,7 +55,7 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Eco Home can set reminders, give you a fact, ask for a joke, or set a repeating fact directly device. What would you like to try?';
+        const speakOutput = 'Eco Home can set reminders, give you a fact, tell you a joke, or set a repeating fact reminder. What would you like to try?';
         const repromptOutput = 'You can say set a reminder, give me a fact, tell me a joke, or set a repeating fact reminder.'
         return handlerInput.responseBuilder
             .speak(speakOutput)

@@ -76,10 +76,6 @@ module.exports = {
                 let reminderDate = Alexa.getSlotValue(requestEnvelope, 'date')
                 const time = Alexa.getSlotValue(requestEnvelope, 'time')
 
-                let today = moment().tz("America/Los_Angeles").format();
-                console.log('this is today: ', today)
-
-
                 let scheduledDate = moment(reminderDate)
 
                 // Convert a time in hh:mm format to minutes
