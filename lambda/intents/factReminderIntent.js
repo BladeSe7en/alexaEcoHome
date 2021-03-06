@@ -376,10 +376,9 @@ module.exports = {
                         "type": "SCHEDULED_ABSOLUTE",
                         "scheduledTime": scheduledDateTime.format('YYYY-MM-DDTHH:mm:ss'),
                         "timeZoneId": "America/Los_Angeles",
-                        req: 'DAILY',
+                        freq: 'DAILY',
                         "recurrence": {
                             "startDateTime": today,
-                           // "endDateTime": moment(today).add(numMonths, 'months'),
                             // "recurrenceRules": [
                             //     `FREQ=${freq};BYHOUR=${minutes[0]};BYMINUTE=${minutes[1]};BYSECOND=0;INTERVAL=1;`,
                             // ]
